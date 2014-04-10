@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MtimeProject>
+  <WebSites>
+    <WebSite Name="MtimeMovieCommunityRoot" LocalSitePath="C:\Inetpub\wwwroot\MtimeMovieCommunityRoot\" RemoteSitePath="\\192.168.50.22\c$\Inetpub\wwwroot\MtimeMovieCommunityRoot\" StaticPath="C:\Inetpub\wwwroot\MtimeMovieCommunityStatic\" SiteSourcePath="D:\CCNet\Codev3.0\MtimeMovieCommunity.root\MtimeMovieCommunity\Web\Community\"/>
+    <WebSite Name="MtimeChannel" LocalSitePath="C:\Inetpub\wwwroot\MtimeChannel\" StaticPath="C:\Inetpub\wwwroot\MtimeMovieCommunityStatic\channel\" SiteSourcePath="D:\CCNet\MtimeGit\web\content\channel\ChannelWeb\"/>
+    <!--<WebSite Name="MtimeChannelNew" LocalSitePath="C:\Inetpub\wwwroot\service.channel.test.com10002\" StaticPath="C:\Inetpub\wwwroot\MtimeMovieCommunityStatic\channel2014\"/>-->
+    <WebSite Name="MtimeContentLibrary" LocalSitePath="C:\Inetpub\wwwroot\service.library.test.com\" StaticPath="C:\Inetpub\wwwroot\MtimeMovieCommunityStatic\library\"/>
+    <WebSite Name="MtimeTheaterChannel" LocalSitePath="C:\Inetpub\wwwroot\service.theater.test.com\" StaticPath="C:\Inetpub\wwwroot\MtimeMovieCommunityStatic\theater\"/>
+    <WebSite Name="MtimeTheaterChannelNew" LocalSitePath="C:\Inetpub\wwwroot\service.theater.test.com10001\" StaticPath="C:\Inetpub\wwwroot\MtimeMovieCommunityStatic\theater2014\"/>
+    <WebSite Name="MtimeMemberCenter" LocalSitePath="C:\Inetpub\wwwroot\MemberCenterNew\" StaticPath="C:\Inetpub\wwwroot\MtimeMovieCommunityStatic\my\"/>
+    <WebSite Name="MtimeTwitterApp" LocalSitePath="C:\Inetpub\wwwroot\app\t.app.test.com\" StaticPath="C:\Inetpub\wwwroot\MtimeMovieCommunityStatic\app\weibo\"/>
+    <WebSite Name="MtimeBlogApp" LocalSitePath="C:\Inetpub\wwwroot\app\blog.app.test.com\" StaticPath="C:\Inetpub\wwwroot\MtimeMovieCommunityStatic\app\blog\"/>
+    <WebSite Name="MtimeGroupApp" LocalSitePath="C:\Inetpub\wwwroot\app\group.app.test.com\" StaticPath="C:\Inetpub\wwwroot\MtimeMovieCommunityStatic\app\group\"/>
+    <WebSite Name="MtimeAccountApp" LocalSitePath="C:\Inetpub\wwwroot\app\account.app.test.com\" StaticPath="C:\Inetpub\wwwroot\MtimeMovieCommunityStatic\app\account\"/>
+    <WebSite Name="MtimeMatchApp" LocalSitePath="C:\Inetpub\wwwroot\app\match\" StaticPath="C:\Inetpub\wwwroot\MtimeMovieCommunityStatic\app\match\"/>
+    <WebSite Name="MtimeVoteApp" LocalSitePath="C:\Inetpub\wwwroot\app\vote\" StaticPath="C:\Inetpub\wwwroot\MtimeMovieCommunityStatic\app\vote\"/>
+    <WebSite Name="MtimeMemoryApp" LocalSitePath="C:\Inetpub\wwwroot\app\memory\" StaticPath="C:\Inetpub\wwwroot\MtimeMovieCommunityStatic\app\memgame\"/>
+    <WebSite Name="MtimeCardApp" LocalSitePath="C:\Inetpub\wwwroot\app\card\" StaticPath="C:\Inetpub\wwwroot\MtimeMovieCommunityStatic\app\card\"/>
+    <WebSite Name="MtimeQuizApp" LocalSitePath="C:\Inetpub\wwwroot\app\quiz\" StaticPath="C:\Inetpub\wwwroot\MtimeMovieCommunityStatic\app\quiz\"/>
+    <WebSite Name="MtimeGroup" LocalSitePath="C:\Inetpub\wwwroot\MtimeGroup\" StaticPath="C:\Inetpub\wwwroot\MtimeMovieCommunityStatic\group\"/>
+    <WebSite Name="MtimeBlog" LocalSitePath="C:\Inetpub\wwwroot\MtimeBlog\" StaticPath="C:\Inetpub\wwwroot\MtimeMovieCommunityStatic\blog\"/>
+    <WebSite Name="MtimePiao" LocalSitePath="C:\Inetpub\wwwroot\piao.test.com\" StaticPath="C:\Inetpub\wwwroot\MtimeMovieCommunityStatic\piao\"/>
+    <WebSite Name="MtimeSearch" LocalSitePath="C:\Inetpub\wwwroot\search.test.com\" StaticPath="C:\Inetpub\wwwroot\MtimeMovieCommunityStatic\search\"/>
+    <WebSite Name="MtimePay" LocalSitePath="C:\Inetpub\wwwroot\MtimePaymentWeb\" StaticPath="C:\Inetpub\wwwroot\MtimeMovieCommunityStatic\pay\"/>
+    <WebSite Name="MtimeApi" LocalSitePath="C:\Inetpub\wwwroot\Api.test.com\" StaticPath="C:\Inetpub\wwwroot\MtimeMovieCommunityStatic\api\"/>
+    <WebSite Name="MtimeApiCn" LocalSitePath="C:\Inetpub\wwwroot\Api.test.cn\" StaticPath="C:\Inetpub\wwwroot\MtimeMovieCommunityStatic\api\"/>
+    <WebSite Name="MtimeService" LocalSitePath="C:\Inetpub\wwwroot\service.test.com\" StaticPath=""/>
+    <WebSite Name="MtimeWap-m" LocalSitePath="C:\Inetpub\wwwroot\m.test.com\" StaticPath="C:\inetpub\wwwroot\MtimeMovieCommunityStatic\m\"/>
+    <WebSite Name="MtimeWap-i.m" LocalSitePath="C:\Inetpub\wwwroot\i.m.test.com\" StaticPath=""/>
+    <WebSite Name="MtimeWap-my.m" LocalSitePath="C:\Inetpub\wwwroot\my.m.test.com\" StaticPath=""/>
+    <WebSite Name="MtimeWap-theater.m" LocalSitePath="C:\Inetpub\wwwroot\theater.m.test.com\" StaticPath=""/>
+    <WebSite Name="MtimeWap-movie.m" LocalSitePath="C:\Inetpub\wwwroot\movie.m.test.com\" StaticPath=""/>
+    <WebSite Name="MtimeWap-news.m" LocalSitePath="C:\Inetpub\wwwroot\news.m.test.com\" StaticPath=""/>
+    <WebSite Name="MtimeWap-people.m" LocalSitePath="C:\Inetpub\wwwroot\people.m.test.com\" StaticPath=""/>
+    <WebSite Name="MtimeWap-group.m" LocalSitePath="C:\Inetpub\wwwroot\group.m.test.com\" StaticPath=""/>
+    <WebSite Name="MtimeWap-ucwap.news.m" LocalSitePath="C:\Inetpub\wwwroot\ucwap.news.m.test.com\" StaticPath=""/>
+    <WebSite Name="MtimeWap-piao.m" LocalSitePath="C:\Inetpub\wwwroot\piao.m.test.cn\" StaticPath="C:\inetpub\wwwroot\MtimeMovieCommunityStatic\wappiao\"/>
+    <WebSite Name="Mtime-html5" LocalSitePath="C:\Inetpub\wwwroot\m.mtime.cn\" StaticPath="C:\inetpub\wwwroot\MtimeMovieCommunityStatic\html5\"/>
+    <WebSite Name="MobileApi" LocalSitePath="C:\Inetpub\wwwroot\api.m.test.cn\" StaticPath="C:\Inetpub\wwwroot\MtimeMovieCommunityStatic\mobileapi\"/>
+    <WebSite Name="MtimePartner-NTC" LocalSitePath="C:\Inetpub\wwwroot\ntc.test.com\" StaticPath="C:\Inetpub\wwwroot\MtimeMovieCommunityStatic\ntc\"/>
+    <WebSite Name="MtimePartner-Sony" LocalSitePath="C:\Inetpub\wwwroot\Sony\" StaticPath="C:\Inetpub\wwwroot\MtimeMovieCommunityStatic\Sony\"/>
+    <WebSite Name="MtimePartner-Disney" LocalSitePath="C:\Inetpub\wwwroot\Disney\" StaticPath="C:\Inetpub\wwwroot\MtimeMovieCommunityStatic\Disney\"/>
+    <WebSite Name="MtimePartner-NFA" LocalSitePath="C:\Inetpub\wwwroot\Nfa\" StaticPath="C:\Inetpub\wwwroot\MtimeMovieCommunityStatic\nfa\"/>
+    <WebSite Name="MtimePartner-FOX" LocalSitePath="C:\Inetpub\wwwroot\FoxWeb\" StaticPath=""/>
+    <!--<WebSite Name="" Path=""/>-->
+  </WebSites>
+  <Services>
+    <Service Name="DETContractServer" LocalServicePath="C:\Inetpub\MtimeService\DETContractServer\" RemoteServicePath="\\192.168.50.25\c$\Inetpub\MtimeService\DETContractServer\" ServiceSourcePath="D:\CCNet\MtimeGit\web\ticket\det\Services\ContractService\bin\Release\"/>
+  </Services>
+  <Tools>
+    <Tool Name="MtimeChannel" LocalToolPath="C:\Inetpub\MtimeService\Channel.GeneratorApp\" ProcessName="" RemoteToolPath="" RemoteToolPathForLocal="" ToolSourcePath="D:\CCNet\Codev3.0\MtimeMovieCommunity.root\MtimeChannel.root\MtimeChannel\Channel.GeneratorApp\bin\Release\"></Tool>
+    <Tool Name="StaticAllTool" LocalToolPath="C:\Inetpub\MtimeService\StaticAllTool\" ProcessName="" RemoteToolPath="" RemoteToolPathForLocal="" ToolSourcePath="D:\CCNet\Codev3.0\MtimeMovieCommunity.root\StaticFileGenerator\TemplateGenerator\StaticAllTool\bin\Release\"></Tool>
+  </Tools>
+</MtimeProject>
