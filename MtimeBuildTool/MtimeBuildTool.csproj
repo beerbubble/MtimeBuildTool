@@ -36,7 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mtime.Utility">
-      <HintPath>..\..\..\..\..\..\..\MtimeDebug\Mtime.Utility.dll</HintPath>
+      <HintPath>C:\MtimeDebug\Mtime.Utility.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -67,9 +67,7 @@
     <Content Include="config\MtimeProjectMap.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="config\PublishRule.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="config\MtimePublishRule.xml" />
     <Content Include="config\MachineAccount.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
