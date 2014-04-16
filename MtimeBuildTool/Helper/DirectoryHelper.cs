@@ -17,10 +17,10 @@ namespace MtimeBuildTool.Helper
 
             int i = 0;
             while (i < 5)
-            {              
+            {
                 try
                 {
-                    dir.Delete(true);
+                    DeleteFileSystemInfo(dir);
                     break;
                 }
                 catch (Exception ex)
@@ -30,6 +30,26 @@ namespace MtimeBuildTool.Helper
                 i++;
             }
             Log.WriteMessage("Remove Success！");
+        }
+
+        public static void DirectoryFilesRemove(string path)
+        {
+            var dir = new DirectoryInfo(path);
+
+            // Get the files in the directory and copy them to the new location.
+            FileInfo[] files = dir.GetFiles();
+            foreach (FileInfo file in files)
+            {
+                file.Attributes = FileAttributes.Normal;
+                file.Delete();
+            }
+
+            DirectoryInfo[] dirs = dir.GetDirectories();
+            // If copying subdirectories, copy them and their contents to new location. 
+            foreach (DirectoryInfo subdir in dirs)
+            {
+                DeleteFileSystemInfo(subdir);
+            }
         }
 
         public static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs)
@@ -68,6 +88,33 @@ namespace MtimeBuildTool.Helper
                     DirectoryCopy(subdir.FullName, temppath, copySubDirs);
                 }
             }
+        }
+
+        private static void DeleteFileSystemInfo(FileSystemInfo fileSystemInfo)
+        {
+            var directoryInfo = fileSystemInfo as DirectoryInfo;
+            if (directoryInfo != null)
+            {
+                foreach (var childInfo in directoryInfo.GetFileSystemInfos())
+                {
+                    DeleteFileSystemInfo(childInfo);
+                }
+            }
+
+            fileSystemInfo.Attributes = FileAttributes.Normal;
+            fileSystemInfo.Delete();
+        }
+
+
+        public static void CreateDir(string destDirName)
+        {
+
+            while (!Directory.Exists(destDirName))
+            {
+                Directory.CreateDirectory(destDirName);
+                Thread.Sleep(1 * 1000);
+            }
+
         }
     }
 

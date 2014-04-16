@@ -1,4 +1,4 @@
-ï»¿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +8,8 @@ using System.Diagnostics;
 using System.Management;
 using System.Text.RegularExpressions;
 using System.Configuration;
+using System.IO;
+using MtimeClientCompress.Components;
 
 namespace MtimeBuildTool
 {
@@ -18,75 +20,108 @@ namespace MtimeBuildTool
 
         static void Main(string[] args)
         {
-            //RemoteExecute remoteExecute = new RemoteExecute("192.168.50.25", "administrator", "1");
+            if (args.Length < 1)
+            {
+                Log.WriteMessage("ÎŞÏîÄ¿²ÎÊı£¬Çë¼ì²éÃüÁî£¡");
+                return;
+            }
 
-            //string path = @"C:\Inetpub\MtimeService\Staticize\MtimeMessageProcessor.exe";
-
-            //remoteExecute.Connect();
-
-            //var theDic= remoteExecute.GetProcessList();
-
-            //List<ProcessModel> modelList = theDic["MtimeMessageProcessor.exe"];
-
-            //foreach (var item in modelList)
-            //{
-            //    if (item.ExecutablePath == path)
-            //    {
-            //        remoteExecute.KillProcess(item.ManagementObj);
-            //    }
-
-            //}
-
-            //remoteExecute.StartProcess(@"C:\Inetpub\MtimeService\Staticize\MtimeMessageProcessor.exe -autostart");
-
-
-            //if (args.Length < 1)
-            //{
-            //    Log.WriteMessage("é¡¹ç›®å‚æ•°ä¸ºç©ºï¼Œè°ƒç”¨é”™è¯¯ï¼Œè¯·æŸ¥çœ‹å…·ä½“è°ƒç”¨æ–¹å¼ï¼");
-            //    return;
-            //}
-
-            //åˆå§‹åŒ–é¡¹ç›®é…ç½®
+            //³õÊ¼»¯ÏîÄ¿ÅäÖÃ
             InitProjectMap();
             InitMachineAccount();
 
-            Log.WriteMessage(string.Format("é¡¹ç›®æ•°:{0}", projectDic.Count));
-            Log.WriteMessage(string.Format("æœºå™¨è´¦å·æ•°:{0}", accountDic.Count));
+            Log.WriteMessage(string.Format("ÏîÄ¿Êı:{0}", projectDic.Count));
+            Log.WriteMessage(string.Format("»úÆ÷ÕËºÅÊı:{0}", accountDic.Count));
 
-            string project = "DETContractServer";
+            //string project = "MtimeChannel";
 
-            ////è·å–å½“å‰éƒ¨ç½²çš„é¡¹ç›®
+            //»ñÈ¡µ±Ç°²¿ÊğµÄÏîÄ¿
             ProjectModel projectModel;
-            if (!projectDic.TryGetValue(project, out projectModel))
+            if (!projectDic.TryGetValue(args[0], out projectModel))
             {
                 Environment.Exit(1);
                 return;
             }
 
-            //åˆ é™¤é¡¹ç›®ç›¸å…³æœ¬åœ°ç›®å½•
+            Log.WriteMessageByProject(projectModel, "Start!");
+            Log.WriteMessageByProject(projectModel, "¿ªÊ¼É¾³ı¡¢Ñ¹Ëõ¡¢¿½±´");
+            //É¾³ıÏîÄ¿Ïà¹Ø±¾µØÄ¿Â¼
             if (!string.IsNullOrEmpty(projectModel.SiteSourcePath))
             {
-                DirectoryHelper.DirectoryRemove(projectModel.LocalSitePath);
+                Log.WriteMessageByProject(projectModel, "Õ¾µã²¿·Ö¿ªÊ¼£¡");
+
+                Log.WriteMessageByProject(projectModel, "É¾³ıÄ¿Â¼¿ªÊ¼£¡");
+                DirectoryHelper.DirectoryFilesRemove(projectModel.LocalSitePath);
+                Log.WriteMessageByProject(projectModel, "É¾³ıÄ¿Â¼½áÊø£¡");
+
+                Log.WriteMessageByProject(projectModel, "¿½±´Ä¿Â¼¿ªÊ¼£¡");
                 DirectoryHelper.DirectoryCopy(projectModel.SiteSourcePath, projectModel.LocalSitePath, true);
-                CompressWebSite(projectModel);
+                Log.WriteMessageByProject(projectModel, "¿½±´Ä¿Â¼½áÊø£¡");
+
+                Log.WriteMessageByProject(projectModel, "Ñ¹ËõÄ¿Â¼¿ªÊ¼£¡");
+                try
+                {
+
+                    string errorMessage = ClientCompress.Process(projectModel.LocalSitePath, true);
+                    //                    CompressWebSite(projectModel);
+                }
+                catch (Exception e)
+                {
+                    Log.WriteMessage(e.Message);
+                }
+
+                switch (projectModel.Name)
+                {
+                    case "MtimeMovieCommunityRoot":
+                        FileInfo filemain = new FileInfo(projectModel.LocalSitePath + "VERSION.txt");
+                        filemain.CopyTo(ConfigurationManager.AppSettings["MtimeMovieCommunityRootPath"] + "VERSION.txt", true);
+                        break;
+                    case "MtimeWap-m":
+                        FileInfo filewap = new FileInfo(projectModel.LocalSitePath + "VERSION.txt");
+                        filewap.CopyTo(ConfigurationManager.AppSettings["MtimeWapRootPath"] + "VERSION.txt", true);
+                        break;
+                    default:
+                        break;
+                }
+                Log.WriteMessageByProject(projectModel, "Ñ¹ËõÄ¿Â¼½áÊø£¡");
+
+                Log.WriteMessageByProject(projectModel, "¿½±´°æ±¾ºÅµ½Ô¶³ÌÄ¿Â¼¿ªÊ¼£¡");
                 CopyToStaticDirectory(projectModel);
-                DirectoryHelper.DirectoryCopy(projectModel.LocalSitePath, projectModel.RemoteSitePath, true);
+                Log.WriteMessageByProject(projectModel, "¿½±´°æ±¾ºÅµ½Ô¶³ÌÄ¿Â¼½áÊø£¡");
+
+                if (!string.IsNullOrEmpty(projectModel.RemoteSitePath))
+                {
+                    Log.WriteMessageByProject(projectModel, "¿½±´Õ¾µãµ½Ô¶³ÌÄ¿Â¼¿ªÊ¼£¡");
+                    DirectoryHelper.DirectoryFilesRemove(projectModel.RemoteSitePath);
+                    DirectoryHelper.DirectoryCopy(projectModel.LocalSitePath, projectModel.RemoteSitePath, true);
+                    Log.WriteMessageByProject(projectModel, "¿½±´Õ¾µãµ½Ô¶³ÌÄ¿Â¼¿ªÊ¼£¡");
+                }
+
+                Log.WriteMessageByProject(projectModel, "Õ¾µã²¿·Ö½áÊø£¡");
             }
             if (!string.IsNullOrEmpty(projectModel.ServiceSourcePath))
             {
-                DirectoryHelper.DirectoryRemove(projectModel.LocalServicePath);
+                Log.WriteMessageByProject(projectModel, "·şÎñ²¿·Ö¿ªÊ¼£¡");
+                DirectoryHelper.DirectoryFilesRemove(projectModel.LocalServicePath);
                 DirectoryHelper.DirectoryCopy(projectModel.ServiceSourcePath, projectModel.LocalServicePath, true);
                 ServiceAction(projectModel, Action.Stop);
+                DirectoryHelper.DirectoryFilesRemove(projectModel.RemoteServicePath);
                 DirectoryHelper.DirectoryCopy(projectModel.LocalServicePath, projectModel.RemoteServicePath, true);
                 ServiceAction(projectModel, Action.Start);
+                Log.WriteMessageByProject(projectModel, "·şÎñ²¿·Ö½áÊø£¡");
             }
             if (!string.IsNullOrEmpty(projectModel.ToolSourcePath))
             {
-                DirectoryHelper.DirectoryRemove(projectModel.LocalToolPath);
+                Log.WriteMessageByProject(projectModel, "¹¤¾ß²¿·Ö¿ªÊ¼£¡");
+                DirectoryHelper.DirectoryFilesRemove(projectModel.LocalToolPath);
                 DirectoryHelper.DirectoryCopy(projectModel.ToolSourcePath, projectModel.LocalToolPath, true);
+                ToolAction(projectModel, Action.Stop);
+                DirectoryHelper.DirectoryFilesRemove(projectModel.RemoteToolPath);
+                DirectoryHelper.DirectoryCopy(projectModel.LocalToolPath, projectModel.RemoteToolPath, true);
+                ToolAction(projectModel, Action.Start);
+                Log.WriteMessageByProject(projectModel, "¹¤¾ß²¿·Ö½áÊø£¡");
             }
 
-            ServiceAction(projectModel, Action.Stop);
         }
 
         private static void InitProjectMap()
@@ -163,6 +198,8 @@ namespace MtimeBuildTool
                     }
 
                     projectMapModel.RemoteToolPathForLocal = node.Attributes["RemoteToolPathForLocal"].Value;
+                    projectMapModel.ProcessName = node.Attributes["ProcessName"].Value;
+                    projectMapModel.AutoStart = bool.Parse(node.Attributes["AutoStart"].Value);
                 }
                 else
                 {
@@ -176,6 +213,8 @@ namespace MtimeBuildTool
                         newProjectMapModel.ToolRemoteIp = RegexForIp(newProjectMapModel.RemoteToolPath);
                     }
                     newProjectMapModel.RemoteToolPathForLocal = node.Attributes["RemoteToolPathForLocal"].Value;
+                    newProjectMapModel.ProcessName = node.Attributes["ProcessName"].Value;
+                    newProjectMapModel.AutoStart = bool.Parse(node.Attributes["AutoStart"].Value);
 
                     projectDic.Add(newProjectMapModel.Name, newProjectMapModel);
                 }
@@ -242,7 +281,7 @@ namespace MtimeBuildTool
             AccountModel account;
             if (!accountDic.TryGetValue(projectModel.ToolRemoteIp, out account))
             {
-                Log.WriteMessage("æ— æ³•è·å–æœåŠ¡å™¨çš„è´¦å·ï¼Œè¯·æ ¸å¯¹è´¦å·é…ç½®æ–‡ä»¶ï¼");
+                Log.WriteMessageByProject(projectModel, "ÎŞ·¨»ñÈ¡·şÎñÆ÷µÄÕËºÅ£¬ÇëºË¶ÔÕËºÅÅäÖÃÎÄ¼ş£¡");
                 return;
             }
 
@@ -252,7 +291,7 @@ namespace MtimeBuildTool
             switch (action)
             {
                 case Action.Start:
-                    string cmdTemplate = "{} -autostart";
+                    string cmdTemplate = "{0} -autostart";
                     string exePath = projectModel.RemoteToolPathForLocal + projectModel.ProcessName;
                     remoteExecute.StartProcess(string.Format(cmdTemplate, exePath));
                     break;
@@ -262,11 +301,14 @@ namespace MtimeBuildTool
                     List<ProcessModel> processList;
                     theDic.TryGetValue(projectModel.ProcessName, out processList);
 
-                    foreach (var item in processList)
+                    if (processList != null)
                     {
-                        if (item.ExecutablePath == projectModel.RemoteToolPathForLocal + projectModel.ProcessName)
+                        foreach (var item in processList)
                         {
-                            remoteExecute.KillProcess(item.ManagementObj);
+                            if (item.ExecutablePath == projectModel.RemoteToolPathForLocal + projectModel.ProcessName)
+                            {
+                                remoteExecute.KillProcess(item.ManagementObj);
+                            }
                         }
                     }
                     break;
@@ -275,22 +317,24 @@ namespace MtimeBuildTool
             }
         }
 
-        private static void CompressWebSite(ProjectModel projectMode)
+        private static void CompressWebSite(ProjectModel projectModel)
         {
-            string cmdTemplate = "{0} \"{1}\"";
+            Log.WriteMessageByProject(projectModel, "Compress Start!");
+            string cmdTemplate = "{0} {1}";
 
-            string command = string.Format(cmdTemplate, ConfigurationManager.AppSettings["MtimeCompressToolPath"], projectMode.LocalSitePath);
-
+            string command = string.Format(cmdTemplate, ConfigurationManager.AppSettings["MtimeCompressToolPath"], projectModel.LocalSitePath);
+            Log.WriteMessageByProject(projectModel, command);
             CmdExecute cmd = new CmdExecute();
             cmd.ExecuteCommandSync(command);
+            Log.WriteMessageByProject(projectModel, "Compress Finish!");
         }
 
         /*
-         * 1.è¯»å–ä¸»ç«™VERSION.txt
-         * 2.å†™å…¥åˆ°web.config
-         * 3.æ‹·è´ç‰ˆæœ¬å·åˆ°æŒ‡å®šç›®å½•
-         * 4.åˆ é™¤ç«™ç‚¹ä¸‹çš„localç›®å½•
-         * 5.å¯¹ä¸»ç«™è¿›è¡Œç‰¹æ®Šå¤„ç†ï¼Œéœ€è¦æ‹·è´èµ„æºåˆ°staticçš„æ ¹ç›®å½•ä¸‹
+         * 1.¶ÁÈ¡Ö÷Õ¾VERSION.txt
+         * 2.Ğ´Èëµ½web.config
+         * 3.¿½±´°æ±¾ºÅµ½Ö¸¶¨Ä¿Â¼
+         * 4.É¾³ıÕ¾µãÏÂµÄlocalÄ¿Â¼
+         * 5.¶ÔÖ÷Õ¾½øĞĞÌØÊâ´¦Àí£¬ĞèÒª¿½±´×ÊÔ´µ½staticµÄ¸ùÄ¿Â¼ÏÂ
          */
         private static void CopyToStaticDirectory(ProjectModel projectModel)
         {
@@ -314,7 +358,7 @@ namespace MtimeBuildTool
             #endregion
 
             #region 2
-            //å–å½“å‰é¡¹ç›®çš„è·¯å¾„
+            //È¡µ±Ç°ÏîÄ¿µÄÂ·¾¶
             XmlDocument doc = new XmlDocument();
             doc.Load(projectModel.LocalSitePath + "Web.config");
 
@@ -339,13 +383,16 @@ namespace MtimeBuildTool
             #endregion
 
 
-            //2014-2-10 å°ä¸œè¦æ±‚ç‰¹æ®Šstaticç›®å½•ä¸‹æ˜¯localç‰ˆæœ¬ï¼Œæ‰€ä»¥å°†ä¸»ç«™ç‰ˆæœ¬å·æå‰æ‹·è´
+            //2014-2-10 Ğ¡¶«ÒªÇóÌØÊâstaticÄ¿Â¼ÏÂÊÇlocal°æ±¾£¬ËùÒÔ½«Ö÷Õ¾°æ±¾ºÅÌáÇ°¿½±´
             if (projectModel.Name == "MtimeMovieCommunityRoot")
             {
-                string copyStaticCommand =
-                    @"xcopy ""C:\Inetpub\wwwroot\MtimeMovieCommunityRoot\{0}\local\{0}"" ""C:\Inetpub\wwwroot\MtimeMovieCommunityStatic\static\"" /Y /I /Q /S";
+                DirectoryHelper.DirectoryFilesRemove(projectModel.StaticPath + @"static\");
+                DirectoryHelper.DirectoryCopy(projectModel.LocalSitePath + version + @"\local\" + version, projectModel.StaticPath + @"static\", true);
 
-                cmd.ExecuteCommandSync(string.Format(copyStaticCommand, version));
+                //string copyStaticCommand =
+                //    @"xcopy ""C:\Inetpub\wwwroot\MtimeMovieCommunityRoot\{0}\local\{0}"" ""C:\Inetpub\wwwroot\MtimeMovieCommunityStatic\static\"" /Y /I /Q /S";
+
+                //cmd.ExecuteCommandSync(string.Format(copyStaticCommand, version));
             }
 
             #region 3,4
@@ -353,17 +400,19 @@ namespace MtimeBuildTool
             if (!string.IsNullOrEmpty(projectModel.StaticPath))
             {
                 //command
-                string copyCommand = @"xcopy ""{0}{1}\local"" ""{2}"" /Y /I /Q /S";
+                //string copyCommand = @"xcopy ""{0}{1}\local"" ""{2}"" /Y /I /Q /S";
 
                 string subVersion = System.IO.File.ReadAllText(projectModel.LocalSitePath + "VERSION.txt");
 
-                Console.WriteLine("CopyCommand: {0}", string.Format(copyCommand, projectModel.LocalSitePath, subVersion, projectModel.StaticPath));
+                //Console.WriteLine("CopyCommand: {0}", string.Format(copyCommand, projectModel.LocalSitePath, subVersion, projectModel.StaticPath));
+                DirectoryHelper.DirectoryCopy(projectModel.LocalSitePath + subVersion + @"\local", projectModel.StaticPath, true);
 
-                cmd.ExecuteCommandSync(string.Format(copyCommand, projectModel.LocalSitePath, subVersion, projectModel.StaticPath));
+                //cmd.ExecuteCommandSync(string.Format(copyCommand, projectModel.LocalSitePath, subVersion, projectModel.StaticPath));
 
-                string rdCommand = @"RD /S /Q ""{0}{1}\local""";
+                //string rdCommand = @"RD /S /Q ""{0}{1}\local""";
 
-                cmd.ExecuteCommandSync(string.Format(rdCommand, projectModel.LocalSitePath, subVersion));
+                //cmd.ExecuteCommandSync(string.Format(rdCommand, projectModel.LocalSitePath, subVersion));
+                DirectoryHelper.DirectoryRemove(projectModel.LocalSitePath + subVersion + @"\local");
             }
             #endregion
         }
@@ -399,6 +448,7 @@ namespace MtimeBuildTool
         public string ToolSourcePath { get; set; }
         public string ToolRemoteIp { get; set; }
         public string ProcessName { get; set; }
+        public bool AutoStart { get; set; }
     }
 
 

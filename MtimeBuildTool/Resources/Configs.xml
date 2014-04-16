@@ -1,0 +1,1353 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Files>
+  <File Name="/js/systemall.js">
+    <Include Name="/js/prototype.js"/>
+    <Include Name="/js/global.3rdExt.js"/>
+    <Include Name="/js/global.PrototypeExt.js"/>
+    <Include Name="/js/global.NativeExt.js"/>
+    <Include Name="/js/global.Mtime.js"/>
+    <Include Name="/js/global.Utility.js"/>
+    <Include Name="/js/mtime/validator.js"/>
+    <Include Name="/js/08/Window.js"/>
+    <Include Name="/js/08/Controls/Textbox.js"/>
+    <Include Name="/js/08/MenuBase.js"/>
+    <Include Name="/js/08/tabPanel.js"/>
+    <Include Name="/js/08/accordionPanel.js"/>
+    <!--<Include Name="/js/08/navigationBar.js"/>-->
+    <Include Name="/js/2011/navigationBar.js"/>
+    <Include Name="/js/08/dropDownList.js"/>
+    <Include Name="/js/08/autoCompleteBase.js"/>
+    <Include Name="/js/08/search.js"/>
+    <Include Name="/js/2011/theaterSearchBox.js"/>
+    <Include Name="/js/2011/HeadSearchControl.js"/>
+    <Include Name="/js/08/BaseWindow08.js"/>
+    <Include Name="/js/08/Dialog.js"/>
+    <Include Name="/js/08/box.js"/>
+    <Include Name="/js/08/TooltipWindow.js"/>
+    <Include Name="/js/08/theaterCityMenu.js"/>
+    <Include Name="/js/2011/theater/Theater.js"/>
+    <Include Name="/js/track.js"/>
+  </File>
+  <File Name="/js/systemall2014.js">
+    <Include Name="/js/prototype.js"/>
+    <Include Name="/js/global.3rdExt.js"/>
+    <Include Name="/js/global.PrototypeExt.js"/>
+    <Include Name="/js/global.NativeExt.js"/>
+    <Include Name="/js/global.Mtime.js"/>
+    <Include Name="/js/global.Utility.js"/>
+    <Include Name="/js/mtime/validator.js"/>
+    <Include Name="/js/08/Window.js"/>
+    <Include Name="/js/08/Controls/Textbox.js"/>
+    <Include Name="/js/08/MenuBase.js"/>
+    <Include Name="/js/08/tabPanel.js"/>
+    <Include Name="/js/08/accordionPanel.js"/>
+    <!--<Include Name="/js/08/navigationBar.js"/>-->
+    <!--<Include Name="/js/2011/navigationBar.js"/>-->
+    <Include Name="/js/08/dropDownList.js"/>
+    <Include Name="/js/08/autoCompleteBase.js"/>
+    <Include Name="/js/08/search.js"/>
+    <Include Name="/js/2011/theaterSearchBox.js"/>
+    <Include Name="/js/2014/PageSearchControl.js"/>
+    <!--<Include Name="/js/08/BaseWindow08.js"/>
+    <Include Name="/js/08/Dialog.js"/>-->
+    <Include Name="/js/2014/BaseWindow.js"/>
+    <Include Name="/js/2014/Dialog.js"/>
+    <Include Name="/js/2014/UserLoginDialog.js"/>
+    <Include Name="/js/08/box.js"/>
+    <Include Name="/js/08/TooltipWindow.js"/>
+    <Include Name="/js/08/theaterCityMenu.js"/>
+    <Include Name="/js/2011/theater/Theater.js"/>
+    <Include Name="/js/2014/calloutvideo.js"/>
+    <Include Name="/js/track.js"/>
+  </File>
+  <File Name="/js/systemlight.js">
+    <Include Name="/js/prototype.js"/>
+    <Include Name="/js/global.3rdExt.js"/>
+    <Include Name="/js/global.PrototypeExt.js"/>
+    <Include Name="/js/global.NativeExt.js"/>
+    <Include Name="/js/global.Mtime.js"/>
+    <Include Name="/js/global.Utility.js"/>
+  </File>
+  <File Name="/js/systemallobsolete.js">
+    <Include Name="/js/prototype.js"/>
+    <Include Name="/js/global.3rdExt.js"/>
+    <Include Name="/js/global.PrototypeExt.js"/>
+    <Include Name="/js/global.NativeExt.js"/>
+    <Include Name="/js/global.Mtime.js"/>
+    <Include Name="/js/global.Utility.js"/>
+    <Include Name="/js/mtime/validator.js"/>
+    <Include Name="/js/08/Window.js"/>
+    <Include Name="/js/08/Controls/Textbox.js"/>
+    <Include Name="/js/08/MenuBase.js"/>
+    <Include Name="/js/08/tabPanel.js"/>
+    <Include Name="/js/08/autoCompleteBase.js"/>
+    <Include Name="/js/08/search.js"/>
+    <Include Name="/js/mtime/box.js"/>
+    <Include Name="/js/mtime/tooltip.js"/>
+    <Include Name="/js/mtime/popupwindow.js"/>
+    <Include Name="/js/08/TooltipWindow.js"/>
+    <Include Name="/js/track.js"/>
+  </File>
+  <File Name="/js/system.js">
+    <Include Name="/js/prototype.js"/>
+    <Include Name="/js/global.3rdExt.js"/>
+    <Include Name="/js/global.PrototypeExt.js"/>
+    <Include Name="/js/global.NativeExt.js"/>
+    <Include Name="/js/global.Mtime.js"/>
+    <Include Name="/js/global.Utility.js"/>
+    <Include Name="/js/mtime/validator.js"/>
+    <Include Name="/js/track.js"/>
+  </File>
+  <File Name="/js/control.js">
+    <Include Name="/js/08/Window.js"/>
+    <Include Name="/js/mtime/box.js"/>
+    <Include Name="/js/mtime/tooltip.js"/>
+    <Include Name="/js/mtime/popupwindow.js"/>
+  </File>
+  <File Name="/js/control08.js">
+    <Include Name="/js/08/Window.js"/>
+    <Include Name="/js/08/Controls/Textbox.js"/>
+    <Include Name="/js/08/MenuBase.js"/>
+    <Include Name="/js/08/tabPanel.js"/>
+    <Include Name="/js/08/accordionPanel.js"/>
+    <Include Name="/js/08/navigationBar.js"/>
+    <Include Name="/js/08/dropDownList.js"/>
+    <Include Name="/js/08/autoCompleteBase.js"/>
+    <Include Name="/js/08/search.js"/>
+    <Include Name="/js/08/BaseWindow08.js"/>
+    <Include Name="/js/08/Dialog.js"/>
+    <Include Name="/js/08/box.js"/>
+    <Include Name="/js/08/TooltipWindow.js"/>
+  </File>
+  <File Name="/js/managersystem.js">
+    <Include Name="/js/08/managerHistory.js"/>
+    <Include Name="/js/managerMenus.js"/>
+    <Include Name="/js/Manager.js"/>
+  </File>
+  <File Name="/js/managersystem08.js">
+    <Include Name="/js/08/managerHistory.js"/>
+    <Include Name="/js/08/ManagerPager.js"/>
+    <Include Name="/js/08/ManagerConfirm.js"/>
+    <Include Name="/js/08/ManagerDialog.js"/>
+    <Include Name="/js/08/managerBubbleWindow.js"/>
+    <Include Name="/js/08/managerMenus.js"/>
+    <Include Name="/js/08/Manager.js"/>
+  </File>
+  <File Name="/js/managersystem09.js">
+    <Include Name="/js/08/managerHistory.js"/>
+    <Include Name="/js/08/ManagerPager.js"/>
+    <Include Name="/js/08/ManagerConfirm.js"/>
+    <Include Name="/js/08/ManagerDialog.js"/>
+    <Include Name="/js/08/managerBubbleWindow.js"/>
+    <Include Name="/js/08/managerMenus.js"/>
+    <Include Name="/js/08/Manager2.js"/>
+  </File>
+  <File Name="/08/database/movieDatabase.js">
+    <Include Name="/js/2011/topmenu.js"/>
+    <Include Name="/js/08/staticManager2.js"/>
+    <Include Name="/js/08/database/navigation.js"/>
+    <Include Name="/js/08/favorite.js"/>
+    <Include Name="/js/08/database/special.js"/>
+    <Include Name="/js/08/recommendToGroup.js"/>
+    <Include Name="/js/08/recommendToFriend.js"/>
+    <Include Name="/js/08/database/theaterSearchBox.js"/>
+    <Include Name="/js/08/rating.js"/>
+    <Include Name="/js/08/database/movieRating.js"/>
+    <Include Name="/js/08/database/tag.js"/>
+    <Include Name="/js/08/follow.js"/>
+    <Include Name="/js/08/share.js"/>
+    <!--2011微博相关-->
+    <Include Name="/js/2011/weibo/Card.js"/>
+    <Include Name="/js/2011/weibo/popupDialog.js"/>
+    <Include Name="/js/2011/weibo/InteractionControl.js"/>
+    <Include Name="/js/2011/weibo/Follow.js"/>
+    <Include Name="/08/database/movieDatabase.js"/>
+    <Include Name="/js/2012/Database/showtimeListNav.js"/>
+  </File>
+  <File Name="/08/database/peopleDatabase.js">
+    <Include Name="/js/2011/topmenu.js"/>
+    <Include Name="/js/08/staticManager2.js"/>
+    <Include Name="/js/08/database/navigation.js"/>
+    <Include Name="/js/08/favorite.js"/>
+    <Include Name="/js/08/database/special.js"/>
+    <Include Name="/js/08/recommendToGroup.js"/>
+    <Include Name="/js/08/recommendToFriend.js"/>
+    <Include Name="/js/08/rating.js"/>
+    <Include Name="/js/08/database/peopleRating.js"/>
+    <Include Name="/js/08/database/tag.js"/>
+    <Include Name="/js/08/follow.js"/>
+    <Include Name="/js/08/share.js"/>
+    <!--2011微博相关-->
+    <Include Name="/js/2011/weibo/Card.js"/>
+    <Include Name="/js/2011/weibo/popupDialog.js"/>
+    <Include Name="/js/2011/weibo/InteractionControl.js"/>
+    <Include Name="/js/2011/weibo/Follow.js"/>
+    <Include Name="/08/database/peopleDatabase.js"/>
+  </File>
+  <File Name="/08/cms/newspack.js">
+    <Include Name="/js/2011/topmenu.js"/>
+    <!--<Include Name="/08/cms/cmsnews.js"/>-->
+    <Include Name="/js/08/staticmanager2.js"/>
+    <!--<Include Name="/08/cms/cmsnewscomment.js"/>-->
+    <Include Name="/js/2011/CMSNewsCommentClient.js"/>
+    <Include Name="/js/08/share.js"/>
+    <Include Name="/js/08/favorite.js"/>
+    <Include Name="/js/managersystem09.js"/>
+    <Include Name="/js/2011/newsVideo.js"/>
+  </File>
+  <File Name="/08/cms/newspack2014.js">
+    <Include Name="/js/2014/TopMenu.js"/>
+    <Include Name="/js/2014/staticManager.js"/>
+    <Include Name="/js/2011/CMSNewsCommentClient.js"/>
+    <Include Name="/js/08/share.js"/>
+    <Include Name="/js/08/favorite.js"/>
+    <!--<Include Name="/js/managersystem09.js"/>-->
+    <Include Name="/js/2011/newsVideo.js"/>
+  </File>
+  <File Name="/js/2014/cms/newspack.js">
+    <Include Name="/js/2014/TopMenu.js"/>
+    <Include Name="/js/2014/staticManager.js"/>
+    <Include Name="/js/2011/CMSNewsCommentClient.js"/>
+    <Include Name="/js/2014/share.js"/>
+    <Include Name="/js/2014/favorite.js"/>
+    <!--<Include Name="/js/managersystem09.js"/>-->
+    <Include Name="/js/2011/newsVideo.js"/>
+  </File>
+  <File Name="/vote/vote.js">
+    <Include Name="/js/mtime/popupwindow.js"/>
+    <Include Name="/vote/vote.js"/>
+  </File>
+  <File Name="/js/mcApplication09.js">
+    <Include Name="/js/2011/topmenu.js"/>
+    <Include Name="/js/appManager.js"/>
+    <Include Name="/js/mcApplication.js"/>
+    <Include Name="/js/08/staticManager2.js"/>
+    <Include Name="/js/08/managerMenus.js"/>
+    <Include Name="/js/08/Manager2.js"/>
+  </File>
+  <File Name="/js/mcApplication08.js">
+    <Include Name="/js/08/managerHistory.js"/>
+    <Include Name="/js/08/ManagerPager.js"/>
+    <Include Name="/js/08/ManagerConfirm.js"/>
+    <Include Name="/js/08/ManagerDialog.js"/>
+    <Include Name="/js/08/managerBubbleWindow.js"/>
+    <Include Name="/js/08/managerMenus.js"/>
+    <Include Name="/js/08/Manager.js"/>
+    <Include Name="/js/appManager.js"/>
+    <Include Name="/js/mcApplication.js"/>
+    <Include Name="/js/staticManager.js"/>
+  </File>
+  <File Name="/js/showtimeApplication09.js">
+    <Include Name="/js/2011/topmenu.js"/>
+    <Include Name="/js/08/staticManager2.js"/>
+    <Include Name="/js/mtime/SlideRegion.js"/>
+    <Include Name="/js/08/theaterCityMenu.js"/>
+    <Include Name="/js/showtimeApplication.js"/>
+  </File>
+  <File Name="/js/showtimeApplication09_2014.js">
+    <Include Name="/js/2014/topmenu.js"/>
+    <Include Name="/js/2014/staticManager.js"/>
+    <Include Name="/js/mtime/SlideRegion.js"/>
+    <Include Name="/js/08/theaterCityMenu.js"/>
+    <Include Name="/js/showtimeApplication.js"/>
+  </File>
+  <File Name="/js/theaterApplication.js">
+    <Include Name="/js/2011/topmenu.js"/>
+    <Include Name="/js/08/staticManager2.js"/>
+    <Include Name="/js/mtime/SlideRegion.js"/>
+    <Include Name="/js/08/theaterCityMenu.js"/>
+    <Include Name="/js/theaterApplication.js"/>
+  </File>
+  <File Name="/js/theaterApplication2014.js">
+    <Include Name="/js/2014/topmenu.js"/>
+    <Include Name="/js/2014/staticManager.js"/>
+    <Include Name="/js/mtime/SlideRegion.js"/>
+    <Include Name="/js/08/theaterCityMenu.js"/>
+    <Include Name="/js/2011/theater/Theater.js"/>
+    <Include Name="/js/theaterApplication11.js"/>
+  </File>
+  <File Name="/js/theaterApplication11.js">
+    <Include Name="/js/2011/topmenu.js"/>
+    <Include Name="/js/08/staticManager2.js"/>
+    <Include Name="/js/mtime/SlideRegion.js"/>
+    <Include Name="/js/08/theaterCityMenu.js"/>
+    <Include Name="/js/2011/theater/Theater.js"/>
+    <Include Name="/js/theaterApplication11.js"/>
+  </File>
+  <!--博客 二级页公用-->
+  <File Name="/js/blogApplicationpack.js">
+    <Include Name="/js/08/managerMenus.js"/>
+    <Include Name="/js/08/managerHistory.js"/>
+    <Include Name="/js/08/manager2.js"/>
+    <Include Name="/js/2011/topmenu.js"/>
+    <Include Name="/js/08/staticManager2.js"/>
+    <Include Name="/js/08/userAvatar.js"/>
+    <Include Name="/js/08/recommendToFriend.js"/>
+    <Include Name="/js/blogApplication.js"/>
+  </File>
+  <File Name="/js/blogApplicationpack2014.js">
+    <Include Name="/js/08/managerMenus.js"/>
+    <Include Name="/js/08/managerHistory.js"/>
+    <Include Name="/js/08/manager2.js"/>
+    <Include Name="/js/2014/topmenu.js"/>
+    <Include Name="/js/2014/staticManager.js"/>
+    <Include Name="/js/08/userAvatar.js"/>
+    <Include Name="/js/08/recommendToFriend.js"/>
+    <Include Name="/js/blogApplication.js"/>
+  </File>
+  <!--博客 个人首页-->
+  <File Name="/home/pack.js">
+    <Include Name="/js/scriptaculous/slider.js"/>
+    <Include Name="/js/08/follow.js"/>
+    <Include Name="/Home/Modules/BaseModule.js"/>
+    <Include Name="/Home/Modules/UserModule.js"/>
+    <Include Name="/Home/Modules/BlogModule.js"/>
+    <Include Name="/Home/Modules/FeedModule.js"/>
+    <Include Name="/Home/Modules/CalendarModule.js"/>
+    <Include Name="/Home/Modules/MusicModule.js"/>
+    <Include Name="/Home/Modules/NoteModule.js"/>
+    <Include Name="/Home/Modules/AlbumModule.js"/>
+    <Include Name="/Home/Modules/FavoriteModule.js"/>
+    <Include Name="/Home/Modules/GroupModule.js"/>
+    <Include Name="/Home/Modules/TagModule.js"/>
+    <Include Name="/Home/Modules/ParticipationModule.js"/>
+    <Include Name="/Home/Modules/FriendModule.js"/>
+    <Include Name="/Home/Modules/RatingModule.js"/>
+    <Include Name="/Home/Modules/MovieModule.js"/>
+    <Include Name="/Home/Modules/LinkModule.js"/>
+    <Include Name="/Home/Modules/SpecialModule.js"/>
+    <Include Name="/Home/Modules/QuizModule.js"/>
+    <Include Name="/Home/Modules/CardModule.js"/>
+    <Include Name="/Home/Modules/ShortCommentModule.js"/>
+    <Include Name="/Home/Modules/CommentModule.js"/>
+    <Include Name="/Home/Modules/WatchingModule.js"/>
+    <Include Name="/Home/HomeModuleManager.js"/>
+    <Include Name="/Home/home.js"/>
+  </File>
+  <!--博客 具体日志页-->
+  <File Name="/blogs/showblogpack.js">
+    <Include Name="/js/08/favorite.js"/>
+    <Include Name="/js/08/share.js"/>
+    <Include Name="/Blogs/showblog.js"/>
+  </File>
+  <!--博客 具体照片页-->
+  <File Name="/albums/showimagepack.js">
+    <Include Name="/js/08/favorite.js"/>
+    <Include Name="/js/08/share.js"/>
+    <Include Name="/js/08/rating.js"/>
+    <Include Name="/albums/showimage.js"/>
+  </File>
+  <!--博客 具体专辑页-->
+  <File Name="/favorites/showlistpack.js">
+    <Include Name="/js/08/share.js"/>
+    <Include Name="/favorites/showlist.js"/>
+  </File>
+  <!--博客 个人资料-->
+  <File Name="/Home/Modules/UserModulePack.js">
+    <Include Name="/Home/Modules/BaseModule.js"/>
+    <Include Name="/Home/Modules/UserModule.js"/>
+  </File>
+  <!--我的时光 共用-->
+  <File Name="/js/mcpack.js">
+    <Include Name="/js/08/rating.js"/>
+    <Include Name="/js/08/Database/movieRating.js"/>
+    <Include Name="/js/2011/topmenu.js"/>
+    <Include Name="/js/appManager.js"/>
+    <Include Name="/js/mcApplication10.js"/>
+    <Include Name="/js/08/staticManager2.js"/>
+    <Include Name="/js/08/managerMenus.js"/>
+    <Include Name="/js/08/Manager2.js"/>
+  </File>
+  <!--我的时光 首页-->
+  <File Name="/Home/pack.js">
+    <Include Name="/js/08/share.js"/>
+    <Include Name="/js/08/userAvatar.js"/>
+    <Include Name="/js/08/follow.js"/>
+    <Include Name="/Home/Modules/visitorModule.js"/>
+    <Include Name="/Home/Modules/recommendMovieModule.js"/>
+    <Include Name="/Home/Modules/FeedModule.js"/>
+    <Include Name="/Home/Modules/recommendUserModule.js"/>
+    <Include Name="/Home/Modules/RemindModule.js"/>
+    <Include Name="/Home/Modules/NotifacationModule.js"/>
+    <Include Name="/Home/Modules/UserModule.js"/>
+    <Include Name="/Home/Modules/TwitterModule.js"/>
+    <Include Name="/Home/home10.js"/>
+  </File>
+  <!--2011我的时光 共用-->
+  <File Name="/js/2011/mcpack.js">
+    <Include Name="/js/08/rating.js"/>
+    <Include Name="/js/08/Database/movieRating.js"/>
+    <Include Name="/js/2011/mytimeTopMenu.js"/>
+    <Include Name="/js/appManager.js"/>
+    <Include Name="/js/mcApplication11.js"/>
+    <Include Name="/js/08/staticManager2.js"/>
+    <Include Name="/js/08/managerMenus.js"/>
+    <Include Name="/js/08/Manager2.js"/>
+  </File>
+  <!--2014我的时光 共用-->
+  <File Name="/js/2014/mcpack.js">
+    <Include Name="/js/08/rating.js"/>
+    <Include Name="/js/08/Database/movieRating.js"/>
+    <Include Name="/js/2014/topMenu.js"/>
+    <Include Name="/js/appManager.js"/>
+    <Include Name="/js/mcApplication11.js"/>
+    <Include Name="/js/2014/staticManager.js"/>
+    <Include Name="/js/08/managerMenus.js"/>
+    <Include Name="/js/08/Manager2.js"/>
+  </File>
+  <!-- 微博输入框相关 -->
+  <File Name="/js/2011/weiboEditor.js">
+    <!--发微博输入框-->
+    <Include Name="/js/2011/weibo/editor/editor.js"/>
+    <!--电影-->
+    <Include Name="/js/2011/weibo/editor/movieLinker.js"/>
+    <!--图片-->
+    <Include Name="/js/2011/weibo/editor/image.js"/>
+    <!--语法-->
+    <Include Name="/js/2011/weibo/editor/syntax.js"/>
+    <!--表情-->
+    <Include Name="/js/2011/weibo/editor/face.js"/>
+    <!--同步-->
+    <Include Name="/js/2011/weibo/editor/sync.js"/>
+    <!--话题-->
+    <Include Name="/js/2011/weibo/editor/topic.js"/>
+    <!--视频-->
+    <Include Name="/js/2011/weibo/editor/video.js"/>
+    <!--公用弹出脚本-->
+    <Include Name="/js/2011/weibo/popupDialog.js"/>
+    <!--上传控件-->
+    <Include Name="/js/swfupload.js"/>
+  </File>
+  <!-- 微博列表公用 -->
+  <File Name="/js/2011/weibo/interactionPack.js">
+    <!--评分控件-->
+    <Include Name="/js/08/rating.js"/>
+    <!--电影评分控件-->
+    <Include Name="/js/08/Database/movieRating.js"/>
+    <!--关注控件-->
+    <Include Name="/js/2011/weibo/Follow.js"/>
+    <!--浮出层控件-->
+    <Include Name="/js/2011/weibo/Card.js"/>
+    <!--探出层控件-->
+    <Include Name="/js/2011/weibo/popupDialog.js"/>
+    <!--交互控件-->
+    <Include Name="/js/2011/weibo/InteractionControl.js"/>
+  </File>
+  <!-- 微博站点公用 -->
+  <File Name="/js/twitterApplicationPack.js">
+    <!--关注控件-->
+    <Include Name="/js/2011/weibo/Follow.js"/>
+    <!--浮出层控件-->
+    <Include Name="/js/2011/weibo/Card.js"/>
+    <!--探出层控件-->
+    <Include Name="/js/2011/weibo/popupDialog.js"/>
+    <!--交互控件-->
+    <Include Name="/js/2011/weibo/InteractionControl.js"/>
+    <!--微薄应用-->
+    <Include Name="/js/twitterApplication.js"/>
+  </File>
+  <!-- 2011微薄找人页 -->
+  <File Name="/Friend/findfriendpack.js">
+    <Include Name="/js/2011/weibo/Attention.js"/>
+    <Include Name="/Friend/ProvinceCityControl.js"/>
+    <Include Name="/Friend/FriendControls.js"/>
+    <Include Name="/Friend/FindFriend.js"/>
+  </File>
+  <!-- 2011微薄邀请页 -->
+  <File Name="/Friend/invitefriendpack.js">
+    <Include Name="/js/2011/weibo/Attention.js"/>
+    <Include Name="/Friend/FriendControls.js"/>
+    <Include Name="/Friend/InviteFriend.js"/>
+  </File>
+  <!-- 2011我的时光首页 -->
+  <File Name="/Home/homepack.js">
+    <Include Name="/js/08/Controls/Editor/tabDialog.js"/>
+    <Include Name="/js/08/Controls/Editor/editor.js"/>
+    <Include Name="/js/08/Controls/Editor/button.js"/>
+    <Include Name="/js/08/Controls/Editor/config.js"/>
+    <Include Name="/js/08/Controls/Editor/toolbar.js"/>
+    <Include Name="/js/08/Controls/Editor/buttons/editorLinkButton.js"/>
+    <Include Name="/js/08/Controls/Editor/buttons/editorMusicButton.js"/>
+    <Include Name="/js/08/Controls/Editor/buttons/editorReleButton.js"/>
+    <Include Name="/js/08/Controls/Editor/buttons/editorFontsizeButton.js"/>
+    <Include Name="/js/08/Controls/Editor/buttons/editorColorButton.js"/>
+    <Include Name="/js/08/Controls/Editor/buttons/editorFaceButton.js"/>
+    <Include Name="/js/08/Controls/Editor/buttons/editorImageButton.js"/>
+    <Include Name="/js/08/Controls/Editor/buttons/editorVideoButton.js"/>
+    <Include Name="/js/08/Controls/Editor/buttons/editorFontnameButton.js"/>
+    <Include Name="/js/2011/weibo/popupDialog.js"/>
+    <Include Name="/js/08/searchBox.js"/>
+    <Include Name="/js/2011/crossxhr.js"/>
+    <Include Name="/js/2011/weibo/editor/editor.js"/>
+    <Include Name="/js/2011/weibo/editor/syntax.js"/>
+    <Include Name="/js/2011/weibo/editor/face.js"/>
+    <Include Name="/js/2011/weibo/editor/movieLinker.js"/>
+    <Include Name="/js/2011/weibo/editor/video.js"/>
+    <Include Name="/js/2011/weibo/editor/topic.js"/>
+    <Include Name="/js/2011/weibo/editor/sync.js"/>
+    <Include Name="/js/swfupload.js"/>
+    <Include Name="/js/2011/weibo/editor/image.js"/>
+    <Include Name="/js/2011/weibo/popupDialog.js"/>
+    <Include Name="/Home/home.js"/>
+    <Include Name="/Home/writeblog.js"/>
+  </File>
+
+  <!--具体影院-->
+  <File Name="/Theater/pack.js">
+    <Include Name="/js/08/rating.js"/>
+    <Include Name="/js/08/theater/favorite.js"/>
+    <Include Name="/js/08/recommendToFriend.js"/>
+    <Include Name="/Theater/theaterRating.js"/>
+    <Include Name="/theater/featuretip.js"/>
+  </File>
+  <!--单独统计-->
+  <File Name="/js/mtrack.js">
+    <Include Name="/js/prototype.js"/>
+    <Include Name="/js/global.Mtime.js"/>
+    <Include Name="/js/global.Utility.js"/>
+    <Include Name="/js/track.js"/>
+  </File>
+  <!--首页-->
+  <File Name="/08/home09.js">
+    <Include Name="/js/2011/topmenu.js"/>
+    <Include Name="/js/08/staticManager2.js"/>
+    <Include Name="/js/08/managerMenus.js"/>
+    <Include Name="/js/08/Manager2.js"/>
+    <Include Name="/js/08/pictureWall.js"/>
+    <Include Name="/js/scriptaculous/effects.js"/>
+    <Include Name="/js/08/theaterSearchBox.js"/>
+    <Include Name="/js/08/login.js"/>
+    <Include Name="/08/Home09.js"/>
+  </File>
+  <File Name="/css/default.css">
+    <Include Name="/css/default.css"/>
+    <Include Name="/css/2011/component.css"/>
+    <Include Name="/css/2011/topmenu.css"/>
+  </File>
+  <File Name="/css/default_09.css">
+    <Include Name="/css/2011/component.css"/>
+    <Include Name="/css/default_09.css"/>
+    <Include Name="/css/2011/topmenu.css"/>
+  </File>
+  <!--电影、影人资料页-->
+  <File Name="/css/databasepack.css">
+    <Include Name="/css/public_08.css"/>
+    <Include Name="/css/2011/component.css"/>
+    <Include Name="/css/datebase_08.css"/>
+    <Include Name="/css/2011/topmenu.css"/>
+  </File>
+  <!--新闻页-->
+  <File Name="/css/newspack.css">
+    <Include Name="/css/public_08.css"/>
+    <Include Name="/css/2011/component.css"/>
+    <Include Name="/css/movie_08.css"/>
+    <Include Name="/css/2011/topmenu.css"/>
+  </File>
+  <!--2014版新闻页-->
+  <File Name="/css/newspack2014.css">
+    <Include Name="/css/public_08.css"/>
+    <Include Name="/css/2011/component.css"/>
+    <Include Name="/css/movie_08.css"/>
+    <Include Name="/css/2014/topbar.css"/>
+  </File>
+  <File Name="/css/mytimeall.css">
+    <Include Name="/css/myframe.css"/>
+    <Include Name="/css/my_time.css"/>
+    <Include Name="/css/manage_08.css"/>
+    <Include Name="/css/2011/component.css"/>
+    <Include Name="/css/2011/topmenu.css"/>
+  </File>
+  <File Name="/css/public.css">
+    <Include Name="/css/common_08.css"/>
+    <Include Name="/css/component_08.css"/>
+    <Include Name="/css/member_08.css"/>
+    <Include Name="/css/2011/topmenu.css"/>
+  </File>
+  <File Name="/css/main_08.css">
+    <Include Name="/css/common_08.css"/>
+    <Include Name="/css/component_08.css"/>
+    <Include Name="/css/member_08.css"/>
+    <Include Name="/css/2011/topmenu.css"/>
+  </File>
+  <File Name="/css/second_08.css">
+    <Include Name="/css/common_08.css"/>
+    <Include Name="/css/component_08.css"/>
+    <Include Name="/css/second_08_new.css"/>
+    <Include Name="/css/2011/topmenu.css"/>
+  </File>
+  <!--博客-->
+  <File Name="/css/memberall.css">
+    <Include Name="/css/public_obsolete.css"/>
+    <Include Name="/css/2011/component.css"/>
+    <Include Name="/css/member_09.css"/>
+    <Include Name="/css/2011/topmenu.css"/>
+  </File>
+  <!--2014 博客-->
+  <File Name="/css/memberall2014.css">
+    <Include Name="/css/public_obsolete.css"/>
+    <Include Name="/css/2011/component.css"/>
+    <Include Name="/css/member_09.css"/>
+    <Include Name="/css/2014/topbar.css"/>
+  </File>
+  <!--群组-->
+  <File Name="/css/grouppack.css">
+    <Include Name="/css/public_obsolete.css"/>
+    <Include Name="/css/2011/component.css"/>
+    <Include Name="/css/new_group.css"/>
+    <Include Name="/css/2011/topmenu.css"/>
+  </File>
+  <!--2014 群组-->
+  <File Name="/css/grouppack2014.css">
+    <Include Name="/css/public_obsolete.css"/>
+    <Include Name="/css/2011/component.css"/>
+    <Include Name="/css/new_group.css"/>
+    <Include Name="/css/2014/topbar.css"/>
+  </File>
+  <!--合作-->
+  <File Name="/css/Partners/Disneys/disneyindex.css">
+    <Include Name="/css/Partners/Disneys/disneyindex.css"/>
+    <Include Name="/css/2011/component.css"/>
+    <Include Name="/css/2011/topmenu.css"/>
+  </File>
+  <File Name="/css/Partners/sony/sony_mtime.css">
+    <Include Name="/css/Partners/sony/sony_mtime.css"/>
+    <Include Name="/css/2011/component.css"/>
+    <Include Name="/css/2011/topmenu.css"/>
+  </File>
+  <!--编辑器-->
+  <File Name="/js/editor.js">
+    <Include Name="/js/08/Controls/Editor/tabDialog.js"/>
+    <Include Name="/js/08/Controls/Editor/editor.js"/>
+    <Include Name="/js/08/Controls/Editor/button.js"/>
+    <Include Name="/js/08/Controls/Editor/config.js"/>
+    <Include Name="/js/08/Controls/Editor/toolbar.js"/>
+    <Include Name="/js/08/Controls/Editor/buttons/editorLinkButton.js"/>
+    <Include Name="/js/08/Controls/Editor/buttons/editorMusicButton.js"/>
+    <Include Name="/js/08/Controls/Editor/buttons/editorReleButton.js"/>
+    <Include Name="/js/08/Controls/Editor/buttons/editorFontsizeButton.js"/>
+    <Include Name="/js/08/Controls/Editor/buttons/editorColorButton.js"/>
+    <Include Name="/js/08/Controls/Editor/buttons/editorFaceButton.js"/>
+    <Include Name="/js/08/Controls/Editor/buttons/editorImageButton.js"/>
+    <Include Name="/js/08/Controls/Editor/buttons/editorVideoButton.js"/>
+    <Include Name="/js/08/Controls/Editor/buttons/editorPhotoButton.js"/>
+    <Include Name="/js/08/Controls/Editor/buttons/editorFontnameButton.js"/>
+  </File>
+  <!--2011版通用Css-->
+  <File Name="/css/2011/channelpack.css">
+    <Include Name="/css/2011/public.css"/>
+    <Include Name="/css/2011/component.css"/>
+    <Include Name="/css/2011/topmenu.css"/>
+  </File>
+  <!--2011版通用Css-->
+  <File Name="/css/2011/channelpack2014.css">
+    <Include Name="/css/2011/public.css"/>
+    <Include Name="/css/2011/component.css"/>
+    <Include Name="/css/2014/topbar.css"/>
+  </File>
+  <!--2011版首页-->
+  <File Name="/css/2011/index.css">
+    <Include Name="/css/2011/component.css"/>
+    <Include Name="/css/2011/index.css"/>
+    <Include Name="/css/2011/topmenu.css"/>
+  </File>
+  <!--2011版新闻频道-->
+  <File Name="/css/2011/news.css">
+    <Include Name="/css/2011/public.css"/>
+    <Include Name="/css/2011/component.css"/>
+    <Include Name="/css/2011/news.css"/>
+    <Include Name="/css/2011/topmenu.css"/>
+  </File>
+  <!--2011版预告片频道-->
+  <File Name="/css/2011/trailer.css">
+    <Include Name="/css/2011/public.css"/>
+    <Include Name="/css/2011/component.css"/>
+    <Include Name="/css/2011/trailer.css"/>
+    <Include Name="/css/2011/topmenu.css"/>
+  </File>
+  <!--2011版媒体评论-->
+  <File Name="/css/2011/comment.css">
+    <Include Name="/css/2011/public.css"/>
+    <Include Name="/css/2011/component.css"/>
+    <Include Name="/css/2011/comment.css"/>
+    <Include Name="/css/2011/topmenu.css"/>
+  </File>
+  <!--2011版资料库频道-->
+  <File Name="/css/2011/movies.css">
+    <Include Name="/css/2011/public.css"/>
+    <Include Name="/css/2011/component.css"/>
+    <Include Name="/css/2011/movies.css"/>
+    <Include Name="/css/2011/topmenu.css"/>
+  </File>
+  <!--2011版社区频道-->
+  <File Name="/css/2011/group.css">
+    <Include Name="/css/2011/public.css"/>
+    <Include Name="/css/2011/component.css"/>
+    <Include Name="/css/2011/group.css"/>
+    <Include Name="/css/2011/topmenu.css"/>
+  </File>
+  <!--2011版影评频道-->
+  <File Name="/css/2011/comment.css">
+    <Include Name="/css/2011/public.css"/>
+    <Include Name="/css/2011/component.css"/>
+    <Include Name="/css/2011/comment.css"/>
+    <Include Name="/css/2011/topmenu.css"/>
+  </File>
+  <!--2011版排行榜频道-->
+  <File Name="/css/2011/toplist.css">
+    <Include Name="/css/2011/public.css"/>
+    <Include Name="/css/2011/component.css"/>
+    <Include Name="/css/2011/toplist.css"/>
+    <Include Name="/css/2011/topmenu.css"/>
+  </File>
+  <!--2011版时光周刊页-->
+  <File Name="/css/mag.css">
+    <Include Name="/css/2011/public.css"/>
+    <Include Name="/css/2011/component.css"/>
+    <Include Name="/css/mag.css"/>
+    <Include Name="/css/2011/topmenu.css"/>
+  </File>
+  <!--2011版搜索控件和排序控件打包-->
+  <File Name="/js/movies/SearchControl.js">
+    <Include Name="/js/movies/SearchControl.js"/>
+    <Include Name="/js/movies/SortViewBox.js"/>
+  </File>
+  <!--2011版日期选择控件打包-->
+  <File Name="/js/DateOptionMenu.js">
+    <Include Name="/js/DateOptionMenu.js"/>
+    <Include Name="/js/OptionMenu.js"/>
+  </File>
+
+  <!--2014版群组通用js-->
+  <File Name="/js/2014/grouppack.js">
+    <Include Name="/js/2014/topMenu.js"/>
+    <Include Name="/js/2014/staticManager.js"/>
+  </File>
+
+  <!--2011版频道通用js-->
+  <File Name="/js/channelpack.js">
+    <Include Name="/js/2011/topmenu.js"/>
+    <Include Name="/js/08/staticManager2.js"/>
+    <Include Name="/js/RollControl.js"/>
+    <Include Name="/js/comment/CommentRollControl.js"/>
+    <Include Name="/js/group/GroupRollControl.js"/>
+    <Include Name="/js/AutoSwitchTabPanel.js"/>
+    <Include Name="/js/toggleViewControl.js"/>
+    <Include Name="/js/LoginControl.js"/>
+    <Include Name="/js/2011/PageKeyControl.js"/>
+  </File>
+  <!--2011版频道通用js-->
+  <File Name="/js/channelpack2014.js">
+    <Include Name="/js/2014/topMenu.js"/>
+    <Include Name="/js/2014/staticManager.js"/>
+    <Include Name="/js/RollControl.js"/>
+    <Include Name="/js/comment/CommentRollControl.js"/>
+    <Include Name="/js/group/GroupRollControl.js"/>
+    <Include Name="/js/AutoSwitchTabPanel.js"/>
+    <Include Name="/js/toggleViewControl.js"/>
+    <Include Name="/js/LoginControl.js"/>
+    <Include Name="/js/2011/PageKeyControl.js"/>
+  </File>
+  <!--2011版电影资料库首页js-->
+  <File Name="/Repository/repository.js">
+    <Include Name="/Repository/RepositoryIndex.js"/>
+    <Include Name="/Repository/MovieTabs.js"/>
+    <Include Name="/js/SlidesControl.js"/>
+    <Include Name="/js/movies/TipShowControl.js"/>
+    <Include Name="/js/movies/GlobalMovieSearchControl.js"/>
+  </File>
+  <!--2011版票房榜页面js-->
+  <File Name="/Repository/RepositoryMoreMovieBoxoffice.js">
+    <Include Name="/Repository/RepositoryMoreRight.js"/>
+    <Include Name="/Repository/RepositoryMoreMovieBoxoffice.js"/>
+    <Include Name="/js/movies/GlobalMovieSearchControl.js"/>
+  </File>
+  <!--2011版电影资料库更多页右侧带全球影历搜索js-->
+  <File Name="/Repository/repositoryMoreRightWithGlobalMovieSearch.js">
+    <Include Name="/Repository/RepositoryMoreRight.js" />
+    <Include Name="/js/movies/GlobalMovieSearchControl.js" />
+  </File>
+  <!--2011版我的时光-->
+  <File Name="/css/2011/mytimeall.css">
+    <Include Name="/css/2011/mytime.css" />
+    <Include Name="/css/2011/component.css" />
+    <Include Name="/css/2011/topmenu.css" />
+  </File>
+  <!--2014版我的时光-->
+  <File Name="/css/2014/mytimeall.css">
+    <Include Name="/css/2011/mytime.css" />
+    <Include Name="/css/2011/component.css" />
+    <Include Name="/css/2014/topbar.css" />
+  </File>
+  <!--我的账户 - 余额与充值页js-->
+  <File Name="/MyAccount/balanceAndRechargePage.js">
+    <Include Name="/MyAccount/BalanceAndRecharge.js" />
+    <Include Name="/MyAccount/BalanceAndRechargeControl.js" />
+    <Include Name="/js/linkList.js" />
+  </File>
+  <!--我的账户 - 订单页js-->
+  <File Name="/MyAccount/myAccountOrderPage.js">
+    <Include Name="/MyAccount/MyAccountOrder.js" />
+    <Include Name="/MyAccount/BalanceAndRechargeControl.js" />
+    <Include Name="/js/linkList.js" />
+  </File>
+  <!--我的账户 - 收货地址页js-->
+  <File Name="/MyAccount/consigneeAddressPage.js">
+    <Include Name="/MyAccount/ConsigneeAddress.js" />
+    <Include Name="/js/08/selectLocation.js" />
+  </File>
+
+
+  <!--统一支付前台js-->
+  <File Name="/js/paypack.js">
+    <Include Name="/js/2011/topmenu.js"/>
+    <Include Name="/js/08/staticManager2.js"/>
+  </File>
+  <!--2014 统一支付前台js-->
+  <File Name="/js/paypack2014.js">
+    <Include Name="/js/2014/topmenu.js"/>
+    <Include Name="/js/2014/staticManager.js"/>
+  </File>
+  <!--售票前台js-->
+  <File Name="/js/piaopack.js">
+    <Include Name="/js/2011/topmenu.js"/>
+    <Include Name="/js/08/staticManager2.js"/>
+  </File>
+  <!--2014 售票前台js-->
+  <File Name="/js/piaopack2014.js">
+    <Include Name="/js/2014/topmenu.js"/>
+    <Include Name="/js/2014/staticManager.js"/>
+  </File>
+  <!--2012售票前台js-->
+  <File Name="/js/piaoApplication12.js">
+    <Include Name="/js/2011/topmenu.js"/>
+    <Include Name="/js/08/staticManager2.js"/>
+    <Include Name="/js/08/theaterCityMenu.js"/>
+    <Include Name="/js/2011/theater/Theater.js"/>
+    <Include Name="/js/piaoApplication.js"/>
+  </File>
+  <!--2014售票前台js-->
+  <File Name="/js/piaoApplication14.js">
+    <Include Name="/js/2014/topmenu.js"/>
+    <Include Name="/js/2014/staticManager.js"/>
+    <Include Name="/js/08/theaterCityMenu.js"/>
+    <Include Name="/js/2011/theater/Theater.js"/>
+    <Include Name="/js/piaoApplication.js"/>
+  </File>
+  <!--2012奖项库前台js-->
+  <File Name="/js/2012/awardpack.js">
+    <Include Name="/js/2011/topmenu.js"/>
+    <Include Name="/js/08/staticManager2.js"/>
+    <Include Name="/js/08/share.js"/>
+  </File>
+  <!--2012奖项库前台js-->
+  <File Name="/js/2014/awardpack.js">
+    <Include Name="/js/08/share.js"/>
+    <Include Name="/js/2014/topmenu.js"/>
+    <Include Name="/js/2014/staticManager.js"/>
+  </File>
+  <!--2011版排行榜频道-->
+  <File Name="/css/2011/publicpack.css">
+    <Include Name="/css/2011/public.css"/>
+    <Include Name="/css/2011/component.css"/>
+    <Include Name="/css/2011/topmenu.css"/>
+  </File>
+  <!--2011版排行榜频道使用2014版页头-->
+  <File Name="/css/2011/publicpack2014.css">
+    <Include Name="/css/2011/public.css"/>
+    <Include Name="/css/2011/component.css"/>
+    <Include Name="/css/2014/topbar.css"/>
+  </File>
+  <!--2012奖项库-->
+  <File Name="/css/2012/awardpack.css">
+    <Include Name="/css/2014/public.css"/>
+    <Include Name="/css/2014/component.css"/>
+    <Include Name="/css/2014/topbar.css"/>
+    <Include Name="/css/2011/component.css"/>
+    <Include Name="/css/2014/awards.css"/>
+  </File>
+  <!--public_08放到最后-->
+  <File Name="/css/public_08.css">
+    <Include Name="/css/public_08.css"/>
+    <Include Name="/css/2011/component.css"/>
+    <Include Name="/css/2011/topmenu.css"/>
+  </File>
+  <!--2014 public_08放到最后-->
+  <File Name="/css/public_08_2014.css">
+    <Include Name="/css/public_08.css"/>
+    <Include Name="/css/2011/component.css"/>
+    <Include Name="/css/2014/topbar.css"/>
+  </File>
+  <!--Piao.m.mtime.cn 公共类库-->
+  <File Name="/js/dist/libs.js">
+    <Include Name="/js/libs/jquery.js"/>
+    <Include Name="/js/libs/underscore.js"/>
+    <Include Name="/js/libs/mustache.js"/>
+    <Include Name="/js/libs/backbone.js"/>
+    <Include Name="/js/libs/mobileEvent.js"/>
+    <Include Name="/js/libs/cacheProvider.js"/>
+    <Include Name="/js/libs/date.format.js"/>
+  </File>
+  <!--工行Wap 控件库-->
+  <File Name="/js/dist/app.all.js">
+    <Include Name="/js/app.js"/>
+    <Include Name="/js/templates.js"/>
+    <Include Name="/js/models.js"/>
+    <Include Name="/js/collections.js"/>
+    <Include Name="/js/views/page.js"/>
+    <Include Name="/js/views/cityList.js"/>
+    <Include Name="/js/views/movieList.js"/>
+    <Include Name="/js/views/willRelease.js"/>
+    <Include Name="/js/views/movie.js"/>
+    <Include Name="/js/views/showtimeList.js"/>
+    <Include Name="/js/views/showtime.js"/>
+    <Include Name="/js/views/cinema.js"/>
+    <Include Name="/js/views/map.js"/>
+    <Include Name="/js/views/selectSeat.js"/>
+    <Include Name="/js/views/confirmOrder.js"/>
+    <Include Name="/js/views/ecouponList.js"/>
+    <Include Name="/js/views/ecoupon.js"/>
+    <Include Name="/js/views/ecouponOrder.js"/>
+    <Include Name="/js/views/ecouponPayment.js"/>
+    <Include Name="/js/views/cinemaList.js"/>
+    <Include Name="/js/views/signin.js"/>
+    <Include Name="/js/views/signup.js"/>
+    <Include Name="/js/views/orderList.js"/>
+    <Include Name="/js/views/resultOrder.js"/>
+    <Include Name="/js/views/account.js"/>
+    <Include Name="/js/views/onLineOrderInfo.js"/>
+    <Include Name="/js/views/payApplyICBC.js"/>
+    <Include Name="/js/views/payConfirmICBC.js"/>
+  </File>
+  <!--piao event 控件库-->
+  <File Name="/js/dist/event.all.js">
+    <Include Name="/js/event/app.js"/>
+    <Include Name="/js/event/models.js"/>
+    <Include Name="/js/event/collections.js"/>
+    <Include Name="/js/event/templates.js"/>
+    <Include Name="/js/event/views/page.js"/>
+    <Include Name="/js/event/views/signin.js"/>
+    <Include Name="/js/event/views/signup.js"/>
+    <Include Name="/js/event/views/cinemaList.js"/>
+    <Include Name="/js/event/views/showtimeList.js"/>
+    <Include Name="/js/event/views/myOrder.js"/>
+    <Include Name="/js/event/views/onLineOrderInfo.js"/>
+    <Include Name="/js/event/views/confirmOrder.js"/>
+    <Include Name="/js/event/views/resultOrder.js"/>
+    <Include Name="/js/event/views/returnWapApp.js"/>
+    <Include Name="/js/event/views/movieList.js"/>
+    <Include Name="/js/event/views/showtime.js"/>
+    <Include Name="/js/event/views/selectSeat.js"/>
+    <Include Name="/js/event/views/cityList.js"/>
+    <Include Name="/js/event/views/account.js"/>
+    <Include Name="/js/event/views/cinema.js"/>
+    <Include Name="/js/event/views/ecoupon.js"/>
+    <Include Name="/js/event/views/ecouponList.js"/>
+    <Include Name="/js/event/views/ecouponOrder.js"/>
+    <Include Name="/js/event/views/ecouponPayment.js"/>
+    <Include Name="/js/event/views/map.js"/>
+    <Include Name="/js/event/views/movie.js"/>
+    <Include Name="/js/event/views/orderList.js"/>
+    <Include Name="/js/event/views/retrievePassword.js"/>
+  </File>
+  <!--2014电影资料页-->
+  <File Name="/js/moviepagepack.js">
+    <Include Name="/js/2014/topmenu.js"/>
+    <Include Name="/js/2014/staticManager.js"/>
+
+    <Include Name="/js/2011/SlidesControl.js"/>
+    <Include Name="/js/2014/widgets/Base.js"/>
+    <Include Name="/js/2014/widgets/Artwork.js"/>
+    <Include Name="/js/2014/widgets/AwardSlidesControl.js"/>
+    <Include Name="/js/2014/widgets/BackTopControl.js"/>
+    <Include Name="/js/2014/widgets/Comment.js"/>
+    <Include Name="/js/2014/widgets/DistanceSlidesControl.js"/>
+    <Include Name="/js/2014/widgets/FilterComponent.js"/>
+    <Include Name="/js/2014/widgets/FixSpan.js"/>
+    <Include Name="/js/2014/widgets/IndexTopSlidesControl.js"/>
+    <Include Name="/js/2014/widgets/InfiniteScroll.js"/>
+    <Include Name="/js/2014/widgets/Loading.js"/>
+    <Include Name="/js/2014/widgets/LoopSlidesControl.js"/>
+    <Include Name="/js/2014/widgets/TopPicSlide.js"/>
+    <Include Name="/js/2014/widgets/VideoListTopVideoControl.js"/>
+
+    <Include Name="/js/moviewidgets.js"/>
+    <Include Name="/js/feedback.js"/>
+    <Include Name="/js/2014/ToolBanner.js"/>
+    <Include Name="/js/moviepagebase.js"/>
+  </File>
+  <!--2014影人资料页-->
+  <File Name="/js/personpagepack.js">
+    <Include Name="/js/2014/topmenu.js"/>
+    <Include Name="/js/2014/staticManager.js"/>
+
+    <Include Name="/js/2011/SlidesControl.js"/>
+    <Include Name="/js/2014/widgets/Base.js"/>
+    <Include Name="/js/2014/widgets/Artwork.js"/>
+    <Include Name="/js/2014/widgets/AwardSlidesControl.js"/>
+    <Include Name="/js/2014/widgets/BackTopControl.js"/>
+    <Include Name="/js/2014/widgets/Comment.js"/>
+    <Include Name="/js/2014/widgets/DistanceSlidesControl.js"/>
+    <Include Name="/js/2014/widgets/FilterComponent.js"/>
+    <Include Name="/js/2014/widgets/FixSpan.js"/>
+    <Include Name="/js/2014/widgets/IndexTopSlidesControl.js"/>
+    <Include Name="/js/2014/widgets/InfiniteScroll.js"/>
+    <Include Name="/js/2014/widgets/Loading.js"/>
+    <Include Name="/js/2014/widgets/LoopSlidesControl.js"/>
+    <Include Name="/js/2014/widgets/TopPicSlide.js"/>
+    <Include Name="/js/2014/widgets/VideoListTopVideoControl.js"/>
+
+    <Include Name="/js/personwidgets.js"/>
+    <Include Name="/js/feedback.js"/>
+    <Include Name="/js/2014/ToolBanner.js"/>
+    <Include Name="/js/personpagebase.js"/>
+  </File>
+  <!--2014新闻资料页-->
+  <File Name="/js/newspagepack.js">
+    <Include Name="/js/2014/topmenu.js"/>
+    <Include Name="/js/2014/staticManager.js"/>
+    <Include Name="/js/2014/Card.js"/>
+
+    <Include Name="/js/2011/SlidesControl.js"/>
+    <Include Name="/js/2014/widgets/Base.js"/>
+    <Include Name="/js/2014/widgets/Artwork.js"/>
+    <Include Name="/js/2014/widgets/AwardSlidesControl.js"/>
+    <Include Name="/js/2014/widgets/BackTopControl.js"/>
+    <Include Name="/js/2014/widgets/Comment.js"/>
+    <Include Name="/js/2014/widgets/DistanceSlidesControl.js"/>
+    <Include Name="/js/2014/widgets/FilterComponent.js"/>
+    <Include Name="/js/2014/widgets/FixSpan.js"/>
+    <Include Name="/js/2014/widgets/IndexTopSlidesControl.js"/>
+    <Include Name="/js/2014/widgets/InfiniteScroll.js"/>
+    <Include Name="/js/2014/widgets/Loading.js"/>
+    <Include Name="/js/2014/widgets/LoopSlidesControl.js"/>
+    <Include Name="/js/2014/widgets/TopPicSlide.js"/>
+    <Include Name="/js/2014/widgets/VideoListTopVideoControl.js"/>
+
+    <Include Name="/js/2014/SwfToMp4Video.js"/>
+    <Include Name="/js/NewsWidgets.js"/>
+    <Include Name="/js/Pager.js"/>
+    <Include Name="/news/newspage.js"/>
+  </File>
+  <!--2014电影院资料页-->
+  <File Name="/js/cinemapagepack.js">
+    <Include Name="/js/2014/topmenu.js"/>
+    <Include Name="/js/2014/staticManager.js"/>
+
+    <Include Name="/js/2011/SlidesControl.js"/>
+    <Include Name="/js/2014/widgets/Base.js"/>
+    <Include Name="/js/2014/widgets/Artwork.js"/>
+    <Include Name="/js/2014/widgets/AwardSlidesControl.js"/>
+    <Include Name="/js/2014/widgets/BackTopControl.js"/>
+    <Include Name="/js/2014/widgets/Comment.js"/>
+    <Include Name="/js/2014/widgets/DistanceSlidesControl.js"/>
+    <Include Name="/js/2014/widgets/FilterComponent.js"/>
+    <Include Name="/js/2014/widgets/FixSpan.js"/>
+    <Include Name="/js/2014/widgets/IndexTopSlidesControl.js"/>
+    <Include Name="/js/2014/widgets/InfiniteScroll.js"/>
+    <Include Name="/js/2014/widgets/Loading.js"/>
+    <Include Name="/js/2014/widgets/LoopSlidesControl.js"/>
+    <Include Name="/js/2014/widgets/TopPicSlide.js"/>
+    <Include Name="/js/2014/widgets/VideoListTopVideoControl.js"/>
+
+    <Include Name="/js/cinemawidgets.js"/>
+    <Include Name="/js/cinemapagebase.js"/>
+  </File>
+  <!--2014频道页-->
+  <File Name="/js/channelpagepack.js">
+    <Include Name="/js/2014/topmenu.js"/>
+    <Include Name="/js/2014/staticManager.js"/>
+
+    <Include Name="/js/2011/SlidesControl.js"/>
+    <Include Name="/js/2014/widgets/Base.js"/>
+    <Include Name="/js/2014/widgets/Artwork.js"/>
+    <Include Name="/js/2014/widgets/AwardSlidesControl.js"/>
+    <Include Name="/js/2014/widgets/BackTopControl.js"/>
+    <Include Name="/js/2014/widgets/Comment.js"/>
+    <Include Name="/js/2014/widgets/DistanceSlidesControl.js"/>
+    <Include Name="/js/2014/widgets/FilterComponent.js"/>
+    <Include Name="/js/2014/widgets/FixSpan.js"/>
+    <Include Name="/js/2014/widgets/IndexTopSlidesControl.js"/>
+    <Include Name="/js/2014/widgets/InfiniteScroll.js"/>
+    <Include Name="/js/2014/widgets/Loading.js"/>
+    <Include Name="/js/2014/widgets/LoopSlidesControl.js"/>
+    <Include Name="/js/2014/widgets/TopPicSlide.js"/>
+    <Include Name="/js/2014/widgets/VideoListTopVideoControl.js"/>
+  </File>
+
+  <File Name="/js/videopagepack.js">
+    <Include Name="/js/2014/topmenu.js"/>
+    <Include Name="/js/2014/staticManager.js"/>
+
+    <Include Name="/js/2011/SlidesControl.js"/>
+    <Include Name="/js/2014/widgets/Base.js"/>
+    <Include Name="/js/2014/widgets/Artwork.js"/>
+    <Include Name="/js/2014/widgets/AwardSlidesControl.js"/>
+    <Include Name="/js/2014/widgets/BackTopControl.js"/>
+    <Include Name="/js/2014/widgets/Comment.js"/>
+    <Include Name="/js/2014/widgets/DistanceSlidesControl.js"/>
+    <Include Name="/js/2014/widgets/FilterComponent.js"/>
+    <Include Name="/js/2014/widgets/FixSpan.js"/>
+    <Include Name="/js/2014/widgets/IndexTopSlidesControl.js"/>
+    <Include Name="/js/2014/widgets/InfiniteScroll.js"/>
+    <Include Name="/js/2014/widgets/Loading.js"/>
+    <Include Name="/js/2014/widgets/LoopSlidesControl.js"/>
+    <Include Name="/js/2014/widgets/TopPicSlide.js"/>
+    <Include Name="/js/2014/widgets/VideoListTopVideoControl.js"/>
+
+    <Include Name="/js/2014/SwfToMp4Video.js"/>
+  </File>
+
+  <File Name="/js/widgets.js">
+    <Include Name="/js/2011/SlidesControl.js"/>
+    <Include Name="/js/2014/widgets/Base.js"/>
+    <Include Name="/js/2014/widgets/Artwork.js"/>
+    <Include Name="/js/2014/widgets/AwardSlidesControl.js"/>
+    <Include Name="/js/2014/widgets/BackTopControl.js"/>
+    <Include Name="/js/2014/widgets/Comment.js"/>
+    <Include Name="/js/2014/widgets/DistanceSlidesControl.js"/>
+    <Include Name="/js/2014/widgets/FilterComponent.js"/>
+    <Include Name="/js/2014/widgets/FixSpan.js"/>
+    <Include Name="/js/2014/widgets/IndexTopSlidesControl.js"/>
+    <Include Name="/js/2014/widgets/InfiniteScroll.js"/>
+    <Include Name="/js/2014/widgets/Loading.js"/>
+    <Include Name="/js/2014/widgets/LoopSlidesControl.js"/>
+    <Include Name="/js/2014/widgets/TopPicSlide.js"/>
+    <Include Name="/js/2014/widgets/VideoListTopVideoControl.js"/>
+  </File>
+
+  <!--2014首页js打包-->
+  <File Name="/js/2014/index.js">
+    <Include Name="/js/2014/favorite.js"/>
+    <Include Name="/js/2014/share.js"/>
+    <Include Name="/js/2014/Follow.js"/>
+    <Include Name="/js/2014/ToolBanner.js"/>
+    <Include Name="/js/2014/Card.js"/>
+    <Include Name="/js/2011/weibo/popupDialog.js"/>
+    <Include Name="/index.js"/>
+  </File>
+
+  <!--2014社区首页js打包-->
+  <File Name="/js/2014/community/communityindex.js">
+    <Include Name="/js/2014/card.js"/>
+    <Include Name="/js/08/favorite.js"/>
+    <Include Name="/js/08/share.js"/>
+    <Include Name="/js/2014/Follow.js"/>
+    <Include Name="/js/2014/ToolBanner.js"/>
+    <Include Name="/js/2011/weibo/popupDialog.js"/>
+    <Include Name="/Community/CommunityIndex.js"/>
+  </File>
+
+  <!--2014搜索页js打包-->
+  <File Name="/js/2014/search/searchpack.js">
+    <Include Name="/search/UNIC-GBK.js"/>
+    <Include Name="/js/pager.js"/>
+    <Include Name="/search/search.js"/>
+  </File>
+
+  <!--2014新闻二级页时光对话页js打包-->
+  <File Name="/news/newsconversationpack.js">
+    <Include Name="/news/NewsConversation.js"/>
+    <Include Name="/news/NewsConversationSearchPage.js"/>
+  </File>
+  <!--2014新闻频道页js打包-->
+  <File Name="/news/newslistpagepack.js">
+    <Include Name="/js/2014/share.js"/>
+    <Include Name="/js/2014/favorite.js"/>
+    <Include Name="/js/2014/ToolBanner.js"/>
+    <Include Name="/news/NewsPage.js"/>
+  </File>
+  <!--2014新闻频道页js打包-->
+  <File Name="/news/newslivepagepack.js">
+    <Include Name="/js/2014/share.js"/>
+    <Include Name="/js/2014/favorite.js"/>
+    <Include Name="/js/2014/ToolBanner.js"/>
+    <Include Name="/news/NewsLivePage.js"/>
+  </File>
+
+  <!--2014 电影资料页 幕后花絮页js打包-->
+  <File Name="/movie/moviebehindpagepack.js">
+    <Include Name="/js/2014/share.js"/>
+    <Include Name="/js/2014/favorite.js"/>
+    <Include Name="/movie/MovieBehindPage.js"/>
+  </File>
+
+  <!--2014 电影资料页 电影图片具体页js打包-->
+  <File Name="/movie/movieimagedetailpack.js">
+    <Include Name="/js/2014/share.js"/>
+    <Include Name="/js/2014/favorite.js"/>
+    <Include Name="/movie/movieImageDetail.js"/>
+  </File>
+
+  <!--2014 电影资料页 电影图片列表页js打包-->
+  <File Name="/movie/movieimagespagepack.js">
+    <Include Name="/js/Pager.js"/>
+    <Include Name="/movie/MovieImagesPage.js"/>
+  </File>
+
+  <!--2014 电影资料页 电影图片具体页js打包-->
+  <File Name="/movie/movieoverviewpagepack.js">
+    <Include Name="/js/2014/share.js"/>
+    <Include Name="/js/2014/favorite.js"/>
+    <Include Name="/movie/MovieReviewTweetCtrl.js"/>
+    <Include Name="/movie/MovieOverViewPage.js"/>
+  </File>
+
+  <!--2014 电影资料页 电影剧情页js打包-->
+  <File Name="/movie/movieplotspagepack.js">
+    <Include Name="/js/2014/share.js"/>
+    <Include Name="/js/2014/favorite.js"/>
+    <Include Name="/movie/MoviePlotsPage.js"/>
+  </File>
+
+  <!--2014 电影资料页 电影长影评页js打包-->
+  <File Name="/movie/moviereviewspagepack.js">
+    <Include Name="/js/2014/share.js"/>
+    <Include Name="/js/2014/favorite.js"/>
+    <Include Name="/movie/MovieReviewTweetCtrl.js"/>
+    <Include Name="/movie/MovieReviewsPage.js"/>
+  </File>
+
+  <!--2014 电影资料页 电影长影评具体页js打包-->
+  <File Name="/movie/moviereviewdetailpack.js">
+    <Include Name="/js/2014/share.js"/>
+    <Include Name="/js/2014/favorite.js"/>
+    <Include Name="/movie/MovieReviewTweetCtrl.js"/>
+    <Include Name="/movie/MovieReviewDetail.js"/>
+  </File>
+
+  <!--2014 电影资料页 电影媒体影评具体页js打包-->
+  <File Name="/movie/moviemediareviewdetailpagepack.js">
+    <Include Name="/js/2014/share.js"/>
+    <Include Name="/js/2014/favorite.js"/>
+    <Include Name="/movie/MovieMediaReviewDetailPage.js"/>
+    <Include Name="/movie/MovieReviewTweetCtrl.js"/>
+  </File>
+
+  <!--2014 电影资料页 电影角色介绍页js打包-->
+  <File Name="/movie/movierolecamppagepack.js">
+    <Include Name="/js/2014/share.js"/>
+    <Include Name="/js/2014/favorite.js"/>
+    <Include Name="/movie/MovieRoleCampPage.js"/>
+  </File>
+
+  <!--2014 电影资料页 电影微影评页js打包-->
+  <File Name="/movie/movietweetspagepack.js">
+    <Include Name="/js/2014/share.js"/>
+    <Include Name="/js/2014/favorite.js"/>
+    <Include Name="/movie/MovieReviewTweetCtrl.js"/>
+    <Include Name="/movie/MovieTweetsPage.js"/>
+  </File>
+
+  <!--2014 电视剧资料页 电视剧剧情页js打包-->
+  <File Name="/movie/tvplotspagepack.js">
+    <Include Name="/js/Pager.js"/>
+    <Include Name="/movie/TvPlotsPage.js"/>
+  </File>
+
+  <!--2014 影人资料页 影人图片具体页js打包-->
+  <File Name="/person/personimagedetailpack.js">
+    <Include Name="/js/2014/share.js"/>
+    <Include Name="/js/2014/favorite.js"/>
+    <Include Name="/person/personImageDetail.js"/>
+  </File>
+
+  <!--2014 影人资料页 影人图片列表页js打包-->
+  <File Name="/person/personimagespagepack.js">
+    <Include Name="/js/Pager.js"/>
+    <Include Name="/person/PersonImagesPage.js"/>
+  </File>
+
+  <!--2014 影人资料页 影人参与影片及作品列表页js打包-->
+  <File Name="/person/personmoviepagepack.js">
+    <Include Name="/js/Pager.js"/>
+    <Include Name="/person/PersonMoviePage.js"/>
+  </File>
+
+  <!--2014 影人资料页 影人概览页js打包-->
+  <File Name="/person/personoverviewpagepack.js">
+    <Include Name="/js/2014/share.js"/>
+    <Include Name="/js/2014/favorite.js"/>
+    <Include Name="/js/2014/Follow.js"/>
+    <Include Name="/person/PersonReviewTweetCtrl.js"/>
+    <Include Name="/person/PersonOverViewPage.js"/>
+  </File>
+
+  <!--2014 影人资料页 影人留言评页js打包-->
+  <File Name="/person/persontweetspagepack.js">
+    <Include Name="/js/2014/share.js"/>
+    <Include Name="/js/2014/favorite.js"/>
+    <Include Name="/person/PersonReviewTweetCtrl.js"/>
+    <Include Name="/person/PersonTweetsPage.js"/>
+  </File>
+
+
+  <!--2014 视频资料页 视频具体页js打包-->
+  <File Name="/video/videodetailpagepack.js">
+    <Include Name="/js/2014/ToolBanner.js"/>
+    <Include Name="/js/2014/share.js"/>
+    <Include Name="/js/2014/favorite.js"/>
+    <Include Name="/video/VideoDetailPage.js"/>
+  </File>
+
+  <!--2014版资料页兼容样式-->
+  <File Name="/css/2014/movie_replace.css">
+    <Include Name="/css/2014/topbar.css"/>
+    <Include Name="/css/2014/movie_replace.css"/>
+  </File>
+
+  <!--2014版奖项库兼容样式-->
+  <File Name="/css/2014/awards_replace.css">
+    <Include Name="/css/2014/topbar.css"/>
+    <Include Name="/css/2014/awards_replace.css"/>
+  </File>
+
+  <!--2014版排行榜兼容样式-->
+  <File Name="/css/2014/toplist_replace.css">
+    <Include Name="/css/2014/topbar.css"/>
+    <Include Name="/css/2014/toplist_replace.css"/>
+  </File>
+
+  <!--2014版排行榜兼容样式-->
+  <File Name="/css/2014/comment_replace.css">
+    <Include Name="/css/2014/topbar.css"/>
+    <Include Name="/css/2014/comment_replace.css"/>
+  </File>
+
+  <!--2014版社区频道页兼容样式-->
+  <File Name="/css/2014/community_replace.css">
+    <Include Name="/css/2014/topbar.css"/>
+    <Include Name="/css/2014/community_replace.css"/>
+  </File>
+
+  <!--2014版初始化页兼容样式-->
+  <File Name="/css/2014/initial_replace.css">
+    <Include Name="/css/2014/topbar.css"/>
+    <Include Name="/css/2014/initial_replace.css"/>
+  </File>
+
+  <!--2014版新闻频道页兼容样式-->
+  <File Name="/css/2014/news_replace.css">
+    <Include Name="/css/2014/topbar.css"/>
+    <Include Name="/css/2014/news_replace.css"/>
+  </File>
+
+  <!--2014资料页公共css-->
+  <File Name="/css/2014/publicpack.css">
+    <Include Name="/css/2014/public.css"/>
+    <Include Name="/css/2014/component.css"/>
+    <Include Name="/css/2014/topbar.css"/>
+  </File>
+  
+  <!--2014时光热榜-->
+  <File Name="/Top/mtimehotestpagepack.js">
+    <Include Name="/js/2014/share.js"/>
+    <Include Name="/js/2014/ToolBanner.js"/>
+    <Include Name="/js/2014/MtimeHotestPage.js"/>
+  </File>
+
+  <!--2014 新闻具体评论页 js打包-->
+  <File Name="/news/NewsCommentPagePack.js">
+    <Include Name="/js/2014/ToolBanner.js"/>
+    <Include Name="/news/NewsCommentPage.js"/>
+  </File>
+</Files>

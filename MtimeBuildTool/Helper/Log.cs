@@ -19,5 +19,10 @@ namespace MtimeBuildTool.Helper
         {
             LogHelper.WriteMessage(fileName, message);
         }
+
+        public static void WriteMessageByProject(ProjectModel project, string message)
+        {
+            LogHelper.WriteMessage(project.Name, message);
+        }
     }
 }
