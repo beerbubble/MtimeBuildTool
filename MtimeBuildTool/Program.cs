@@ -56,38 +56,42 @@ namespace MtimeBuildTool
 
                 Log.WriteMessageByProject(projectModel, "拷贝目录开始！");
                 DirectoryHelper.DirectoryCopy(projectModel.SiteSourcePath, projectModel.LocalSitePath, true);
+                File.Copy(@"C:\MtimeConfig\SiteUrlsServer.config", projectModel.LocalSitePath + @"config\SiteUrlsServer.config", true);
                 Log.WriteMessageByProject(projectModel, "拷贝目录结束！");
 
-                Log.WriteMessageByProject(projectModel, "压缩目录开始！");
-                try
+                if (!string.IsNullOrEmpty(projectModel.StaticPath))
                 {
+                    Log.WriteMessageByProject(projectModel, "压缩目录开始！");
+                    try
+                    {
 
-                    string errorMessage = ClientCompress.Process(projectModel.LocalSitePath, true);
-                    //                    CompressWebSite(projectModel);
-                }
-                catch (Exception e)
-                {
-                    Log.WriteMessage(e.Message);
-                }
+                        string errorMessage = ClientCompress.Process(projectModel.LocalSitePath, true);
+                        //                    CompressWebSite(projectModel);
+                    }
+                    catch (Exception e)
+                    {
+                        Log.WriteMessage(e.Message);
+                    }
 
-                switch (projectModel.Name)
-                {
-                    case "MtimeMovieCommunityRoot":
-                        FileInfo filemain = new FileInfo(projectModel.LocalSitePath + "VERSION.txt");
-                        filemain.CopyTo(ConfigurationManager.AppSettings["MtimeMovieCommunityRootPath"] + "VERSION.txt", true);
-                        break;
-                    case "MtimeWap-m":
-                        FileInfo filewap = new FileInfo(projectModel.LocalSitePath + "VERSION.txt");
-                        filewap.CopyTo(ConfigurationManager.AppSettings["MtimeWapRootPath"] + "VERSION.txt", true);
-                        break;
-                    default:
-                        break;
-                }
-                Log.WriteMessageByProject(projectModel, "压缩目录结束！");
+                    switch (projectModel.Name)
+                    {
+                        case "MtimeMovieCommunityRoot":
+                            FileInfo filemain = new FileInfo(projectModel.LocalSitePath + "VERSION.txt");
+                            filemain.CopyTo(ConfigurationManager.AppSettings["MtimeMovieCommunityRootPath"] + "VERSION.txt", true);
+                            break;
+                        case "MtimeWap-m":
+                            FileInfo filewap = new FileInfo(projectModel.LocalSitePath + "VERSION.txt");
+                            filewap.CopyTo(ConfigurationManager.AppSettings["MtimeWapRootPath"] + "VERSION.txt", true);
+                            break;
+                        default:
+                            break;
+                    }
+                    Log.WriteMessageByProject(projectModel, "压缩目录结束！");
 
-                Log.WriteMessageByProject(projectModel, "拷贝版本号到远程目录开始！");
-                CopyToStaticDirectory(projectModel);
-                Log.WriteMessageByProject(projectModel, "拷贝版本号到远程目录结束！");
+                    Log.WriteMessageByProject(projectModel, "拷贝版本号到远程目录开始！");
+                    CopyToStaticDirectory(projectModel);
+                    Log.WriteMessageByProject(projectModel, "拷贝版本号到远程目录结束！");
+                }
 
                 if (!string.IsNullOrEmpty(projectModel.RemoteSitePath))
                 {
@@ -104,6 +108,7 @@ namespace MtimeBuildTool
                 Log.WriteMessageByProject(projectModel, "服务部分开始！");
                 DirectoryHelper.DirectoryFilesRemove(projectModel.LocalServicePath);
                 DirectoryHelper.DirectoryCopy(projectModel.ServiceSourcePath, projectModel.LocalServicePath, true);
+                File.Copy(@"C:\MtimeConfig\SiteUrlsServer.config", projectModel.LocalServicePath + @"config\SiteUrlsServer.config", true);
                 ServiceAction(projectModel, Action.Stop);
                 DirectoryHelper.DirectoryFilesRemove(projectModel.RemoteServicePath);
                 DirectoryHelper.DirectoryCopy(projectModel.LocalServicePath, projectModel.RemoteServicePath, true);
@@ -115,6 +120,7 @@ namespace MtimeBuildTool
                 Log.WriteMessageByProject(projectModel, "工具部分开始！");
                 DirectoryHelper.DirectoryFilesRemove(projectModel.LocalToolPath);
                 DirectoryHelper.DirectoryCopy(projectModel.ToolSourcePath, projectModel.LocalToolPath, true);
+                File.Copy(@"C:\MtimeConfig\SiteUrlsServer.config", projectModel.LocalToolPath + @"config\SiteUrlsServer.config", true);
                 ToolAction(projectModel, Action.Stop);
                 DirectoryHelper.DirectoryFilesRemove(projectModel.RemoteToolPath);
                 DirectoryHelper.DirectoryCopy(projectModel.LocalToolPath, projectModel.RemoteToolPath, true);
@@ -291,9 +297,18 @@ namespace MtimeBuildTool
             switch (action)
             {
                 case Action.Start:
+                    string commmandPre = @"c:\Windows\System32\cmd.exe /C start /b /d """ + projectModel.RemoteToolPathForLocal + "\" ";
                     string cmdTemplate = "{0} -autostart";
-                    string exePath = projectModel.RemoteToolPathForLocal + projectModel.ProcessName;
-                    remoteExecute.StartProcess(string.Format(cmdTemplate, exePath));
+
+                    if (projectModel.AutoStart)
+                    {
+                        remoteExecute.StartProcess(commmandPre + string.Format(cmdTemplate, projectModel.ProcessName));
+                    }
+                    else {
+                        string commmand = commmandPre + projectModel.ProcessName;
+                        Console.WriteLine(commmand);
+                        remoteExecute.StartProcess(commmand);
+                    }
                     break;
                 case Action.Stop:
                     var theDic = remoteExecute.GetProcessList();

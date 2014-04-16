@@ -1,7 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Rules>
   <Rule Name="Channel">
-    <Project Type ="WebSite" Name="MtimeChannel" />
-    <Project Type ="Tools" Name="MtimeChannel" />
+    <WebSite>
+      <Item Type="ReplaceContent" dir="" file="Web.config" find="" replace="" />
+    </WebSite>
+    <Service></Service>
+    <Tool>
+      <Item Type="EditConfig" dir="" file="Web.config" xpath="" attribute="" value="" />
+    </Tool>
   </Rule>
 </Rules>

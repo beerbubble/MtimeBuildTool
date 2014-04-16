@@ -34,6 +34,12 @@ namespace MtimeBuildTool.Helper
 
         public static void DirectoryFilesRemove(string path)
         {
+            // If the destination directory doesn't exist, create it. 
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+
             var dir = new DirectoryInfo(path);
 
             // Get the files in the directory and copy them to the new location.
@@ -41,7 +47,21 @@ namespace MtimeBuildTool.Helper
             foreach (FileInfo file in files)
             {
                 file.Attributes = FileAttributes.Normal;
-                file.Delete();
+                int i = 0;
+                while (i < 5)
+                {
+                    try
+                    {
+                        file.Delete();
+                        break;
+                    }
+                    catch (Exception ex)
+                    {
+                    }
+                    Thread.Sleep(2000);
+                    i++;
+                }
+                
             }
 
             DirectoryInfo[] dirs = dir.GetDirectories();

@@ -7,7 +7,8 @@
     <WebSite Name="MtimeContentLibrary" LocalSitePath="E:\Publish\WebSite\service.library.test.com\" StaticPath="\\192.168.50.22\c$\Inetpub\wwwroot\MtimeMovieCommunityStatic\library\"/>
     <WebSite Name="MtimeTheaterChannel" LocalSitePath="E:\Publish\WebSite\service.theater.test.com\" StaticPath="\\192.168.50.22\c$\Inetpub\wwwroot\MtimeMovieCommunityStatic\theater\"/>
     <WebSite Name="MtimeTheaterChannelNew" LocalSitePath="E:\Publish\WebSite\service.theater.test.com10001\" StaticPath="\\192.168.50.22\c$\Inetpub\wwwroot\MtimeMovieCommunityStatic\theater2014\"/>
-    <WebSite Name="MtimeMemberCenter" LocalSitePath="E:\Publish\WebSite\MemberCenterNew\" StaticPath="\\192.168.50.22\c$\Inetpub\wwwroot\MtimeMovieCommunityStatic\my\"/>
+    <WebSite Name="MtimeMemberCenter" LocalSitePath="E:\Publish\WebSite\MemberCenterNew\" RemoteSitePath="\\192.168.50.22\c$\Inetpub\wwwroot\MemberCenterNew\" StaticPath="\\192.168.50.22\c$\Inetpub\wwwroot\MtimeMovieCommunityStatic\my\" SiteSourcePath="E:\CCNet\Codev3.0\MtimeMovieCommunity.root\MC\Web\"/>
+    <WebSite Name="MtimeSandBox" LocalSitePath="E:\Publish\WebSite\MtimeSandBox\" RemoteSitePath="\\192.168.50.22\c$\Inetpub\wwwroot\sandbox.my.test.com\" StaticPath="" SiteSourcePath="E:\CCNet\Codev3.0\MtimeMovieCommunity.root\MC\MC.Proxy.Web\"/>
     <WebSite Name="MtimeTwitterApp" LocalSitePath="E:\Publish\WebSite\app\t.app.test.com\" StaticPath="\\192.168.50.22\c$\Inetpub\wwwroot\MtimeMovieCommunityStatic\app\weibo\"/>
     <WebSite Name="MtimeBlogApp" LocalSitePath="E:\Publish\WebSite\app\blog.app.test.com\" StaticPath="\\192.168.50.22\c$\Inetpub\wwwroot\MtimeMovieCommunityStatic\app\blog\"/>
     <WebSite Name="MtimeGroupApp" LocalSitePath="E:\Publish\WebSite\app\group.app.test.com\" StaticPath="\\192.168.50.22\c$\Inetpub\wwwroot\MtimeMovieCommunityStatic\app\group\"/>
