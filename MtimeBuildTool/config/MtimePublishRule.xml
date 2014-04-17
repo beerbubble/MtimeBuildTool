@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Rules>
-  <Rule Name="Channel">
+  <Rule Name="MtimeChannel">
     <WebSite>
       <Item Type="ReplaceContent" dir="" file="Web.config" find="" replace="" />
     </WebSite>

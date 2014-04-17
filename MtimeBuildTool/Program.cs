@@ -45,7 +45,9 @@ namespace MtimeBuildTool
                 return;
             }
 
-            Dictionary<string, List<RuleItem>> projectRule = PublishRuleDic[projectModel.Name];
+            Dictionary<string, List<RuleItem>> projectRule = new Dictionary<string, List<RuleItem>>();
+
+            bool includeRule = PublishRuleDic.TryGetValue(projectModel.Name, out projectRule);
 
             Log.WriteMessageByProject(projectModel, "Start!");
             Log.WriteMessageByProject(projectModel, "¿ªÊ¼É¾³ý¡¢Ñ¹Ëõ¡¢¿½±´");
@@ -63,15 +65,17 @@ namespace MtimeBuildTool
                 File.Copy(@"C:\MtimeConfig\SiteUrlsServer.config", projectModel.LocalSitePath + @"config\SiteUrlsServer.config", true);
                 Log.WriteMessageByProject(projectModel, "¿½±´Ä¿Â¼½áÊø£¡");
 
-                List<RuleItem> webRuleList = new List<RuleItem>();
-                if (projectRule.TryGetValue("WebSite", out webRuleList))
+                if (includeRule)
                 {
-                    foreach (var rule in webRuleList)
+                    List<RuleItem> webRuleList = new List<RuleItem>();
+                    if (projectRule.TryGetValue("WebSite", out webRuleList))
                     {
-                        
+                        foreach (var rule in webRuleList)
+                        {
+
+                        }
                     }
                 }
-  
 
                 if (!string.IsNullOrEmpty(projectModel.StaticPath))
                 {
