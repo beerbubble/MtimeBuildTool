@@ -25,11 +25,13 @@ namespace MtimeBuildTool
 
         static void Main(string[] args)
         {
+            #if debug
             if (args.Length < 1)
             {
                 Log.WriteMessage("无项目参数，请检查命令！");
                 return;
             }
+            #endif
 
             //初始化项目配置
             InitProjectMap();
@@ -39,7 +41,7 @@ namespace MtimeBuildTool
             Log.WriteMessage(string.Format("项目数:{0}", projectDic.Count));
             Log.WriteMessage(string.Format("机器账号数:{0}", accountDic.Count));
 
-            //string project = "MtimeChannel";
+            string project = "MtimeChannel";
 
             //获取当前部署的项目
             ProjectModel projectModel;
@@ -62,23 +64,38 @@ namespace MtimeBuildTool
 
                 Log.WriteMessageByProject(projectModel, "删除目录开始！");
                 DirectoryHelper.DirectoryFilesRemove(projectModel.LocalSitePath);
-                Log.WriteMessageByProject(projectModel, "删除目录结束！");
+                Log.WriteMessageByProject(projectModel, "删除目录完成！");
 
                 Log.WriteMessageByProject(projectModel, "拷贝目录开始！");
                 DirectoryHelper.DirectoryCopy(projectModel.SiteSourcePath, projectModel.LocalSitePath, true);
                 File.Copy(@"C:\MtimeConfig\SiteUrlsServer.config", projectModel.LocalSitePath + @"config\SiteUrlsServer.config", true);
-                Log.WriteMessageByProject(projectModel, "拷贝目录结束！");
+                Log.WriteMessageByProject(projectModel, "拷贝目录完成！");
 
                 if (includeRule)
                 {
-                    List<RuleItem> webRuleList = new List<RuleItem>();
-                    if (projectRule.TryGetValue("WebSite", out webRuleList))
-                    {
-                        foreach (var rule in webRuleList)
-                        {
-
-                        }
-                    }
+                    RuleAction(projectRule, "WebSite");
+                    //List<RuleItem> webRuleList = new List<RuleItem>();
+                    //if (projectRule.TryGetValue("WebSite", out webRuleList))
+                    //{
+                    //    foreach (var rule in webRuleList)
+                    //    {
+                    //        if (!string.IsNullOrEmpty(rule.Value) && rule.Value.StartsWith("$"))
+                    //        {
+                    //            rule.Value = GetVersionVariable(rule.Value.Substring(1));
+                    //        }
+                    //        switch (rule.Type)
+                    //        {
+                    //            case RuleType.ReplaceContent:
+                    //                FileHelper.ReplaceContent(rule);
+                    //                break;
+                    //            case RuleType.EditConfig:
+                    //                FileHelper.EditConfig(rule);
+                    //                break;
+                    //            default:
+                    //                break;
+                    //        }
+                    //    }
+                    //}
                 }
 
                 if (!string.IsNullOrEmpty(projectModel.StaticPath))
@@ -88,15 +105,13 @@ namespace MtimeBuildTool
                     {
                         string errorMessage = ClientCompress.Process(projectModel.LocalSitePath, true);
                         //                    CompressWebSite(projectModel);
+                        FileInfo filemain = new FileInfo(projectModel.LocalSitePath + versionFileName);
+                        filemain.CopyTo(vsersionFolderPath + projectModel.Name + @"\" + versionFileName, true);
                     }
                     catch (Exception e)
                     {
                         Log.WriteMessage(e.Message);
                     }
-
-                    FileInfo filemain = new FileInfo(projectModel.LocalSitePath + versionFileName);
-                    filemain.CopyTo(vsersionFolderPath + projectModel.Name + @"\" + versionFileName, true);
-
 
                     //switch (projectModel.Name)
                     //{
@@ -111,11 +126,11 @@ namespace MtimeBuildTool
                     //    default:
                     //        break;
                     //}
-                    Log.WriteMessageByProject(projectModel, "压缩目录结束！");
+                    Log.WriteMessageByProject(projectModel, "压缩目录完成！");
 
                     Log.WriteMessageByProject(projectModel, "拷贝版本号到远程目录开始！");
                     CopyToStaticDirectory(projectModel);
-                    Log.WriteMessageByProject(projectModel, "拷贝版本号到远程目录结束！");
+                    Log.WriteMessageByProject(projectModel, "拷贝版本号到远程目录完成！");
                 }
 
                 if (!string.IsNullOrEmpty(projectModel.RemoteSitePath))
@@ -123,10 +138,10 @@ namespace MtimeBuildTool
                     Log.WriteMessageByProject(projectModel, "拷贝站点到远程目录开始！");
                     DirectoryHelper.DirectoryFilesRemove(projectModel.RemoteSitePath);
                     DirectoryHelper.DirectoryCopy(projectModel.LocalSitePath, projectModel.RemoteSitePath, true);
-                    Log.WriteMessageByProject(projectModel, "拷贝站点到远程目录开始！");
+                    Log.WriteMessageByProject(projectModel, "拷贝站点到远程目录完成！");
                 }
 
-                Log.WriteMessageByProject(projectModel, "站点部分结束！");
+                Log.WriteMessageByProject(projectModel, "站点部分完成！");
             }
             if (!string.IsNullOrEmpty(projectModel.ServiceSourcePath))
             {
@@ -134,11 +149,15 @@ namespace MtimeBuildTool
                 DirectoryHelper.DirectoryFilesRemove(projectModel.LocalServicePath);
                 DirectoryHelper.DirectoryCopy(projectModel.ServiceSourcePath, projectModel.LocalServicePath, true);
                 File.Copy(@"C:\MtimeConfig\SiteUrlsServer.config", projectModel.LocalServicePath + @"config\SiteUrlsServer.config", true);
+                if (includeRule)
+                {
+                    RuleAction(projectRule, "Service");
+                }
                 ServiceAction(projectModel, Action.Stop);
                 DirectoryHelper.DirectoryFilesRemove(projectModel.RemoteServicePath);
                 DirectoryHelper.DirectoryCopy(projectModel.LocalServicePath, projectModel.RemoteServicePath, true);
                 ServiceAction(projectModel, Action.Start);
-                Log.WriteMessageByProject(projectModel, "服务部分结束！");
+                Log.WriteMessageByProject(projectModel, "服务部分完成！");
             }
             if (!string.IsNullOrEmpty(projectModel.ToolSourcePath))
             {
@@ -146,13 +165,43 @@ namespace MtimeBuildTool
                 DirectoryHelper.DirectoryFilesRemove(projectModel.LocalToolPath);
                 DirectoryHelper.DirectoryCopy(projectModel.ToolSourcePath, projectModel.LocalToolPath, true);
                 File.Copy(@"C:\MtimeConfig\SiteUrlsServer.config", projectModel.LocalToolPath + @"config\SiteUrlsServer.config", true);
+                if (includeRule)
+                {
+                    RuleAction(projectRule, "Tool");
+                }
                 ToolAction(projectModel, Action.Stop);
                 DirectoryHelper.DirectoryFilesRemove(projectModel.RemoteToolPath);
                 DirectoryHelper.DirectoryCopy(projectModel.LocalToolPath, projectModel.RemoteToolPath, true);
                 ToolAction(projectModel, Action.Start);
-                Log.WriteMessageByProject(projectModel, "工具部分结束！");
+                Log.WriteMessageByProject(projectModel, "工具部分完成！");
             }
 
+        }
+
+        private static void RuleAction(Dictionary<string, List<RuleItem>> projectRule,string type)
+        {
+            List<RuleItem> webRuleList = new List<RuleItem>();
+            if (projectRule.TryGetValue(type, out webRuleList))
+            {
+                foreach (var rule in webRuleList)
+                {
+                    if (!string.IsNullOrEmpty(rule.Value) && rule.Value.StartsWith("$"))
+                    {
+                        rule.Value = GetVersionVariable(rule.Value.Substring(1));
+                    }
+                    switch (rule.Type)
+                    {
+                        case RuleType.ReplaceContent:
+                            FileHelper.ReplaceContent(rule);
+                            break;
+                        case RuleType.EditConfig:
+                            FileHelper.EditConfig(rule);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
         }
 
         private static void InitProjectMap()
@@ -275,8 +324,12 @@ namespace MtimeBuildTool
 
         private static void InitMtimePublishRule()
         {
+            XmlReaderSettings readerSettings = new XmlReaderSettings();
+            readerSettings.IgnoreWhitespace = true;
+            readerSettings.IgnoreComments = true;
+            XmlReader reader = XmlReader.Create(AppDomain.CurrentDomain.BaseDirectory + "/config/MtimePublishRule.xml", readerSettings);
             XmlDocument doc = new XmlDocument();
-            doc.Load(AppDomain.CurrentDomain.BaseDirectory + "/config/MtimePublishRule.xml");
+            doc.Load(reader);
 
             XmlNodeList ruleList = doc.SelectNodes("/Rules/Rule");
 
@@ -457,52 +510,53 @@ namespace MtimeBuildTool
         {
             CmdExecute cmd = new CmdExecute();
 
-            #region 1
-            string mainVersionFilePath = string.Empty;
+            //#region 1
+            //string mainVersionFilePath = string.Empty;
 
-            if (projectModel.Name.StartsWith("MtimeWap"))
-            {
-                mainVersionFilePath = System.Configuration.ConfigurationManager.AppSettings["MtimeWapRootPath"] + "VERSION.txt";
-            }
-            else
-            {
-                mainVersionFilePath = System.Configuration.ConfigurationManager.AppSettings["MtimeMovieCommunityRootPath"] + "VERSION.txt";
-            }
+            //if (projectModel.Name.StartsWith("MtimeWap"))
+            //{
+            //    mainVersionFilePath = System.Configuration.ConfigurationManager.AppSettings["MtimeWapRootPath"] + "VERSION.txt";
+            //}
+            //else
+            //{
+            //    mainVersionFilePath = System.Configuration.ConfigurationManager.AppSettings["MtimeMovieCommunityRootPath"] + "VERSION.txt";
+            //}
 
-            Console.WriteLine("MainVersionFilePath: {0}", mainVersionFilePath);
-            string version = System.IO.File.ReadAllText(mainVersionFilePath);
-            Console.WriteLine("MainVersion: " + version);
-            #endregion
+            //Console.WriteLine("MainVersionFilePath: {0}", mainVersionFilePath);
+            //string version = System.IO.File.ReadAllText(mainVersionFilePath);
+            //Console.WriteLine("MainVersion: " + version);
+            //#endregion
 
-            #region 2
-            //取当前项目的路径
-            XmlDocument doc = new XmlDocument();
-            doc.Load(projectModel.LocalSitePath + "Web.config");
+            //#region 2
+            ////取当前项目的路径
+            //XmlDocument doc = new XmlDocument();
+            //doc.Load(projectModel.LocalSitePath + "Web.config");
 
-            XmlNode node;
+            //XmlNode node;
 
-            if (string.IsNullOrEmpty(doc.DocumentElement.NamespaceURI))
-            {
-                node =
-                    doc.SelectSingleNode(@"/configuration/appSettings/add[@key=""StaticResourceServersVersion""]");
-            }
-            else
-            {
-                System.Xml.XmlNamespaceManager nsmanager = new System.Xml.XmlNamespaceManager(doc.NameTable);
-                nsmanager.AddNamespace("x", doc.DocumentElement.NamespaceURI);
+            //if (string.IsNullOrEmpty(doc.DocumentElement.NamespaceURI))
+            //{
+            //    node =
+            //        doc.SelectSingleNode(@"/configuration/appSettings/add[@key=""StaticResourceServersVersion""]");
+            //}
+            //else
+            //{
+            //    System.Xml.XmlNamespaceManager nsmanager = new System.Xml.XmlNamespaceManager(doc.NameTable);
+            //    nsmanager.AddNamespace("x", doc.DocumentElement.NamespaceURI);
 
-                node =
-                    doc.SelectSingleNode(@"/x:configuration/x:appSettings/x:add[@key=""StaticResourceServersVersion""]",
-                                    nsmanager);
-            }
-            node.Attributes["value"].Value = version;
-            doc.Save(projectModel.LocalSitePath + "Web.config");
-            #endregion
+            //    node =
+            //        doc.SelectSingleNode(@"/x:configuration/x:appSettings/x:add[@key=""StaticResourceServersVersion""]",
+            //                        nsmanager);
+            //}
+            //node.Attributes["value"].Value = version;
+            //doc.Save(projectModel.LocalSitePath + "Web.config");
+            //#endregion
 
 
             //2014-2-10 小东要求特殊static目录下是local版本，所以将主站版本号提前拷贝
             if (projectModel.Name == "MtimeMovieCommunityRoot")
             {
+                string version = File.ReadAllText(projectModel.LocalSitePath + versionFileName);
                 DirectoryHelper.DirectoryFilesRemove(projectModel.StaticPath + @"static\");
                 DirectoryHelper.DirectoryCopy(projectModel.LocalSitePath + version + @"\local\" + version, projectModel.StaticPath + @"static\", true);
 
@@ -519,7 +573,7 @@ namespace MtimeBuildTool
                 //command
                 //string copyCommand = @"xcopy ""{0}{1}\local"" ""{2}"" /Y /I /Q /S";
 
-                string subVersion = System.IO.File.ReadAllText(projectModel.LocalSitePath + "VERSION.txt");
+                string subVersion = System.IO.File.ReadAllText(projectModel.LocalSitePath + versionFileName);
 
                 //Console.WriteLine("CopyCommand: {0}", string.Format(copyCommand, projectModel.LocalSitePath, subVersion, projectModel.StaticPath));
                 DirectoryHelper.DirectoryCopy(projectModel.LocalSitePath + subVersion + @"\local", projectModel.StaticPath, true);
@@ -534,27 +588,19 @@ namespace MtimeBuildTool
             #endregion
         }
 
-        private static string GetVersionVariable(VersionType versionType)
+        private static string GetVersionVariable(string projectName)
         {
-            switch (versionType)
+            string result = string.Empty;
+            try
             {
-                case VersionType.MtimeMovieCommunityRoot:
-                    return ReadVersionTxt(vsersionFolderPath + versionType + @"\" + versionFileName);
-                    break;
-                case VersionType.MtimeChannel:
-                    break;
-                case VersionType.MtimeContentLibrary:
-                    break;
-                case VersionType.MtimeTheaterChannel:
-                    break;
-                case VersionType.MtimeMemberCenter:
-                    break;
-                default:
-                    break;
+                result= ReadVersionTxt(vsersionFolderPath + projectName + @"\" + versionFileName);
             }
+            catch (Exception e)
+            {
 
-            return string.Empty;
- 
+            }
+            return result;
+
         }
 
         private static string ReadVersionTxt(string path)

@@ -2,11 +2,17 @@
 <Rules>
   <Rule Name="MtimeChannel">
     <WebSite>
-      <Item Type="ReplaceContent" dir="" file="Web.config" find="" replace="" />
+      <!--<Item Type="ReplaceContent" dir="" file="Web.config" find="" replace="" />-->
+      <Item Type="EditConfig" dir="E:\Publish\WebSite\MtimeChannel\" file="Web.config" xpath="/configuration/appSettings/add[@key=&quot;StaticResourceServersVersion&quot;]" attribute="value" value="$MtimeMovieCommunityRoot" />
     </WebSite>
     <Service></Service>
     <Tool>
-      <Item Type="EditConfig" dir="" file="Web.config" xpath="" attribute="" value="" />
+      <Item Type="EditConfig" dir="E:\Publish\Tool\MtimeChannel\" file="Channel.GeneratorApp.exe.config" xpath="/configuration/appSettings/add[@key=&quot;StaticResourceServersVersion&quot;]" attribute="value" value="$MtimeMovieCommunityRoot" />
+      <Item Type="EditConfig" dir="E:\Publish\Tool\MtimeChannel\" file="Channel.GeneratorApp.exe.config" xpath="/configuration/appSettings/add[@key=&quot;AutoListen&quot;]" attribute="value" value="true" />
+      <Item Type="ReplaceContent" dir="E:\Publish\Tool\MtimeChannel\Config\" file="SiteUrls.Channel.config" find=":1000" replace="" />
+      <Item Type="ReplaceContent" dir="E:\Publish\Tool\MtimeChannel\Config\" file="SiteUrls.Channel.config" find=":1001" replace="" />
+      <Item Type="ReplaceContent" dir="E:\Publish\Tool\MtimeChannel\Config\" file="SiteUrls.config" find=":1000" replace="" />
+      <Item Type="ReplaceContent" dir="E:\Publish\Tool\MtimeChannel\Config\" file="SiteUrls.config" find=":1001" replace="" />
     </Tool>
   </Rule>
 </Rules>

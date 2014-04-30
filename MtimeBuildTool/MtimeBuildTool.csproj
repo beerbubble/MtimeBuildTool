@@ -50,7 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Helper\FileHelper..cs" />
+    <Compile Include="Helper\FileHelper.cs" />
     <Compile Include="Utility\CmdExecute.cs" />
     <Compile Include="Helper\DirectoryHelper.cs" />
     <Compile Include="Utility\Log.cs" />
