@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <MtimeProject>
   <WebSites>
-    <WebSite Name="MtimeMovieCommunityRoot" LocalSitePath="E:\Publish\WebSite\MtimeMovieCommunityRoot\" RemoteSitePath="" StaticPath="\\192.168.50.22\c$\Inetpub\wwwroot\MtimeMovieCommunityStatic\" SiteSourcePath="E:\CCNet\Codev3.0\MtimeMovieCommunity.root\MtimeMovieCommunity\Web\Community\"/>
+    <WebSite Name="MtimeMovieCommunityRoot" LocalSitePath="E:\Publish\WebSite\MtimeMovieCommunityRoot\" RemoteSitePath="" StaticPath="\\192.168.50.22\c$\Inetpub\wwwroot\MtimeMovieCommunityStatic\" SiteSourcePath="E:\CCNet\Codev3.0\MtimeMovieCommunity.root\MtimeMovieCommunity\Web\Community\" />
     <WebSite Name="MtimeChannel" LocalSitePath="E:\Publish\WebSite\MtimeChannel\" RemoteSitePath="\\192.168.50.22\c$\Inetpub\wwwroot\MtimeChannel\" StaticPath="\\192.168.50.22\c$\Inetpub\wwwroot\MtimeMovieCommunityStatic\channel\" SiteSourcePath="E:\CCNet\MtimeGit\web\content\channel\ChannelWeb\"/>
     <!--<WebSite Name="MtimeChannelNew" LocalSitePath="E:\Publish\WebSite\service.channel.test.com10002\" StaticPath="\\192.168.50.22\c$\Inetpub\wwwroot\MtimeMovieCommunityStatic\channel2014\"/>-->
     <WebSite Name="MtimeContentLibrary" LocalSitePath="E:\Publish\WebSite\service.library.test.com\" StaticPath="\\192.168.50.22\c$\Inetpub\wwwroot\MtimeMovieCommunityStatic\library\"/>

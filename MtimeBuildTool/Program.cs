@@ -10,6 +10,7 @@ using System.Text.RegularExpressions;
 using System.Configuration;
 using System.IO;
 using MtimeClientCompress.Components;
+using MtimeBuildTool.Utility;
 
 namespace MtimeBuildTool
 {
@@ -18,6 +19,9 @@ namespace MtimeBuildTool
         private static Dictionary<string, ProjectModel> projectDic = new Dictionary<string, ProjectModel>();
         private static Dictionary<string, AccountModel> accountDic = new Dictionary<string, AccountModel>();
         private static Dictionary<string, Dictionary<string, List<RuleItem>>> PublishRuleDic = new Dictionary<string, Dictionary<string, List<RuleItem>>>();
+        private const string versionFileName = "VERSION.txt";
+
+        private static readonly string vsersionFolderPath = ConfigurationManager.AppSettings["MtimeVersionFolderPath"];
 
         static void Main(string[] args)
         {
@@ -90,19 +94,23 @@ namespace MtimeBuildTool
                         Log.WriteMessage(e.Message);
                     }
 
-                    switch (projectModel.Name)
-                    {
-                        case "MtimeMovieCommunityRoot":
-                            FileInfo filemain = new FileInfo(projectModel.LocalSitePath + "VERSION.txt");
-                            filemain.CopyTo(ConfigurationManager.AppSettings["MtimeMovieCommunityRootPath"] + "VERSION.txt", true);
-                            break;
-                        case "MtimeWap-m":
-                            FileInfo filewap = new FileInfo(projectModel.LocalSitePath + "VERSION.txt");
-                            filewap.CopyTo(ConfigurationManager.AppSettings["MtimeWapRootPath"] + "VERSION.txt", true);
-                            break;
-                        default:
-                            break;
-                    }
+                    FileInfo filemain = new FileInfo(projectModel.LocalSitePath + versionFileName);
+                    filemain.CopyTo(vsersionFolderPath + projectModel.Name + @"\" + versionFileName, true);
+
+
+                    //switch (projectModel.Name)
+                    //{
+                    //    case "MtimeMovieCommunityRoot":
+                    //        FileInfo filemain = new FileInfo(projectModel.LocalSitePath + versionFileName);
+                    //        filemain.CopyTo(ConfigurationManager.AppSettings["MtimeMovieCommunityRootPath"] + versionFileName, true);
+                    //        break;
+                    //    case "MtimeWap-m":
+                    //        FileInfo filewap = new FileInfo(projectModel.LocalSitePath + versionFileName);
+                    //        filewap.CopyTo(ConfigurationManager.AppSettings["MtimeWapRootPath"] + versionFileName, true);
+                    //        break;
+                    //    default:
+                    //        break;
+                    //}
                     Log.WriteMessageByProject(projectModel, "压缩目录结束！");
 
                     Log.WriteMessageByProject(projectModel, "拷贝版本号到远程目录开始！");
@@ -526,8 +534,44 @@ namespace MtimeBuildTool
             #endregion
         }
 
+        private static string GetVersionVariable(VersionType versionType)
+        {
+            switch (versionType)
+            {
+                case VersionType.MtimeMovieCommunityRoot:
+                    return ReadVersionTxt(vsersionFolderPath + versionType + @"\" + versionFileName);
+                    break;
+                case VersionType.MtimeChannel:
+                    break;
+                case VersionType.MtimeContentLibrary:
+                    break;
+                case VersionType.MtimeTheaterChannel:
+                    break;
+                case VersionType.MtimeMemberCenter:
+                    break;
+                default:
+                    break;
+            }
+
+            return string.Empty;
+ 
+        }
+
+        private static string ReadVersionTxt(string path)
+        {
+            return File.ReadAllText(path);
+        }
+
     }
 
+    public enum VersionType
+    {
+        MtimeMovieCommunityRoot,
+        MtimeChannel,
+        MtimeContentLibrary,
+        MtimeTheaterChannel,
+        MtimeMemberCenter
+    }
 
     public enum Action
     {

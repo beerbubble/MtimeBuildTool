@@ -35,7 +35,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Mtime.Utility">
+    <Reference Include="Mtime.Utility, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\MtimeDebug\Mtime.Utility.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -49,10 +50,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Helper\CmdExecute.cs" />
+    <Compile Include="Helper\FileHelper..cs" />
+    <Compile Include="Utility\CmdExecute.cs" />
     <Compile Include="Helper\DirectoryHelper.cs" />
-    <Compile Include="Helper\Log.cs" />
-    <Compile Include="Helper\RemoteExecute.cs" />
+    <Compile Include="Utility\Log.cs" />
+    <Compile Include="Utility\RemoteExecute.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -66,8 +68,11 @@
   <ItemGroup>
     <Content Include="config\MtimeProjectMap.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
-    <Content Include="config\MtimePublishRule.xml" />
+    <Content Include="config\MtimePublishRule.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="config\MachineAccount.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

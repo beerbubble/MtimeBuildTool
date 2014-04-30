@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Management;
 
-namespace MtimeBuildTool.Helper
+namespace MtimeBuildTool.Utility
 {
     public class RemoteExecute
     {

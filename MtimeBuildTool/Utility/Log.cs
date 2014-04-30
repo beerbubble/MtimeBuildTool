@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Mtime.Log;
 
-namespace MtimeBuildTool.Helper
+namespace MtimeBuildTool.Utility
 {
     public static class Log
     {
