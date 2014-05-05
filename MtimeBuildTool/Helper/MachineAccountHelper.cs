@@ -8,9 +8,9 @@ namespace MtimeBuildTool.Helper
 {
     public class MachineAccountHelper
     {
-        public static Dictionary<string, AccountModel> accountDic = new Dictionary<string, AccountModel>();
+        private static readonly Dictionary<string, AccountModel> accountDic = new Dictionary<string, AccountModel>();
 
-        public void Init()
+        static MachineAccountHelper()
         {
             XmlDocument doc = new XmlDocument();
             doc.Load(AppDomain.CurrentDomain.BaseDirectory + "/config/MachineAccount.xml");
@@ -27,5 +27,20 @@ namespace MtimeBuildTool.Helper
                 accountDic.Add(accountModel.Ip, accountModel);
             }
         }
+
+        public static Dictionary<string, AccountModel> AccountDic
+        {
+            get
+            {
+                return accountDic;
+            }
+        }
+    }
+
+    public class AccountModel
+    {
+        public string Ip { get; set; }
+        public string UserName { get; set; }
+        public string Password { get; set; }
     }
 }

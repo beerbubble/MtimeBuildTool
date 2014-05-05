@@ -50,8 +50,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Const\ActionType.cs" />
+    <Compile Include="Const\RuleType.cs" />
+    <Compile Include="Const\VersionType.cs" />
     <Compile Include="Helper\FileHelper.cs" />
     <Compile Include="Helper\MachineAccountHelper.cs" />
+    <Compile Include="Helper\ProjectMapHelper.cs" />
+    <Compile Include="Helper\PublishRuleHelper.cs" />
+    <Compile Include="Helper\RegexHelper.cs" />
     <Compile Include="Utility\CmdExecute.cs" />
     <Compile Include="Helper\DirectoryHelper.cs" />
     <Compile Include="Utility\Impersonation.cs" />
@@ -68,11 +74,11 @@
     <None Include="Resources\Run.bat" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="config\MtimeProjectMap.xml">
+    <Content Include="config\ProjectMap.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="config\MtimePublishRule.xml">
+    <Content Include="config\PublishRule.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="config\MachineAccount.xml">

@@ -44,7 +44,9 @@ namespace MtimeBuildTool.Helper
             {
                 using (Impersonation im = new Impersonation())
                 {
-                    AccountModel am = MachineAccountHelper.accountDic["192.168.50.22"];
+                    string ip = RegexHelper.RegexForIp(path);
+
+                    AccountModel am = MachineAccountHelper.AccountDic[ip];
                     im.Impersonate(am);
                     // If the destination directory doesn't exist, create it. 
                     Console.WriteLine("Directory Start1");

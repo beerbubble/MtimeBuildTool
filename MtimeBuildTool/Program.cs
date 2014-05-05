@@ -11,14 +11,15 @@ using System.Configuration;
 using System.IO;
 using MtimeClientCompress.Components;
 using MtimeBuildTool.Utility;
+using MtimeBuildTool.Const;
 
 namespace MtimeBuildTool
 {
     class Program
     {
-        private static Dictionary<string, ProjectModel> projectDic = new Dictionary<string, ProjectModel>();
-        private static Dictionary<string, AccountModel> accountDic = new Dictionary<string, AccountModel>();
-        private static Dictionary<string, Dictionary<string, List<RuleItem>>> PublishRuleDic = new Dictionary<string, Dictionary<string, List<RuleItem>>>();
+       
+        //private static Dictionary<string, AccountModel> accountDic = new Dictionary<string, AccountModel>();
+        //private static Dictionary<string, Dictionary<string, List<RuleItem>>> PublishRuleDic = new Dictionary<string, Dictionary<string, List<RuleItem>>>();
         private const string versionFileName = "VERSION.txt";
 
         private static readonly string vsersionFolderPath = ConfigurationManager.AppSettings["MtimeVersionFolderPath"];
@@ -34,34 +35,31 @@ namespace MtimeBuildTool
             #endif
 
             //初始化项目配置
-            InitProjectMap();
-            InitMachineAccount();
-            InitMtimePublishRule();
-            MachineAccountHelper ma = new MachineAccountHelper();
-            ma.Init();
+            //InitProjectMap();
+            //InitMachineAccount();
+            //InitMtimePublishRule(); 
 
-            Log.WriteMessage(string.Format("项目数:{0}", projectDic.Count));
-            Log.WriteMessage(string.Format("机器账号数:{0}", accountDic.Count));
+            Log.WriteMessage(string.Format("项目数:{0}", ProjectMapHelper.ProjectDic.Count));
+            Log.WriteMessage(string.Format("机器账号数:{0}", MachineAccountHelper.AccountDic.Count));
 
             //string project = "MtimeChannel";
 
             //获取当前部署的项目
             ProjectModel projectModel;
 
-            if (!projectDic.TryGetValue("MtimeMovieCommunityRoot", out projectModel))
+            if (!ProjectMapHelper.ProjectDic.TryGetValue(args[0], out projectModel))
             {
                 Environment.Exit(1);
                 return;
             }
 
             //Test 
-            DirectoryHelper.DirectoryFilesRemove(projectModel.StaticPath + @"static1\");
-
-            return;
+            //DirectoryHelper.DirectoryFilesRemove(projectModel.StaticPath + @"static\");
+            //return;
 
             Dictionary<string, List<RuleItem>> projectRule = new Dictionary<string, List<RuleItem>>();
 
-            bool includeRule = PublishRuleDic.TryGetValue(projectModel.Name, out projectRule);
+            bool includeRule = PublishRuleHelper.PublishRuleDic.TryGetValue(projectModel.Name, out projectRule);
 
             Log.WriteMessageByProject(projectModel, "Start!");
             Log.WriteMessageByProject(projectModel, "开始删除、压缩、拷贝");
@@ -161,10 +159,10 @@ namespace MtimeBuildTool
                 {
                     RuleAction(projectRule, "Service");
                 }
-                ServiceAction(projectModel, Action.Stop);
+                ServiceAction(projectModel, ActionType.Stop);
                 DirectoryHelper.DirectoryFilesRemove(projectModel.RemoteServicePath);
                 DirectoryHelper.DirectoryCopy(projectModel.LocalServicePath, projectModel.RemoteServicePath, true);
-                ServiceAction(projectModel, Action.Start);
+                ServiceAction(projectModel, ActionType.Start);
                 Log.WriteMessageByProject(projectModel, "服务部分完成！");
             }
             if (!string.IsNullOrEmpty(projectModel.ToolSourcePath))
@@ -177,10 +175,10 @@ namespace MtimeBuildTool
                 {
                     RuleAction(projectRule, "Tool");
                 }
-                ToolAction(projectModel, Action.Stop);
+                ToolAction(projectModel, ActionType.Stop);
                 DirectoryHelper.DirectoryFilesRemove(projectModel.RemoteToolPath);
                 DirectoryHelper.DirectoryCopy(projectModel.LocalToolPath, projectModel.RemoteToolPath, true);
-                ToolAction(projectModel, Action.Start);
+                ToolAction(projectModel, ActionType.Start);
                 Log.WriteMessageByProject(projectModel, "工具部分完成！");
             }
 
@@ -210,215 +208,9 @@ namespace MtimeBuildTool
                     }
                 }
             }
-        }
+        }    
 
-        private static void InitProjectMap()
-        {
-            XmlDocument doc = new XmlDocument();
-            doc.Load(AppDomain.CurrentDomain.BaseDirectory + "/config/MtimeProjectMap.xml");
-
-            XmlNodeList websiteList = doc.SelectNodes("/MtimeProject/WebSites/WebSite");
-
-            foreach (XmlNode node in websiteList)
-            {
-                ProjectModel projectMapModel = new ProjectModel();
-                projectMapModel.Name = node.Attributes["Name"].Value;
-                projectMapModel.LocalSitePath = node.Attributes["LocalSitePath"].Value;
-                if (node.Attributes["RemoteSitePath"] != null)
-                {
-                    projectMapModel.RemoteSitePath = node.Attributes["RemoteSitePath"].Value;
-                    projectMapModel.SiteRemoteIp = RegexForIp(projectMapModel.RemoteSitePath);
-                }
-                if (node.Attributes["StaticPath"] != null)
-                    projectMapModel.StaticPath = node.Attributes["StaticPath"].Value;
-                if (node.Attributes["SiteSourcePath"] != null)
-                    projectMapModel.SiteSourcePath = node.Attributes["SiteSourcePath"].Value;
-
-
-
-                projectDic.Add(projectMapModel.Name, projectMapModel);
-            }
-
-            XmlNodeList serviceList = doc.SelectNodes("/MtimeProject/Services/Service");
-
-            foreach (XmlNode node in serviceList)
-            {
-                ProjectModel projectMapModel = new ProjectModel();
-                if (projectDic.TryGetValue(node.Attributes["Name"].Value, out projectMapModel))
-                {
-                    projectMapModel.LocalServicePath = node.Attributes["LocalServicePath"].Value;
-                    projectMapModel.ServiceSourcePath = node.Attributes["ServiceSourcePath"].Value;
-                    if (node.Attributes["RemoteServicePath"] != null)
-                    {
-                        projectMapModel.RemoteServicePath = node.Attributes["RemoteServicePath"].Value;
-                        projectMapModel.ServiceRemoteIp = RegexForIp(projectMapModel.RemoteServicePath);
-                    }
-                }
-                else
-                {
-                    ProjectModel newProjectMapModel = new ProjectModel();
-                    newProjectMapModel.Name = node.Attributes["Name"].Value;
-                    newProjectMapModel.LocalServicePath = node.Attributes["LocalServicePath"].Value;
-                    newProjectMapModel.ServiceSourcePath = node.Attributes["ServiceSourcePath"].Value;
-                    if (node.Attributes["RemoteServicePath"] != null)
-                    {
-                        newProjectMapModel.RemoteServicePath = node.Attributes["RemoteServicePath"].Value;
-                        newProjectMapModel.ServiceRemoteIp = RegexForIp(newProjectMapModel.RemoteServicePath);
-                    }
-
-                    projectDic.Add(newProjectMapModel.Name, newProjectMapModel);
-                }
-            }
-
-            XmlNodeList toolList = doc.SelectNodes("/MtimeProject/Tools/Tool");
-
-            foreach (XmlNode node in toolList)
-            {
-                ProjectModel projectMapModel = new ProjectModel();
-                if (projectDic.TryGetValue(node.Attributes["Name"].Value, out projectMapModel))
-                {
-                    projectMapModel.LocalToolPath = node.Attributes["LocalToolPath"].Value;
-                    projectMapModel.ToolSourcePath = node.Attributes["ToolSourcePath"].Value;
-                    if (node.Attributes["RemoteToolPath"] != null)
-                    {
-                        projectMapModel.RemoteToolPath = node.Attributes["RemoteToolPath"].Value;
-                        projectMapModel.ToolRemoteIp = RegexForIp(projectMapModel.RemoteToolPath);
-                    }
-
-                    projectMapModel.RemoteToolPathForLocal = node.Attributes["RemoteToolPathForLocal"].Value;
-                    projectMapModel.ProcessName = node.Attributes["ProcessName"].Value;
-                    projectMapModel.AutoStart = bool.Parse(node.Attributes["AutoStart"].Value);
-                }
-                else
-                {
-                    ProjectModel newProjectMapModel = new ProjectModel();
-                    newProjectMapModel.Name = node.Attributes["Name"].Value;
-                    newProjectMapModel.LocalToolPath = node.Attributes["LocalToolPath"].Value;
-                    newProjectMapModel.ToolSourcePath = node.Attributes["ToolSourcePath"].Value;
-                    if (node.Attributes["RemoteToolPath"] != null)
-                    {
-                        newProjectMapModel.RemoteToolPath = node.Attributes["RemoteToolPath"].Value;
-                        newProjectMapModel.ToolRemoteIp = RegexForIp(newProjectMapModel.RemoteToolPath);
-                    }
-                    newProjectMapModel.RemoteToolPathForLocal = node.Attributes["RemoteToolPathForLocal"].Value;
-                    newProjectMapModel.ProcessName = node.Attributes["ProcessName"].Value;
-                    newProjectMapModel.AutoStart = bool.Parse(node.Attributes["AutoStart"].Value);
-
-                    projectDic.Add(newProjectMapModel.Name, newProjectMapModel);
-                }
-            }
-
-        }
-
-        private static void InitMachineAccount()
-        {
-            XmlDocument doc = new XmlDocument();
-            doc.Load(AppDomain.CurrentDomain.BaseDirectory + "/config/MachineAccount.xml");
-
-            XmlNodeList accountList = doc.SelectNodes("/Accounts/Account");
-
-            foreach (XmlNode node in accountList)
-            {
-                AccountModel accountModel = new AccountModel();
-                accountModel.Ip = node.Attributes["Ip"].Value;
-                accountModel.UserName = node.Attributes["UserName"].Value;
-                accountModel.Password = node.Attributes["Password"].Value;
-
-
-                accountDic.Add(accountModel.Ip, accountModel);
-            }
-
-        }
-
-        private static void InitMtimePublishRule()
-        {
-            XmlReaderSettings readerSettings = new XmlReaderSettings();
-            readerSettings.IgnoreWhitespace = true;
-            readerSettings.IgnoreComments = true;
-            XmlReader reader = XmlReader.Create(AppDomain.CurrentDomain.BaseDirectory + "/config/MtimePublishRule.xml", readerSettings);
-            XmlDocument doc = new XmlDocument();
-            doc.Load(reader);
-
-            XmlNodeList ruleList = doc.SelectNodes("/Rules/Rule");
-
-            foreach (XmlNode node in ruleList)
-            {
-                string name = node.Attributes["Name"].Value;
-                PublishRuleDic.Add(name, new Dictionary<string, List<RuleItem>>());
-                foreach (XmlNode item in node.ChildNodes)
-                {
-                    PublishRuleDic[name].Add(item.Name, getRuleItem(item));
-                }
-            }
-
-        }
-
-        private static List<RuleItem> getRuleItem(XmlNode node)
-        {
-            List<RuleItem> list = new List<RuleItem>();
-
-            foreach (XmlNode ruleItem in node.ChildNodes)
-            {
-                RuleType tmpType = (RuleType)Enum.Parse(typeof(RuleType), ruleItem.Attributes["Type"].Value);
-                string tmpDir = ruleItem.Attributes["dir"].Value;
-                string tmpFile = ruleItem.Attributes["file"].Value;
-
-                string tmpFind = string.Empty;
-                if (ruleItem.Attributes["find"] != null)
-                {
-                    tmpFind = ruleItem.Attributes["find"].Value;
-                }
-
-                string tmpReplace = string.Empty;
-                if (ruleItem.Attributes["replace"] != null)
-                {
-                    tmpReplace = ruleItem.Attributes["replace"].Value;
-                }
-
-                string tmpXpath = string.Empty;
-                if (ruleItem.Attributes["xpath"] != null)
-                {
-                    tmpXpath = ruleItem.Attributes["xpath"].Value;
-                }
-
-                string tmpAttribute = string.Empty;
-                if (ruleItem.Attributes["attribute"] != null)
-                {
-                    tmpAttribute = ruleItem.Attributes["attribute"].Value;
-                }
-
-                string tmpValue = string.Empty;
-                if (ruleItem.Attributes["value"] != null)
-                {
-                    tmpValue = ruleItem.Attributes["value"].Value;
-                }
-
-                list.Add(new RuleItem()
-                {
-                    Type = tmpType,
-                    Dir = tmpDir,
-                    File = tmpFile,
-                    Find = tmpFind,
-                    Replace = tmpReplace,
-                    Xpath = tmpXpath,
-                    Attribute = tmpAttribute,
-                    Value = tmpValue
-                });
-            }
-
-            return list;
-        }
-
-        private static string RegexForIp(string regexStr)
-        {
-            Regex reg = new Regex(@"\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b");
-
-            Match match = reg.Match(regexStr);
-
-            return match.Value;
-        }
-
-        private static void ServiceAction(ProjectModel projectModel, Action action)
+        private static void ServiceAction(ProjectModel projectModel, ActionType actionType)
         {
             //sc stop ETicketServer
             //sc \\192.168.50.25 stop DETContractServer
@@ -428,12 +220,12 @@ namespace MtimeBuildTool
 
             string command = string.Empty;
 
-            switch (action)
+            switch (actionType)
             {
-                case Action.Start:
+                case ActionType.Start:
                     command = string.Format(startTemplate, projectModel.ServiceRemoteIp, projectModel.Name);
                     break;
-                case Action.Stop:
+                case ActionType.Stop:
                     command = string.Format(stopTemplate, projectModel.ServiceRemoteIp, projectModel.Name);
                     break;
                 default:
@@ -444,10 +236,10 @@ namespace MtimeBuildTool
             cmd.ExecuteCommandSync(command);
         }
 
-        private static void ToolAction(ProjectModel projectModel, Action action)
+        private static void ToolAction(ProjectModel projectModel, ActionType actionType)
         {
             AccountModel account;
-            if (!accountDic.TryGetValue(projectModel.ToolRemoteIp, out account))
+            if (!MachineAccountHelper.AccountDic.TryGetValue(projectModel.ToolRemoteIp, out account))
             {
                 Log.WriteMessageByProject(projectModel, "无法获取服务器的账号，请核对账号配置文件！");
                 return;
@@ -456,9 +248,9 @@ namespace MtimeBuildTool
 
             RemoteExecute remoteExecute = new RemoteExecute(projectModel.ToolRemoteIp, account.UserName, account.Password);
 
-            switch (action)
+            switch (actionType)
             {
-                case Action.Start:
+                case ActionType.Start:
                     string commmandPre = @"c:\Windows\System32\cmd.exe /C start /b /d """ + projectModel.RemoteToolPathForLocal + "\" ";
                     string cmdTemplate = "{0} -autostart";
 
@@ -473,7 +265,7 @@ namespace MtimeBuildTool
                         remoteExecute.StartProcess(commmand);
                     }
                     break;
-                case Action.Stop:
+                case ActionType.Stop:
                     var theDic = remoteExecute.GetProcessList();
 
                     List<ProcessModel> processList;
@@ -618,69 +410,10 @@ namespace MtimeBuildTool
 
     }
 
-    public enum VersionType
-    {
-        MtimeMovieCommunityRoot,
-        MtimeChannel,
-        MtimeContentLibrary,
-        MtimeTheaterChannel,
-        MtimeMemberCenter
-    }
-
-    public enum Action
-    {
-        Start,
-        Stop
-    }
-
-    public enum RuleType
-    {
-        ReplaceContent,
-        EditConfig
-    }
-
-    public class ProjectModel
-    {
-        public string Name { get; set; }
-
-        public string StaticPath { get; set; }
-
-        public string LocalSitePath { get; set; }
-        public string SiteSourcePath { get; set; }
-        public string RemoteSitePath { get; set; }
-        public string SiteRemoteIp { get; set; }
-
-        public string LocalServicePath { get; set; }
-        public string RemoteServicePath { get; set; }
-        public string ServiceSourcePath { get; set; }
-        public string ServiceRemoteIp { get; set; }
-
-        public string LocalToolPath { get; set; }
-        public string RemoteToolPath { get; set; }
-        public string RemoteToolPathForLocal { get; set; }
-        public string ToolSourcePath { get; set; }
-        public string ToolRemoteIp { get; set; }
-        public string ProcessName { get; set; }
-        public bool AutoStart { get; set; }
-    }
+ 
 
 
-    public class AccountModel
-    {
-        public string Ip { get; set; }
-        public string UserName { get; set; }
-        public string Password { get; set; }
-    }
 
-    public class RuleItem
-    {
-        public RuleType Type { get; set; }
-        public string Dir { get; set; }
-        public string File { get; set; }
-        public string Find { get; set; }
-        public string Replace { get; set; }
-        public string Xpath { get; set; }
-        public string Attribute { get; set; }
-        public string Value { get; set; }
-    }
+
+
 }

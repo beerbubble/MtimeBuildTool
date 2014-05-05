@@ -7,6 +7,7 @@ using Microsoft.Win32.SafeHandles;
 using System.Runtime.ConstrainedExecution;
 using System.Security;
 using System.Security.Principal;
+using MtimeBuildTool.Helper;
 
 namespace MtimeBuildTool.Utility
 {
