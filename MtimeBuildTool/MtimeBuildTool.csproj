@@ -51,8 +51,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helper\FileHelper.cs" />
+    <Compile Include="Helper\MachineAccountHelper.cs" />
     <Compile Include="Utility\CmdExecute.cs" />
     <Compile Include="Helper\DirectoryHelper.cs" />
+    <Compile Include="Utility\Impersonation.cs" />
     <Compile Include="Utility\Log.cs" />
     <Compile Include="Utility\RemoteExecute.cs" />
     <Compile Include="Program.cs" />

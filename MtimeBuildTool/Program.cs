@@ -25,7 +25,7 @@ namespace MtimeBuildTool
 
         static void Main(string[] args)
         {
-            #if debug
+            #if Debug
             if (args.Length < 1)
             {
                 Log.WriteMessage("无项目参数，请检查命令！");
@@ -37,19 +37,27 @@ namespace MtimeBuildTool
             InitProjectMap();
             InitMachineAccount();
             InitMtimePublishRule();
+            MachineAccountHelper ma = new MachineAccountHelper();
+            ma.Init();
 
             Log.WriteMessage(string.Format("项目数:{0}", projectDic.Count));
             Log.WriteMessage(string.Format("机器账号数:{0}", accountDic.Count));
 
-            string project = "MtimeChannel";
+            //string project = "MtimeChannel";
 
             //获取当前部署的项目
             ProjectModel projectModel;
-            if (!projectDic.TryGetValue(args[0], out projectModel))
+
+            if (!projectDic.TryGetValue("MtimeMovieCommunityRoot", out projectModel))
             {
                 Environment.Exit(1);
                 return;
             }
+
+            //Test 
+            DirectoryHelper.DirectoryFilesRemove(projectModel.StaticPath + @"static1\");
+
+            return;
 
             Dictionary<string, List<RuleItem>> projectRule = new Dictionary<string, List<RuleItem>>();
 
