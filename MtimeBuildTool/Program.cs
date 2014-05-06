@@ -69,7 +69,7 @@ namespace MtimeBuildTool
                 Log.WriteMessageByProject(projectModel, "站点部分开始！");
 
                 Log.WriteMessageByProject(projectModel, "删除目录开始！");
-                DirectoryHelper.DirectoryFilesRemove(projectModel.LocalSitePath);
+                DirectoryHelper.DirectoryRemove(projectModel.LocalSitePath,false);
                 Log.WriteMessageByProject(projectModel, "删除目录完成！");
 
                 Log.WriteMessageByProject(projectModel, "拷贝目录开始！");
@@ -142,7 +142,7 @@ namespace MtimeBuildTool
                 if (!string.IsNullOrEmpty(projectModel.RemoteSitePath))
                 {
                     Log.WriteMessageByProject(projectModel, "拷贝站点到远程目录开始！");
-                    DirectoryHelper.DirectoryFilesRemove(projectModel.RemoteSitePath);
+                    DirectoryHelper.DirectoryRemove(projectModel.RemoteSitePath, false);
                     DirectoryHelper.DirectoryCopy(projectModel.LocalSitePath, projectModel.RemoteSitePath, true);
                     Log.WriteMessageByProject(projectModel, "拷贝站点到远程目录完成！");
                 }
@@ -152,7 +152,7 @@ namespace MtimeBuildTool
             if (!string.IsNullOrEmpty(projectModel.ServiceSourcePath))
             {
                 Log.WriteMessageByProject(projectModel, "服务部分开始！");
-                DirectoryHelper.DirectoryFilesRemove(projectModel.LocalServicePath);
+                DirectoryHelper.DirectoryRemove(projectModel.LocalServicePath);
                 DirectoryHelper.DirectoryCopy(projectModel.ServiceSourcePath, projectModel.LocalServicePath, true);
                 File.Copy(@"C:\MtimeConfig\SiteUrlsServer.config", projectModel.LocalServicePath + @"config\SiteUrlsServer.config", true);
                 if (includeRule)
@@ -160,7 +160,7 @@ namespace MtimeBuildTool
                     RuleAction(projectRule, "Service");
                 }
                 ServiceAction(projectModel, ActionType.Stop);
-                DirectoryHelper.DirectoryFilesRemove(projectModel.RemoteServicePath);
+                DirectoryHelper.DirectoryRemove(projectModel.RemoteServicePath);
                 DirectoryHelper.DirectoryCopy(projectModel.LocalServicePath, projectModel.RemoteServicePath, true);
                 ServiceAction(projectModel, ActionType.Start);
                 Log.WriteMessageByProject(projectModel, "服务部分完成！");
@@ -168,7 +168,7 @@ namespace MtimeBuildTool
             if (!string.IsNullOrEmpty(projectModel.ToolSourcePath))
             {
                 Log.WriteMessageByProject(projectModel, "工具部分开始！");
-                DirectoryHelper.DirectoryFilesRemove(projectModel.LocalToolPath);
+                DirectoryHelper.DirectoryRemove(projectModel.LocalToolPath);
                 DirectoryHelper.DirectoryCopy(projectModel.ToolSourcePath, projectModel.LocalToolPath, true);
                 File.Copy(@"C:\MtimeConfig\SiteUrlsServer.config", projectModel.LocalToolPath + @"config\SiteUrlsServer.config", true);
                 if (includeRule)
@@ -176,7 +176,7 @@ namespace MtimeBuildTool
                     RuleAction(projectRule, "Tool");
                 }
                 ToolAction(projectModel, ActionType.Stop);
-                DirectoryHelper.DirectoryFilesRemove(projectModel.RemoteToolPath);
+                DirectoryHelper.DirectoryRemove(projectModel.RemoteToolPath);
                 DirectoryHelper.DirectoryCopy(projectModel.LocalToolPath, projectModel.RemoteToolPath, true);
                 ToolAction(projectModel, ActionType.Start);
                 Log.WriteMessageByProject(projectModel, "工具部分完成！");
@@ -357,7 +357,7 @@ namespace MtimeBuildTool
             if (projectModel.Name == "MtimeMovieCommunityRoot")
             {
                 string version = File.ReadAllText(projectModel.LocalSitePath + versionFileName);
-                DirectoryHelper.DirectoryFilesRemove(projectModel.StaticPath + @"static\");
+                DirectoryHelper.DirectoryRemove(projectModel.StaticPath + @"static\");
                 DirectoryHelper.DirectoryCopy(projectModel.LocalSitePath + version + @"\local\" + version, projectModel.StaticPath + @"static\", true);
 
                 //string copyStaticCommand =
@@ -383,7 +383,7 @@ namespace MtimeBuildTool
                 //string rdCommand = @"RD /S /Q ""{0}{1}\local""";
 
                 //cmd.ExecuteCommandSync(string.Format(rdCommand, projectModel.LocalSitePath, subVersion));
-                DirectoryHelper.DirectoryRemove(projectModel.LocalSitePath + subVersion + @"\local");
+                DirectoryHelper.DirectoryRemove(projectModel.LocalSitePath + subVersion + @"\local", true);
             }
             #endregion
         }

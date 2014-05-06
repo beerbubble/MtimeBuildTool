@@ -15,77 +15,34 @@ namespace MtimeBuildTool.Helper
 {
     public class DirectoryHelper
     {
-        public static void DirectoryRemove(string path)
+        //private static void DirectoryRemove(string path)
+        //{
+            
+        //}
+
+        private static void _DirectoryRemove(string path,bool includeCurrentDir)
         {
-            var dir = new DirectoryInfo(path);
-
-            Log.WriteMessage(string.Format("目录是否存在: {0}", dir.Exists.ToString()));
-
-            int i = 0;
-            while (i < 5)
+            if (includeCurrentDir)
             {
-                try
+                var dir = new DirectoryInfo(path);
+
+                Log.WriteMessage(string.Format("目录是否存在: {0}", dir.Exists.ToString()));
+
+                int i = 0;
+                while (i < 5)
                 {
-                    DeleteFileSystemInfo(dir);
-                    break;
-                }
-                catch (Exception ex)
-                {
-                }
-                Thread.Sleep(3000);
-                i++;
-            }
-            Log.WriteMessage("Remove Success！");
-        }
-
-        public static void DirectoryFilesRemove(string path)
-        {
-            if (path.StartsWith(@"\\"))
-            {
-                using (Impersonation im = new Impersonation())
-                {
-                    string ip = RegexHelper.RegexForIp(path);
-
-                    AccountModel am = MachineAccountHelper.AccountDic[ip];
-                    im.Impersonate(am);
-                    // If the destination directory doesn't exist, create it. 
-                    Console.WriteLine("Directory Start1");
-                    if (!Directory.Exists(path))
+                    try
                     {
-                        Directory.CreateDirectory(path);
+                        DeleteFileSystemInfo(dir);
+                        break;
                     }
-
-                    var dir = new DirectoryInfo(path);
-
-                    // Get the files in the directory and copy them to the new location.
-                    FileInfo[] files = dir.GetFiles();
-                    foreach (FileInfo file in files)
+                    catch (Exception ex)
                     {
-                        file.Attributes = FileAttributes.Normal;
-                        int i = 0;
-                        while (i < 5)
-                        {
-                            try
-                            {
-                                file.Delete();
-                                break;
-                            }
-                            catch (Exception ex)
-                            {
-                            }
-                            Thread.Sleep(2000);
-                            i++;
-                        }
-
                     }
-
-                    DirectoryInfo[] dirs = dir.GetDirectories();
-                    // If copying subdirectories, copy them and their contents to new location. 
-                    foreach (DirectoryInfo subdir in dirs)
-                    {
-                        DeleteFileSystemInfo(subdir);
-                    }
+                    Thread.Sleep(3000);
+                    i++;
                 }
+                Log.WriteMessage("Remove Success！");
             }
             else
             {
@@ -128,6 +85,25 @@ namespace MtimeBuildTool.Helper
             }
         }
 
+        public static void DirectoryRemove(string path, bool includeCurrentDir = false)
+        {
+            if (path.StartsWith(@"\\"))
+            {
+                using (Impersonation im = new Impersonation())
+                {
+                    string ip = RegexHelper.RegexForIp(path);
+
+                    AccountModel am = MachineAccountHelper.AccountDic[ip];
+                    im.Impersonate(am);
+                    _DirectoryRemove(path, includeCurrentDir);
+                }
+            }
+            else
+            {
+                _DirectoryRemove(path, includeCurrentDir);
+            }
+        }
+
         //public static void DirectoryFilesRemove(string path,bool remote)
         //{
         //    SafeTokenHandle safeTokenHandle;
@@ -151,7 +127,26 @@ namespace MtimeBuildTool.Helper
         //    }
         //}
 
+
         public static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs)
+        {
+            if (destDirName.StartsWith(@"\\"))
+            {
+                using (Impersonation im = new Impersonation())
+                {
+                    string ip = RegexHelper.RegexForIp(destDirName);
+
+                    AccountModel am = MachineAccountHelper.AccountDic[ip];
+                    im.Impersonate(am);
+                    _DirectoryCopy(sourceDirName, destDirName, copySubDirs);
+                }
+            }
+            else
+            {
+                _DirectoryCopy(sourceDirName, destDirName, copySubDirs);
+            }
+        }
+        private static void _DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs)
         {
             // Get the subdirectories for the specified directory.
             DirectoryInfo dir = new DirectoryInfo(sourceDirName);
