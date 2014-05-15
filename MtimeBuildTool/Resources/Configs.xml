@@ -1052,6 +1052,7 @@
     <Include Name="/js/cinemawidgets.js"/>
     <Include Name="/js/cinemapagebase.js"/>
     <Include Name="/js/feedback.js"/>
+    <Include Name="/js/2014/ToolBanner.js"/>
   </File>
   <!--2014频道页-->
   <File Name="/js/channelpagepack.js">
@@ -1124,6 +1125,7 @@
     <Include Name="/js/2014/ToolBanner.js"/>
     <Include Name="/js/2014/Card.js"/>
     <Include Name="/js/2011/weibo/popupDialog.js"/>
+    <Include Name="/Community/14/CommunityHeadImgLogin.js"/>
     <Include Name="/index.js"/>
   </File>
 
@@ -1136,6 +1138,18 @@
     <Include Name="/js/2014/ToolBanner.js"/>
     <Include Name="/js/2011/weibo/popupDialog.js"/>
     <Include Name="/Community/CommunityIndex.js"/>
+  </File>
+
+  <!--2014新版社区首页js打包-->
+  <File Name="/js/2014/community/communityindex14.js">
+    <Include Name="/js/2014/Follow.js"/>
+    <Include Name="/js/2014/ToolBanner.js"/>
+    <Include Name="/js/2014/favorite.js"/>
+    <Include Name="/js/2014/share.js"/>
+    <Include Name="/js/2014/Card.js"/>
+    <Include Name="/js/2011/weibo/popupDialog.js"/>
+    <Include Name="/Community/14/CommunityHeadImgLogin.js"/>
+    <Include Name="/Community/14/CommunityIndex14.js"/>
   </File>
 
   <!--2014搜索页js打包-->
