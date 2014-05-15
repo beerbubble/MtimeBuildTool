@@ -17,22 +17,22 @@ namespace MtimeBuildTool
 {
     class Program
     {
-       
+
         //private static Dictionary<string, AccountModel> accountDic = new Dictionary<string, AccountModel>();
         //private static Dictionary<string, Dictionary<string, List<RuleItem>>> PublishRuleDic = new Dictionary<string, Dictionary<string, List<RuleItem>>>();
         private const string versionFileName = "VERSION.txt";
-
         private static readonly string vsersionFolderPath = ConfigurationManager.AppSettings["MtimeVersionFolderPath"];
+
 
         static void Main(string[] args)
         {
-            #if Debug
+#if Debug
             if (args.Length < 1)
             {
                 Log.WriteMessage("无项目参数，请检查命令！");
                 return;
             }
-            #endif
+#endif
 
             //初始化项目配置
             //InitProjectMap();
@@ -69,39 +69,17 @@ namespace MtimeBuildTool
                 Log.WriteMessageByProject(projectModel, "站点部分开始！");
 
                 Log.WriteMessageByProject(projectModel, "删除目录开始！");
-                DirectoryHelper.DirectoryRemove(projectModel.LocalSitePath,false);
+                DirectoryHelper.DirectoryRemove(projectModel.LocalSitePath, false);
                 Log.WriteMessageByProject(projectModel, "删除目录完成！");
 
                 Log.WriteMessageByProject(projectModel, "拷贝目录开始！");
-                DirectoryHelper.DirectoryCopy(projectModel.SiteSourcePath, projectModel.LocalSitePath, true);
+                DirectoryHelper.DirectoryCopy(projectModel.SiteSourcePath, projectModel.LocalSitePath);
                 File.Copy(@"C:\MtimeConfig\SiteUrlsServer.config", projectModel.LocalSitePath + @"config\SiteUrlsServer.config", true);
                 Log.WriteMessageByProject(projectModel, "拷贝目录完成！");
 
                 if (includeRule)
                 {
                     RuleAction(projectRule, "WebSite");
-                    //List<RuleItem> webRuleList = new List<RuleItem>();
-                    //if (projectRule.TryGetValue("WebSite", out webRuleList))
-                    //{
-                    //    foreach (var rule in webRuleList)
-                    //    {
-                    //        if (!string.IsNullOrEmpty(rule.Value) && rule.Value.StartsWith("$"))
-                    //        {
-                    //            rule.Value = GetVersionVariable(rule.Value.Substring(1));
-                    //        }
-                    //        switch (rule.Type)
-                    //        {
-                    //            case RuleType.ReplaceContent:
-                    //                FileHelper.ReplaceContent(rule);
-                    //                break;
-                    //            case RuleType.EditConfig:
-                    //                FileHelper.EditConfig(rule);
-                    //                break;
-                    //            default:
-                    //                break;
-                    //        }
-                    //    }
-                    //}
                 }
 
                 if (!string.IsNullOrEmpty(projectModel.StaticPath))
@@ -118,20 +96,6 @@ namespace MtimeBuildTool
                     {
                         Log.WriteMessage(e.Message);
                     }
-
-                    //switch (projectModel.Name)
-                    //{
-                    //    case "MtimeMovieCommunityRoot":
-                    //        FileInfo filemain = new FileInfo(projectModel.LocalSitePath + versionFileName);
-                    //        filemain.CopyTo(ConfigurationManager.AppSettings["MtimeMovieCommunityRootPath"] + versionFileName, true);
-                    //        break;
-                    //    case "MtimeWap-m":
-                    //        FileInfo filewap = new FileInfo(projectModel.LocalSitePath + versionFileName);
-                    //        filewap.CopyTo(ConfigurationManager.AppSettings["MtimeWapRootPath"] + versionFileName, true);
-                    //        break;
-                    //    default:
-                    //        break;
-                    //}
                     Log.WriteMessageByProject(projectModel, "压缩目录完成！");
 
                     Log.WriteMessageByProject(projectModel, "拷贝版本号到远程目录开始！");
@@ -143,7 +107,7 @@ namespace MtimeBuildTool
                 {
                     Log.WriteMessageByProject(projectModel, "拷贝站点到远程目录开始！");
                     DirectoryHelper.DirectoryRemove(projectModel.RemoteSitePath, false);
-                    DirectoryHelper.DirectoryCopy(projectModel.LocalSitePath, projectModel.RemoteSitePath, true);
+                    DirectoryHelper.DirectoryCopy(projectModel.LocalSitePath, projectModel.RemoteSitePath);
                     Log.WriteMessageByProject(projectModel, "拷贝站点到远程目录完成！");
                 }
 
@@ -153,7 +117,7 @@ namespace MtimeBuildTool
             {
                 Log.WriteMessageByProject(projectModel, "服务部分开始！");
                 DirectoryHelper.DirectoryRemove(projectModel.LocalServicePath);
-                DirectoryHelper.DirectoryCopy(projectModel.ServiceSourcePath, projectModel.LocalServicePath, true);
+                DirectoryHelper.DirectoryCopy(projectModel.ServiceSourcePath, projectModel.LocalServicePath);
                 File.Copy(@"C:\MtimeConfig\SiteUrlsServer.config", projectModel.LocalServicePath + @"config\SiteUrlsServer.config", true);
                 if (includeRule)
                 {
@@ -161,7 +125,7 @@ namespace MtimeBuildTool
                 }
                 ServiceAction(projectModel, ActionType.Stop);
                 DirectoryHelper.DirectoryRemove(projectModel.RemoteServicePath);
-                DirectoryHelper.DirectoryCopy(projectModel.LocalServicePath, projectModel.RemoteServicePath, true);
+                DirectoryHelper.DirectoryCopy(projectModel.LocalServicePath, projectModel.RemoteServicePath);
                 ServiceAction(projectModel, ActionType.Start);
                 Log.WriteMessageByProject(projectModel, "服务部分完成！");
             }
@@ -169,7 +133,7 @@ namespace MtimeBuildTool
             {
                 Log.WriteMessageByProject(projectModel, "工具部分开始！");
                 DirectoryHelper.DirectoryRemove(projectModel.LocalToolPath);
-                DirectoryHelper.DirectoryCopy(projectModel.ToolSourcePath, projectModel.LocalToolPath, true);
+                DirectoryHelper.DirectoryCopy(projectModel.ToolSourcePath, projectModel.LocalToolPath);
                 File.Copy(@"C:\MtimeConfig\SiteUrlsServer.config", projectModel.LocalToolPath + @"config\SiteUrlsServer.config", true);
                 if (includeRule)
                 {
@@ -177,14 +141,14 @@ namespace MtimeBuildTool
                 }
                 ToolAction(projectModel, ActionType.Stop);
                 DirectoryHelper.DirectoryRemove(projectModel.RemoteToolPath);
-                DirectoryHelper.DirectoryCopy(projectModel.LocalToolPath, projectModel.RemoteToolPath, true);
+                DirectoryHelper.DirectoryCopy(projectModel.LocalToolPath, projectModel.RemoteToolPath);
                 ToolAction(projectModel, ActionType.Start);
                 Log.WriteMessageByProject(projectModel, "工具部分完成！");
             }
 
         }
 
-        private static void RuleAction(Dictionary<string, List<RuleItem>> projectRule,string type)
+        private static void RuleAction(Dictionary<string, List<RuleItem>> projectRule, string type)
         {
             List<RuleItem> webRuleList = new List<RuleItem>();
             if (projectRule.TryGetValue(type, out webRuleList))
@@ -193,7 +157,7 @@ namespace MtimeBuildTool
                 {
                     if (!string.IsNullOrEmpty(rule.Value) && rule.Value.StartsWith("$"))
                     {
-                        rule.Value = GetVersionVariable(rule.Value.Substring(1));
+                        rule.Value = VersionHelper.GetVersionVariable(rule.Value.Substring(1));
                     }
                     switch (rule.Type)
                     {
@@ -208,7 +172,7 @@ namespace MtimeBuildTool
                     }
                 }
             }
-        }    
+        }
 
         private static void ServiceAction(ProjectModel projectModel, ActionType actionType)
         {
@@ -299,121 +263,23 @@ namespace MtimeBuildTool
             Log.WriteMessageByProject(projectModel, "Compress Finish!");
         }
 
-        /*
-         * 1.读取主站VERSION.txt
-         * 2.写入到web.config
-         * 3.拷贝版本号到指定目录
-         * 4.删除站点下的local目录
-         * 5.对主站进行特殊处理，需要拷贝资源到static的根目录下
-         */
         private static void CopyToStaticDirectory(ProjectModel projectModel)
         {
-            CmdExecute cmd = new CmdExecute();
-
-            //#region 1
-            //string mainVersionFilePath = string.Empty;
-
-            //if (projectModel.Name.StartsWith("MtimeWap"))
-            //{
-            //    mainVersionFilePath = System.Configuration.ConfigurationManager.AppSettings["MtimeWapRootPath"] + "VERSION.txt";
-            //}
-            //else
-            //{
-            //    mainVersionFilePath = System.Configuration.ConfigurationManager.AppSettings["MtimeMovieCommunityRootPath"] + "VERSION.txt";
-            //}
-
-            //Console.WriteLine("MainVersionFilePath: {0}", mainVersionFilePath);
-            //string version = System.IO.File.ReadAllText(mainVersionFilePath);
-            //Console.WriteLine("MainVersion: " + version);
-            //#endregion
-
-            //#region 2
-            ////取当前项目的路径
-            //XmlDocument doc = new XmlDocument();
-            //doc.Load(projectModel.LocalSitePath + "Web.config");
-
-            //XmlNode node;
-
-            //if (string.IsNullOrEmpty(doc.DocumentElement.NamespaceURI))
-            //{
-            //    node =
-            //        doc.SelectSingleNode(@"/configuration/appSettings/add[@key=""StaticResourceServersVersion""]");
-            //}
-            //else
-            //{
-            //    System.Xml.XmlNamespaceManager nsmanager = new System.Xml.XmlNamespaceManager(doc.NameTable);
-            //    nsmanager.AddNamespace("x", doc.DocumentElement.NamespaceURI);
-
-            //    node =
-            //        doc.SelectSingleNode(@"/x:configuration/x:appSettings/x:add[@key=""StaticResourceServersVersion""]",
-            //                        nsmanager);
-            //}
-            //node.Attributes["value"].Value = version;
-            //doc.Save(projectModel.LocalSitePath + "Web.config");
-            //#endregion
-
-
             //2014-2-10 小东要求特殊static目录下是local版本，所以将主站版本号提前拷贝
             if (projectModel.Name == "MtimeMovieCommunityRoot")
             {
                 string version = File.ReadAllText(projectModel.LocalSitePath + versionFileName);
                 DirectoryHelper.DirectoryRemove(projectModel.StaticPath + @"static\");
-                DirectoryHelper.DirectoryCopy(projectModel.LocalSitePath + version + @"\local\" + version, projectModel.StaticPath + @"static\", true);
-
-                //string copyStaticCommand =
-                //    @"xcopy ""C:\Inetpub\wwwroot\MtimeMovieCommunityRoot\{0}\local\{0}"" ""C:\Inetpub\wwwroot\MtimeMovieCommunityStatic\static\"" /Y /I /Q /S";
-
-                //cmd.ExecuteCommandSync(string.Format(copyStaticCommand, version));
+                DirectoryHelper.DirectoryCopy(projectModel.LocalSitePath + version + @"\local\" + version, projectModel.StaticPath + @"static\");
             }
 
-            #region 3,4
 
             if (!string.IsNullOrEmpty(projectModel.StaticPath))
             {
-                //command
-                //string copyCommand = @"xcopy ""{0}{1}\local"" ""{2}"" /Y /I /Q /S";
-
                 string subVersion = System.IO.File.ReadAllText(projectModel.LocalSitePath + versionFileName);
-
-                //Console.WriteLine("CopyCommand: {0}", string.Format(copyCommand, projectModel.LocalSitePath, subVersion, projectModel.StaticPath));
-                DirectoryHelper.DirectoryCopy(projectModel.LocalSitePath + subVersion + @"\local", projectModel.StaticPath, true);
-
-                //cmd.ExecuteCommandSync(string.Format(copyCommand, projectModel.LocalSitePath, subVersion, projectModel.StaticPath));
-
-                //string rdCommand = @"RD /S /Q ""{0}{1}\local""";
-
-                //cmd.ExecuteCommandSync(string.Format(rdCommand, projectModel.LocalSitePath, subVersion));
+                DirectoryHelper.DirectoryCopy(projectModel.LocalSitePath + subVersion + @"\local", projectModel.StaticPath);
                 DirectoryHelper.DirectoryRemove(projectModel.LocalSitePath + subVersion + @"\local", true);
             }
-            #endregion
         }
-
-        private static string GetVersionVariable(string projectName)
-        {
-            string result = string.Empty;
-            try
-            {
-                result= ReadVersionTxt(vsersionFolderPath + projectName + @"\" + versionFileName);
-            }
-            catch (Exception e)
-            {
-
-            }
-            return result;
-
-        }
-
-        private static string ReadVersionTxt(string path)
-        {
-            return File.ReadAllText(path);
-        }
-
     }
-
- 
-
-
-
-
-
 }

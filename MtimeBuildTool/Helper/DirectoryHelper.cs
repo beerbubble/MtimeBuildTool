@@ -17,10 +17,10 @@ namespace MtimeBuildTool.Helper
     {
         //private static void DirectoryRemove(string path)
         //{
-            
+
         //}
 
-        private static void _DirectoryRemove(string path,bool includeCurrentDir)
+        private static void _DirectoryRemove(string path, bool includeCurrentDir)
         {
             if (includeCurrentDir)
             {
@@ -127,8 +127,7 @@ namespace MtimeBuildTool.Helper
         //    }
         //}
 
-
-        public static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs)
+        public static void DirectoryCopy(string sourceDirName, string destDirName)
         {
             if (destDirName.StartsWith(@"\\"))
             {
@@ -136,17 +135,24 @@ namespace MtimeBuildTool.Helper
                 {
                     string ip = RegexHelper.RegexForIp(destDirName);
 
-                    AccountModel am = MachineAccountHelper.AccountDic[ip];
-                    im.Impersonate(am);
-                    _DirectoryCopy(sourceDirName, destDirName, copySubDirs);
+                    AccountModel am;
+                    //AccountModel am = MachineAccountHelper.AccountDic[ip];
+
+                    if (MachineAccountHelper.AccountDic.TryGetValue(ip, out am))
+                    {
+                        im.Impersonate(am);
+                    }
+
+                    _DirectoryCopy(sourceDirName, destDirName);
                 }
             }
             else
             {
-                _DirectoryCopy(sourceDirName, destDirName, copySubDirs);
+                _DirectoryCopy(sourceDirName, destDirName);
             }
         }
-        private static void _DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs)
+
+        private static void _DirectoryCopy(string sourceDirName, string destDirName)
         {
             // Get the subdirectories for the specified directory.
             DirectoryInfo dir = new DirectoryInfo(sourceDirName);
@@ -174,13 +180,11 @@ namespace MtimeBuildTool.Helper
             }
 
             // If copying subdirectories, copy them and their contents to new location. 
-            if (copySubDirs)
+
+            foreach (DirectoryInfo subdir in dirs)
             {
-                foreach (DirectoryInfo subdir in dirs)
-                {
-                    string temppath = Path.Combine(destDirName, subdir.Name);
-                    DirectoryCopy(subdir.FullName, temppath, copySubDirs);
-                }
+                string temppath = Path.Combine(destDirName, subdir.Name);
+                DirectoryCopy(subdir.FullName, temppath);
             }
         }
 
@@ -197,6 +201,24 @@ namespace MtimeBuildTool.Helper
 
             fileSystemInfo.Attributes = FileAttributes.Normal;
             fileSystemInfo.Delete();
+        }
+
+        public static void CreateDateFolder(string path)
+        {
+
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+
+            string todayDateFolder = Path.Combine(path, DateTime.Now.ToString("yyyyMMdd"));
+
+            if (Directory.Exists(todayDateFolder))
+            {
+                _DirectoryRemove(todayDateFolder, true);
+            }
+
+            Directory.CreateDirectory(todayDateFolder);
         }
 
         //public static void CreateDir(string destDirName)

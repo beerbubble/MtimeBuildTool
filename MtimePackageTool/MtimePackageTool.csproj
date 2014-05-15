@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{466A1D6A-D5A0-493C-8D0E-9E4A1FFFC5A2}</ProjectGuid>
+    <ProjectGuid>{3B5BD1D9-D85A-4279-8238-1E0484A48DC3}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MtimeBuildTool</RootNamespace>
-    <AssemblyName>MtimeBuildTool</AssemblyName>
+    <RootNamespace>MtimePackageTool</RootNamespace>
+    <AssemblyName>MtimePackageTool</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
@@ -35,14 +35,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Mtime.Utility, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Ionic.Zip, Version=1.9.1.8, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\MtimeDebug\Mtime.Utility.dll</HintPath>
+      <HintPath>Libs\Ionic.Zip.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Management" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -50,59 +48,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Const\ActionType.cs" />
-    <Compile Include="Const\RuleType.cs" />
-    <Compile Include="Const\VersionType.cs" />
-    <Compile Include="Helper\FileHelper.cs" />
-    <Compile Include="Helper\MachineAccountHelper.cs" />
-    <Compile Include="Helper\ProjectMapHelper.cs" />
-    <Compile Include="Helper\PublishRuleHelper.cs" />
-    <Compile Include="Helper\RegexHelper.cs" />
-    <Compile Include="Helper\VersionHelper.cs" />
-    <Compile Include="Utility\CmdExecute.cs" />
-    <Compile Include="Helper\DirectoryHelper.cs" />
-    <Compile Include="Utility\Impersonation.cs" />
-    <Compile Include="Utility\Log.cs" />
-    <Compile Include="Utility\RemoteExecute.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config">
-      <SubType>Designer</SubType>
+    <None Include="..\MtimeBuildTool\app.config">
+      <Link>app.config</Link>
     </None>
-    <None Include="Resources\jsl.default.conf" />
-    <None Include="Resources\Run.bat" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="config\ProjectMap.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="config\PublishRule.xml">
+    <Content Include="..\MtimeBuildTool\config\MachineAccount.xml">
+      <Link>config\MachineAccount.xml</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="config\MachineAccount.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="..\MtimeBuildTool\config\ProjectMap.xml">
+      <Link>config\ProjectMap.xml</Link>
     </Content>
-    <Content Include="Resources\Configs.xml" />
-    <Content Include="Resources\gzip.exe" />
-    <Content Include="Resources\jpegtran.exe" />
-    <Content Include="Resources\jsl.exe" />
-    <Content Include="Resources\optipng.exe" />
-    <Content Include="Resources\pngout.exe" />
-    <Content Include="Resources\yuicompressor.jar" />
+    <Content Include="..\MtimeBuildTool\config\PublishRule.xml">
+      <Link>config\PublishRule.xml</Link>
+    </Content>
+    <Content Include="Libs\Ionic.Zip.dll" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MtimeClientCompress\MtimeClientCompress.csproj">
-      <Project>{4320E2F0-A570-4432-9533-7EA591F73962}</Project>
-      <Name>MtimeClientCompress</Name>
+    <ProjectReference Include="..\MtimeBuildTool\MtimeBuildTool.csproj">
+      <Project>{466A1D6A-D5A0-493C-8D0E-9E4A1FFFC5A2}</Project>
+      <Name>MtimeBuildTool</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>copy $(ProjectDir)\Resources\*.* $(TargetDir)</PostBuildEvent>
-  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
