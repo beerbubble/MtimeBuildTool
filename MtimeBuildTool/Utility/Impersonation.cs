@@ -41,34 +41,34 @@ namespace MtimeBuildTool.Utility
                     LOGON32_LOGON_NEW_CREDENTIALS, LOGON32_PROVIDER_DEFAULT,
                     out safeTokenHandle);
 
-                Console.WriteLine("LogonUser called.");
+                //Console.WriteLine("LogonUser called.");
 
                 if (false == returnValue)
                 {
                     int ret = Marshal.GetLastWin32Error();
-                    Console.WriteLine("LogonUser failed with error code : {0}", ret);
+                    //Console.WriteLine("LogonUser failed with error code : {0}", ret);
                     throw new System.ComponentModel.Win32Exception(ret);
                 }
                 using (safeTokenHandle)
                 {
-                    Console.WriteLine("Did LogonUser Succeed? " + (returnValue ? "Yes" : "No"));
-                    Console.WriteLine("Value of Windows NT token: " + safeTokenHandle);
+                    //Console.WriteLine("Did LogonUser Succeed? " + (returnValue ? "Yes" : "No"));
+                    //Console.WriteLine("Value of Windows NT token: " + safeTokenHandle);
 
                     // Check the identity.
-                    Console.WriteLine("Before impersonation: "
-                        + WindowsIdentity.GetCurrent().Name);
+                    //Console.WriteLine("Before impersonation: "
+                        //+ WindowsIdentity.GetCurrent().Name);
                     // Use the token handle returned by LogonUser. 
                     using (WindowsIdentity newId = new WindowsIdentity(safeTokenHandle.DangerousGetHandle()))
                     {
 
                         _ImpersonationContext = newId.Impersonate();
                         // Check the identity.
-                        Console.WriteLine("After impersonation: "
-                            + WindowsIdentity.GetCurrent().Name);
+                        //Console.WriteLine("After impersonation: "
+                        //    + WindowsIdentity.GetCurrent().Name);
                     }
                     // Releasing the context object stops the impersonation 
                     // Check the identity.
-                    Console.WriteLine("After closing the context: " + WindowsIdentity.GetCurrent().Name);
+                    //Console.WriteLine("After closing the context: " + WindowsIdentity.GetCurrent().Name);
                 }
             }
             catch (Exception ex)

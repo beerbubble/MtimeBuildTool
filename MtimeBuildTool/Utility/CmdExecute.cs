@@ -27,6 +27,7 @@ namespace MtimeBuildTool.Utility
                 //This means that it will be redirected to the Process.StandardOutput StreamReader.
                 procStartInfo.RedirectStandardOutput = true;
                 procStartInfo.UseShellExecute = false;
+                
                 // Do not create the black window.
                 procStartInfo.CreateNoWindow = true;
                 // Now we create a process, assign its ProcessStartInfo and start it

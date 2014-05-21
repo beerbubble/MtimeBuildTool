@@ -26,7 +26,7 @@ namespace MtimeBuildTool
 
         static void Main(string[] args)
         {
-#if Debug
+#if !Debug
             if (args.Length < 1)
             {
                 Log.WriteMessage("无项目参数，请检查命令！");

@@ -2,7 +2,7 @@
 <MtimeProject>
   <WebSites>
     <WebSite Name="MtimeMovieCommunityRoot" LocalSitePath="E:\Publish\WebSite\MtimeMovieCommunityRoot\" RemoteSitePath="\\192.168.50.22\c$\Inetpub\wwwroot\MtimeMovieCommunityRoot\" StaticPath="\\192.168.50.22\c$\Inetpub\wwwroot\MtimeMovieCommunityStatic\" SiteSourcePath="E:\CCNet\Codev3.0\MtimeMovieCommunity.root\MtimeMovieCommunity\Web\Community\" LocalSitePackagePath="E:\Package\WebSite\MtimeMovieCommunityRoot\" SitePackageName="MtimeMainVersion"/>
-    <WebSite Name="MtimeChannel" LocalSitePath="E:\Publish\WebSite\MtimeChannel\" RemoteSitePath="\\192.168.50.22\c$\Inetpub\wwwroot\MtimeChannel\" StaticPath="\\192.168.50.22\c$\Inetpub\wwwroot\MtimeMovieCommunityStatic\channel\" SiteSourcePath="E:\CCNet\MtimeGit\web\content\channel\ChannelWeb\"/>
+    <WebSite Name="MtimeChannel" LocalSitePath="E:\Publish\WebSite\MtimeChannel\" RemoteSitePath="\\192.168.50.22\c$\Inetpub\wwwroot\MtimeChannel\" StaticPath="\\192.168.50.22\c$\Inetpub\wwwroot\MtimeMovieCommunityStatic\channel\" SiteSourcePath="E:\CCNet\MtimeGit\web\content\channel\ChannelWeb\" LocalSitePackagePath="E:\Package\WebSite\MtimeChannel\" SitePackageName="service.channel.test.com"/>
     <!--<WebSite Name="MtimeChannelNew" LocalSitePath="E:\Publish\WebSite\service.channel.test.com10002\" StaticPath="\\192.168.50.22\c$\Inetpub\wwwroot\MtimeMovieCommunityStatic\channel2014\"/>-->
     <WebSite Name="MtimeContentLibrary" LocalSitePath="E:\Publish\WebSite\service.library.test.com\" StaticPath="\\192.168.50.22\c$\Inetpub\wwwroot\MtimeMovieCommunityStatic\library\"/>
     <WebSite Name="MtimeTheaterChannel" LocalSitePath="E:\Publish\WebSite\service.theater.test.com\" StaticPath="\\192.168.50.22\c$\Inetpub\wwwroot\MtimeMovieCommunityStatic\theater\"/>
@@ -49,7 +49,7 @@
     <Service Name="DETContractServer" LocalServicePath="C:\Inetpub\MtimeService\DETContractServer\" RemoteServicePath="\\192.168.50.25\c$\Inetpub\MtimeService\DETContractServer\" ServiceSourcePath="D:\CCNet\MtimeGit\web\ticket\det\Services\ContractService\bin\Release\"/>
   </Services>
   <Tools>
-    <Tool Name="MtimeChannel" LocalToolPath="E:\Publish\Tool\MtimeChannel\" ProcessName="Channel.GeneratorApp.exe" RemoteToolPath="\\192.168.50.22\c$\Inetpub\MtimeService\Channel.GeneratorApp\" RemoteToolPathForLocal="C:\Inetpub\MtimeService\Channel.GeneratorApp\" ToolSourcePath="E:\CCNet\Codev3.0\MtimeMovieCommunity.root\MtimeChannel.root\MtimeChannel\Channel.GeneratorApp\bin\Release\" AutoStart="false"></Tool>
+    <Tool Name="MtimeChannel" LocalToolPath="E:\Publish\Tool\MtimeChannel\" ProcessName="Channel.GeneratorApp.exe" RemoteToolPath="\\192.168.50.22\c$\Inetpub\MtimeService\Channel.GeneratorApp\" RemoteToolPathForLocal="C:\Inetpub\MtimeService\Channel.GeneratorApp\" ToolSourcePath="E:\CCNet\Codev3.0\MtimeMovieCommunity.root\MtimeChannel.root\MtimeChannel\Channel.GeneratorApp\bin\Release\" AutoStart="false" LocalToolPackagePath="E:\Package\Tool\MtimeChannel\" ToolPackageName="Channel.GeneratorApp"></Tool>
     <Tool Name="StaticAllTool" LocalToolPath="C:\Inetpub\MtimeService\StaticAllTool\" ProcessName="" RemoteToolPath="" RemoteToolPathForLocal="" ToolSourcePath="D:\CCNet\Codev3.0\MtimeMovieCommunity.root\StaticFileGenerator\TemplateGenerator\StaticAllTool\bin\Release\" AutoStart="true"></Tool>
   </Tools>
 </MtimeProject>
