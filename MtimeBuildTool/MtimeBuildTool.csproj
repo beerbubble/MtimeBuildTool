@@ -75,6 +75,9 @@
     <None Include="Resources\Run.bat" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="C:\MtimeConfig\CompressConfig\Configs.xml">
+      <Link>Resources\Configs.xml</Link>
+    </Content>
     <Content Include="config\ProjectMap.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
@@ -85,7 +88,6 @@
     <Content Include="config\MachineAccount.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Configs.xml" />
     <Content Include="Resources\gzip.exe" />
     <Content Include="Resources\jpegtran.exe" />
     <Content Include="Resources\jsl.exe" />

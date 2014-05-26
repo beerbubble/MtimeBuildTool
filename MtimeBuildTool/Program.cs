@@ -26,7 +26,7 @@ namespace MtimeBuildTool
 
         static void Main(string[] args)
         {
-#if !Debug
+#if Debug
             if (args.Length < 1)
             {
                 Log.WriteMessage("无项目参数，请检查命令！");
@@ -42,7 +42,7 @@ namespace MtimeBuildTool
             Log.WriteMessage(string.Format("项目数:{0}", ProjectMapHelper.ProjectDic.Count));
             Log.WriteMessage(string.Format("机器账号数:{0}", MachineAccountHelper.AccountDic.Count));
 
-            //string project = "MtimeChannel";
+            //string project = "MtimeNumberService";
 
             //获取当前部署的项目
             ProjectModel projectModel;
@@ -90,6 +90,9 @@ namespace MtimeBuildTool
                         string errorMessage = ClientCompress.Process(projectModel.LocalSitePath, true);
                         //                    CompressWebSite(projectModel);
                         FileInfo filemain = new FileInfo(projectModel.LocalSitePath + versionFileName);
+
+                        if (!Directory.Exists(vsersionFolderPath + projectModel.Name))
+                            Directory.CreateDirectory(vsersionFolderPath + projectModel.Name);
                         filemain.CopyTo(vsersionFolderPath + projectModel.Name + @"\" + versionFileName, true);
                     }
                     catch (Exception e)
@@ -187,10 +190,10 @@ namespace MtimeBuildTool
             switch (actionType)
             {
                 case ActionType.Start:
-                    command = string.Format(startTemplate, projectModel.ServiceRemoteIp, projectModel.Name);
+                    command = string.Format(startTemplate, projectModel.ServiceRemoteIp, projectModel.ServiceName);
                     break;
                 case ActionType.Stop:
-                    command = string.Format(stopTemplate, projectModel.ServiceRemoteIp, projectModel.Name);
+                    command = string.Format(stopTemplate, projectModel.ServiceRemoteIp, projectModel.ServiceName);
                     break;
                 default:
                     break;

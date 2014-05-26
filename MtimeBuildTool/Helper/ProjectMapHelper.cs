@@ -51,6 +51,7 @@ namespace MtimeBuildTool.Helper
                 {
                     projectMapModel.LocalServicePath = node.Attributes["LocalServicePath"].Value;
                     projectMapModel.ServiceSourcePath = node.Attributes["ServiceSourcePath"].Value;
+                    projectMapModel.ServiceName = node.Attributes["ServiceName"].Value;
                     if (node.Attributes["RemoteServicePath"] != null)
                     {
                         projectMapModel.RemoteServicePath = node.Attributes["RemoteServicePath"].Value;
@@ -70,6 +71,7 @@ namespace MtimeBuildTool.Helper
                     newProjectMapModel.Name = node.Attributes["Name"].Value;
                     newProjectMapModel.LocalServicePath = node.Attributes["LocalServicePath"].Value;
                     newProjectMapModel.ServiceSourcePath = node.Attributes["ServiceSourcePath"].Value;
+                    newProjectMapModel.ServiceName = node.Attributes["ServiceName"].Value;
                     if (node.Attributes["RemoteServicePath"] != null)
                     {
                         newProjectMapModel.RemoteServicePath = node.Attributes["RemoteServicePath"].Value;
@@ -77,10 +79,10 @@ namespace MtimeBuildTool.Helper
                     }
 
                     if (node.Attributes["LocalServicePackagePath"] != null)
-                        projectMapModel.LocalServicePackagePath = node.Attributes["LocalServicePackagePath"].Value;
+                        newProjectMapModel.LocalServicePackagePath = node.Attributes["LocalServicePackagePath"].Value;
 
                     if (node.Attributes["ServicePackageName"] != null)
-                        projectMapModel.ServicePackageName = node.Attributes["ServicePackageName"].Value;
+                        newProjectMapModel.ServicePackageName = node.Attributes["ServicePackageName"].Value;
 
                     projectDic.Add(newProjectMapModel.Name, newProjectMapModel);
                 }
@@ -159,6 +161,8 @@ namespace MtimeBuildTool.Helper
         public string RemoteServicePath { get; set; }
         public string ServiceSourcePath { get; set; }
         public string ServiceRemoteIp { get; set; }
+        public string ServiceName { get; set; }
+        
 
         public string LocalToolPath { get; set; }
         public string RemoteToolPath { get; set; }

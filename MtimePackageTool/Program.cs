@@ -17,7 +17,7 @@ namespace MtimePackageTool
             //string project = "MtimeMovieCommunityRoot";
             const string rarPath = @"C:\Progra~1\WinRAR\Rar.exe";
 
-            string project = "MtimeChannel";
+            //string project = "MtimeNumberService";
 
             //获取当前部署的项目
             ProjectModel projectModel;
@@ -61,6 +61,22 @@ namespace MtimePackageTool
 
                 DirectoryHelper.DirectoryCopy(packagePath, Path.Combine(@"\\192.168.0.25\ftproot\mtime\upversion\"+projectModel.Name, DateTime.Now.ToString("yyyyMMdd")));
             }
+
+            if (!string.IsNullOrEmpty(projectModel.LocalServicePackagePath))
+            {
+                DirectoryHelper.CreateDateFolder(projectModel.LocalServicePackagePath);
+
+                string packagePath = projectModel.LocalServicePackagePath + DateTime.Now.ToString("yyyyMMdd");
+
+                string zipPath = string.Empty;
+
+                zipPath = projectModel.LocalServicePath;
+
+                RAR(new DirectoryInfo(zipPath).Name, packagePath, projectModel.ServicePackageName + DateTime.Now.ToString("yyyyMMddHHmm") + ".rar", new DirectoryInfo(zipPath).Parent.FullName);
+
+                DirectoryHelper.DirectoryCopy(packagePath, Path.Combine(@"\\192.168.0.25\ftproot\mtime\upversion\" + projectModel.Name, DateTime.Now.ToString("yyyyMMdd")));
+            }
+
 
             if (!string.IsNullOrEmpty(projectModel.LocalToolPackagePath))
             {
