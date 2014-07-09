@@ -84,6 +84,7 @@
     </Content>
     <Content Include="config\PublishRule.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="config\MachineAccount.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -103,7 +104,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy $(ProjectDir)\Resources\*.* $(TargetDir)</PostBuildEvent>
+    <PostBuildEvent>copy $(ProjectDir)\Resources\*.* $(TargetDir)
+copy C:\MtimeConfig\CompressConfig\*.* $(TargetDir)</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

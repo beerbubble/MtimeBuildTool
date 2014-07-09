@@ -15,9 +15,9 @@ namespace MtimePackageTool
         static void Main(string[] args)
         {
             //string project = "MtimeMovieCommunityRoot";
-            const string rarPath = @"C:\Progra~1\WinRAR\Rar.exe";
+            //const string rarPath = @"C:\Progra~1\WinRAR\Rar.exe";
 
-            //string project = "MtimeNumberService";
+            //string project = "MtimeChannel";
 
             //获取当前部署的项目
             ProjectModel projectModel;
@@ -38,14 +38,16 @@ namespace MtimePackageTool
 
                 if (projectModel.Name == "MtimeMovieCommunityRoot")
                 {
-                    zipPath = Path.Combine(projectModel.LocalSitePath, VersionHelper.GetVersionVariable(projectModel.Name), "server", VersionHelper.GetVersionVariable(projectModel.Name));
+                    zipPath = Path.Combine(projectModel.LocalSitePath, VersionHelper.GetVersionVariable(projectModel.Name));
+                    RAR(packagePath, VersionHelper.GetVersionVariable(projectModel.Name) + ".rar", new DirectoryInfo(zipPath).FullName);
                 }
                 else
                 {
                     zipPath = projectModel.LocalSitePath;
+                    RAR(packagePath, projectModel.SitePackageName + DateTime.Now.ToString("yyyyMMddHHmm") + ".rar", new DirectoryInfo(zipPath).FullName);
                 }
 
-                RAR(new DirectoryInfo(zipPath).Name, packagePath, projectModel.SitePackageName + DateTime.Now.ToString("yyyyMMddHHmm") + ".rar", new DirectoryInfo(zipPath).Parent.FullName);
+
 
                 //CmdExecute cmd = new CmdExecute();
                 //cmd.ExecuteCommandSyncByWorkingDirectory(rarPath + @" a " + Path.Combine(packagePath, projectModel.SitePackageName + DateTime.Now.ToString("yyyyMMddHHmm") + ".rar") + " " + new DirectoryInfo(zipPath).Name, @"E:\Package\WebSite\");
@@ -56,10 +58,10 @@ namespace MtimePackageTool
 
                 //    zip.Save(Path.Combine(packagePath, projectModel.SitePackageName + DateTime.Now.ToString("yyyyMMddHHmm") + ".zip"));
 
-                    
+
                 //}
 
-                DirectoryHelper.DirectoryCopy(packagePath, Path.Combine(@"\\192.168.0.25\ftproot\mtime\upversion\"+projectModel.Name, DateTime.Now.ToString("yyyyMMdd")));
+                DirectoryHelper.DirectoryCopy(packagePath, Path.Combine(@"\\192.168.0.25\ftproot\mtime\upversion\" + projectModel.Name, DateTime.Now.ToString("yyyyMMdd")));
             }
 
             if (!string.IsNullOrEmpty(projectModel.LocalServicePackagePath))
@@ -72,7 +74,7 @@ namespace MtimePackageTool
 
                 zipPath = projectModel.LocalServicePath;
 
-                RAR(new DirectoryInfo(zipPath).Name, packagePath, projectModel.ServicePackageName + DateTime.Now.ToString("yyyyMMddHHmm") + ".rar", new DirectoryInfo(zipPath).Parent.FullName);
+                RAR(packagePath, projectModel.ServicePackageName + DateTime.Now.ToString("yyyyMMddHHmm") + ".rar", new DirectoryInfo(zipPath).FullName);
 
                 DirectoryHelper.DirectoryCopy(packagePath, Path.Combine(@"\\192.168.0.25\ftproot\mtime\upversion\" + projectModel.Name, DateTime.Now.ToString("yyyyMMdd")));
             }
@@ -88,24 +90,23 @@ namespace MtimePackageTool
 
                 zipPath = projectModel.LocalToolPath;
 
-                RAR(new DirectoryInfo(zipPath).Name, packagePath, projectModel.ToolPackageName + DateTime.Now.ToString("yyyyMMddHHmm") + ".rar", new DirectoryInfo(zipPath).Parent.FullName);
+                RAR(packagePath, projectModel.ToolPackageName + DateTime.Now.ToString("yyyyMMddHHmm") + ".rar", new DirectoryInfo(zipPath).FullName);
 
                 DirectoryHelper.DirectoryCopy(packagePath, Path.Combine(@"\\192.168.0.25\ftproot\mtime\upversion\" + projectModel.Name, DateTime.Now.ToString("yyyyMMdd")));
             }
         }
 
-        public static bool RAR(string path, string rarPath, string rarName,string workingDirectory)
+        public static bool RAR(string rarPath, string rarName, string workingDirectory)
         {
             bool flag = false;
-            string rarexe = @"C:\Progra~1\WinRAR\RAR.exe";;       //WinRAR.exe 的完整路径
+            string rarexe = @"C:\Progra~1\WinRAR\RAR.exe"; ;       //WinRAR.exe 的完整路径
             string cmd;          //WinRAR 命令参数
             ProcessStartInfo startinfo;
             Process process;
             try
             {
-                cmd = string.Format("a {0} {1}",
-                                    Path.Combine(rarPath ,rarName),
-                                    path);
+                cmd = string.Format("a -r {0}",
+                                    Path.Combine(rarPath, rarName));
                 startinfo = new ProcessStartInfo();
                 startinfo.FileName = rarexe;
                 startinfo.Arguments = cmd;                          //设置命令参数
