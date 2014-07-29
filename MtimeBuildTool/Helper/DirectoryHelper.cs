@@ -29,7 +29,7 @@ namespace MtimeBuildTool.Helper
                 Log.WriteMessage(string.Format("目录是否存在: {0}", dir.Exists.ToString()));
 
                 int i = 0;
-                while (i < 5)
+                while (dir.Exists)
                 {
                     try
                     {
@@ -38,6 +38,8 @@ namespace MtimeBuildTool.Helper
                     }
                     catch (Exception ex)
                     {
+                        Log.WriteMessage(string.Format("Del Exception: {0}", dir.FullName));
+                    
                     }
                     Thread.Sleep(3000);
                     i++;
@@ -60,7 +62,7 @@ namespace MtimeBuildTool.Helper
                 {
                     file.Attributes = FileAttributes.Normal;
                     int i = 0;
-                    while (i < 5)
+                    while (dir.Exists)
                     {
                         try
                         {
@@ -69,8 +71,9 @@ namespace MtimeBuildTool.Helper
                         }
                         catch (Exception ex)
                         {
+                            Log.WriteMessage(string.Format("Del Exception: {0}", dir.FullName));
                         }
-                        Thread.Sleep(2000);
+                        Thread.Sleep(3000);
                         i++;
                     }
 

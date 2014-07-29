@@ -12,6 +12,7 @@ using System.IO;
 using MtimeClientCompress.Components;
 using MtimeBuildTool.Utility;
 using MtimeBuildTool.Const;
+using System.Threading;
 
 namespace MtimeBuildTool
 {
@@ -42,7 +43,7 @@ namespace MtimeBuildTool
             Log.WriteMessage(string.Format("项目数:{0}", ProjectMapHelper.ProjectDic.Count));
             Log.WriteMessage(string.Format("机器账号数:{0}", MachineAccountHelper.AccountDic.Count));
 
-            //string project = "MtimeNumberService";
+            //string project = "MtimeSchedule";
 
             //获取当前部署的项目
             ProjectModel projectModel;
@@ -119,15 +120,48 @@ namespace MtimeBuildTool
             if (!string.IsNullOrEmpty(projectModel.ServiceSourcePath))
             {
                 Log.WriteMessageByProject(projectModel, "服务部分开始！");
-                DirectoryHelper.DirectoryRemove(projectModel.LocalServicePath);
+
+                bool toDelete = true;
+
+                while (toDelete)
+                {
+                    try
+                    {
+                        DirectoryHelper.DirectoryRemove(projectModel.LocalServicePath);
+                        toDelete = false;
+                    }
+                    catch (Exception e)
+                    {
+                        Thread.Sleep(3000);
+                    }
+                }
+
                 DirectoryHelper.DirectoryCopy(projectModel.ServiceSourcePath, projectModel.LocalServicePath);
+                
                 File.Copy(@"C:\MtimeConfig\SiteUrlsServer.config", projectModel.LocalServicePath + @"config\SiteUrlsServer.config", true);
                 if (includeRule)
                 {
                     RuleAction(projectRule, "Service");
                 }
                 ServiceAction(projectModel, ActionType.Stop);
-                DirectoryHelper.DirectoryRemove(projectModel.RemoteServicePath);
+
+                bool toDeleteRemote = true;
+                while (toDeleteRemote)
+                {
+                    try
+                    {
+                        Log.WriteMessageByProject(projectModel, "删除服务远程目录开始！");
+                        DirectoryHelper.DirectoryRemove(projectModel.RemoteServicePath);
+                        Log.WriteMessageByProject(projectModel, "删除服务远程目录结束！");
+                        toDeleteRemote = false;
+                    }
+                    catch (Exception e)
+                    {
+                        Log.WriteMessageByProject(projectModel, "删除服务远程目录异常！");
+                        Thread.Sleep(3000);
+                    }
+                }
+
                 DirectoryHelper.DirectoryCopy(projectModel.LocalServicePath, projectModel.RemoteServicePath);
                 ServiceAction(projectModel, ActionType.Start);
                 Log.WriteMessageByProject(projectModel, "服务部分完成！");
@@ -169,6 +203,9 @@ namespace MtimeBuildTool
                             break;
                         case RuleType.EditConfig:
                             FileHelper.EditConfig(rule);
+                            break;
+                        case RuleType.CopyFile:
+                            File.Copy(rule.SourceFileName, rule.DestFileName, true);
                             break;
                         default:
                             break;

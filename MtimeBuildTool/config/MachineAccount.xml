@@ -2,4 +2,5 @@
 <Accounts>
   <Account Ip="192.168.50.22" UserName="administrator" Password="1" />
   <Account Ip="192.168.50.25" UserName="administrator" Password="1" />
+  <Account Ip="192.168.50.23" UserName="administrator" Password="1" />
 </Accounts>

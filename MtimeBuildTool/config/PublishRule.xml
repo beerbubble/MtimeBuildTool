@@ -28,4 +28,84 @@
     <Tool>
     </Tool>
   </Rule>
+  <Rule Name="MtimePiao">
+    <WebSite>
+      <!--<Item Type="ReplaceContent" dir="" file="Web.config" find="" replace="" />-->
+      <Item Type="EditConfig" dir="E:\Publish\WebSite\piao.mtime.com\" file="Web.config" xpath="/configuration/appSettings/add[@key=&quot;StaticResourceServersVersion&quot;]" attribute="value" value="$MtimeMovieCommunityRoot" />
+    </WebSite>
+    <Service></Service>
+    <Tool>
+    </Tool>
+  </Rule>
+  <Rule Name="MtimeBlog">
+    <WebSite>
+      <!--<Item Type="ReplaceContent" dir="" file="Web.config" find="" replace="" />-->
+      <Item Type="EditConfig" dir="E:\Publish\WebSite\i.mtime.com\" file="Web.config" xpath="/configuration/appSettings/add[@key=&quot;StaticResourceServersVersion&quot;]" attribute="value" value="$MtimeMovieCommunityRoot" />
+    </WebSite>
+    <Service></Service>
+    <Tool>
+    </Tool>
+  </Rule>
+  <Rule Name="MtimeApi">
+    <WebSite>
+      <!--<Item Type="ReplaceContent" dir="" file="Web.config" find="" replace="" />-->
+      <Item Type="EditConfig" dir="E:\Publish\WebSite\api.mtime.com\" file="Web.config" xpath="/x:configuration/x:appSettings/x:add[@key=&quot;StaticResourceServersVersion&quot;]" attribute="value" value="$MtimeMovieCommunityRoot" />
+      <Item Type="EditConfig" dir="E:\Publish\WebSite\api.mtime.com\" file="Web.config" xpath="/x:configuration/x:appSettings/x:add[@key=&quot;MtimeCookieDomain&quot;]" attribute="value" value="test.com" />
+    </WebSite>
+    <Service></Service>
+    <Tool>
+    </Tool>
+  </Rule>
+  <Rule Name="MtimeApiCn">
+    <WebSite>
+      <!--<Item Type="ReplaceContent" dir="" file="Web.config" find="" replace="" />-->
+      <Item Type="EditConfig" dir="E:\Publish\WebSite\api.mtime.cn\" file="Web.config" xpath="/x:configuration/x:appSettings/x:add[@key=&quot;StaticResourceServersVersion&quot;]" attribute="value" value="$MtimeMovieCommunityRoot" />
+      <Item Type="EditConfig" dir="E:\Publish\WebSite\api.mtime.cn\" file="Web.config" xpath="/x:configuration/x:appSettings/x:add[@key=&quot;MtimeCookieDomain&quot;]" attribute="value" value="mtime.cn" />
+    </WebSite>
+    <Service></Service>
+    <Tool>
+    </Tool>
+  </Rule>
+  <Rule Name="MtimePay">
+    <WebSite>
+      <!--<Item Type="ReplaceContent" dir="" file="Web.config" find="" replace="" />-->
+      <Item Type="EditConfig" dir="E:\Publish\WebSite\pay.mtime.com\" file="Web.config" xpath="/x:configuration/x:appSettings/x:add[@key=&quot;StaticResourceServersVersion&quot;]" attribute="value" value="$MtimeMovieCommunityRoot" />
+    </WebSite>
+    <Service></Service>
+    <Tool>
+    </Tool>
+  </Rule>
+  <Rule Name="MtimeService">
+    <WebSite>
+      <!--<Item Type="ReplaceContent" dir="" file="Web.config" find="" replace="" />-->
+      <Item Type="EditConfig" dir="E:\Publish\WebSite\service.mtime.com\" file="Web.config" xpath="/configuration/appSettings/add[@key=&quot;StaticResourceServersVersion&quot;]" attribute="value" value="$MtimeMovieCommunityRoot" />
+      <Item Type="ReplaceContent" dir="E:\Publish\WebSite\service.mtime.com\Config\" file="MtimeNavigation2011.config" find=":1000" replace="" />
+      <Item Type="ReplaceContent" dir="E:\Publish\WebSite\service.mtime.com\Config\" file="MtimeNavigation2011.config" find=":1001" replace="" />
+      <Item Type="ReplaceContent" dir="E:\Publish\WebSite\service.mtime.com\Config\" file="SiteUrls.config" find=":1000" replace="" />
+      <Item Type="ReplaceContent" dir="E:\Publish\WebSite\service.mtime.com\Config\" file="SiteUrls.config" find=":1001" replace="" />
+    </WebSite>
+    <Service></Service>
+    <Tool>
+    </Tool>
+  </Rule>
+  <Rule Name="MtimeMobileApi">
+    <WebSite>
+      <!--<Item Type="ReplaceContent" dir="" file="Web.config" find="" replace="" />-->
+      <Item Type="EditConfig" dir="E:\Publish\WebSite\api.m.mtime.cn\" file="Web.config" xpath="/x:configuration/x:appSettings/x:add[@key=&quot;StaticResourceServersVersion&quot;]" attribute="value" value="$MtimeMovieCommunityRoot" />
+    </WebSite>
+    <Service>
+    </Service>
+    <Tool>
+    </Tool>
+  </Rule>
+  <Rule Name="MtimeSchedule">
+    <WebSite>
+    </WebSite>
+    <Service>
+    </Service>
+    <Tool>
+      <Item Type="CopyFile" sourceFileName="E:\CCNet\Codev3.0\MTimeSchedule.root\MTimeSchedule\MtimeScheduler\bin\Release\MtimeScheduler.exe" destFileName="E:\CCNet\Codev3.0\MTimeSchedule.root\MTimeSchedule\MTimeSchedule\bin\Release\MtimeScheduler.exe" />
+      <Item Type="CopyFile" sourceFileName="E:\CCNet\Codev3.0\MTimeSchedule.root\MTimeSchedule\MtimeScheduler\bin\Release\MtimeScheduler.exe.config" destFileName="E:\CCNet\Codev3.0\MTimeSchedule.root\MTimeSchedule\MTimeSchedule\bin\Release\MtimeScheduler.exe.config" />
+    </Tool>
+  </Rule>
 </Rules>

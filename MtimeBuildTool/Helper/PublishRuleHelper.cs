@@ -48,8 +48,17 @@ namespace MtimeBuildTool.Helper
             foreach (XmlNode ruleItem in node.ChildNodes)
             {
                 RuleType tmpType = (RuleType)Enum.Parse(typeof(RuleType), ruleItem.Attributes["Type"].Value);
-                string tmpDir = ruleItem.Attributes["dir"].Value;
-                string tmpFile = ruleItem.Attributes["file"].Value;
+                string tmpDir = string.Empty;
+                if (ruleItem.Attributes["dir"] != null)
+                {
+                    tmpDir = ruleItem.Attributes["dir"].Value;
+                }
+
+                string tmpFile = string.Empty;
+                if (ruleItem.Attributes["file"] != null)
+                {
+                    tmpFile = ruleItem.Attributes["file"].Value;
+                }
 
                 string tmpFind = string.Empty;
                 if (ruleItem.Attributes["find"] != null)
@@ -81,6 +90,18 @@ namespace MtimeBuildTool.Helper
                     tmpValue = ruleItem.Attributes["value"].Value;
                 }
 
+                string tmpSourceFileName = string.Empty;
+                if (ruleItem.Attributes["sourceFileName"] != null)
+                {
+                    tmpSourceFileName = ruleItem.Attributes["sourceFileName"].Value;
+                }
+
+                string tmpDestFileName = string.Empty;
+                if (ruleItem.Attributes["destFileName"] != null)
+                {
+                    tmpDestFileName = ruleItem.Attributes["destFileName"].Value;
+                }
+
                 list.Add(new RuleItem()
                 {
                     Type = tmpType,
@@ -90,7 +111,9 @@ namespace MtimeBuildTool.Helper
                     Replace = tmpReplace,
                     Xpath = tmpXpath,
                     Attribute = tmpAttribute,
-                    Value = tmpValue
+                    Value = tmpValue,
+                    SourceFileName=tmpSourceFileName,
+                    DestFileName = tmpDestFileName
                 });
             }
 
@@ -108,5 +131,7 @@ namespace MtimeBuildTool.Helper
         public string Xpath { get; set; }
         public string Attribute { get; set; }
         public string Value { get; set; }
+        public string SourceFileName { get; set; }
+        public string DestFileName { get; set; }
     }
 }

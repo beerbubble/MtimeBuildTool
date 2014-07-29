@@ -8,6 +8,7 @@ namespace MtimeBuildTool.Const
     public enum RuleType
     {
         ReplaceContent,
-        EditConfig
+        EditConfig,
+        CopyFile
     }
 }

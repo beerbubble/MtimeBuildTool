@@ -129,9 +129,9 @@ namespace MtimeBuildTool.Helper
                     newProjectMapModel.AutoStart = bool.Parse(node.Attributes["AutoStart"].Value);
 
                     if (node.Attributes["LocalToolPackagePath"] != null)
-                        projectMapModel.LocalToolPackagePath = node.Attributes["LocalToolPackagePath"].Value;
+                        newProjectMapModel.LocalToolPackagePath = node.Attributes["LocalToolPackagePath"].Value;
                     if (node.Attributes["ToolPackageName"] != null)
-                        projectMapModel.ToolPackageName = node.Attributes["ToolPackageName"].Value;
+                        newProjectMapModel.ToolPackageName = node.Attributes["ToolPackageName"].Value;
 
                     projectDic.Add(newProjectMapModel.Name, newProjectMapModel);
                 }
