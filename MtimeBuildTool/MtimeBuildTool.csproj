@@ -79,7 +79,7 @@
       <Link>Resources\Configs.xml</Link>
     </Content>
     <Content Include="config\ProjectMap.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
     <Content Include="config\PublishRule.xml">

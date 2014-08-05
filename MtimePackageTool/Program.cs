@@ -36,17 +36,24 @@ namespace MtimePackageTool
 
                 string zipPath = string.Empty;
 
-                if (projectModel.Name == "MtimeMovieCommunityRoot")
+                if (projectModel.SitePacker)
                 {
-                    zipPath = Path.Combine(projectModel.LocalSitePath, VersionHelper.GetVersionVariable(projectModel.Name));
-                    RAR(packagePath, VersionHelper.GetVersionVariable(projectModel.Name) + ".rar", new DirectoryInfo(zipPath).FullName);
+                    SitePacker(projectModel.LocalSitePath, packagePath);
                 }
                 else
                 {
-                    zipPath = projectModel.LocalSitePath;
-                    RAR(packagePath, projectModel.SitePackageName + DateTime.Now.ToString("yyyyMMddHHmm") + ".rar", new DirectoryInfo(zipPath).FullName);
-                }
 
+                    if (projectModel.Name == "MtimeMovieCommunityRoot")
+                    {
+                        zipPath = Path.Combine(projectModel.LocalSitePath, VersionHelper.GetVersionVariable(projectModel.Name));
+                        RAR(packagePath, VersionHelper.GetVersionVariable(projectModel.Name) + ".rar", new DirectoryInfo(zipPath).FullName);
+                    }
+                    else
+                    {
+                        zipPath = projectModel.LocalSitePath;
+                        RAR(packagePath, projectModel.SitePackageName + DateTime.Now.ToString("yyyyMMddHHmm") + ".rar", new DirectoryInfo(zipPath).FullName);
+                    }
+                }
 
 
                 //CmdExecute cmd = new CmdExecute();
@@ -79,18 +86,23 @@ namespace MtimePackageTool
                 DirectoryHelper.DirectoryCopy(packagePath, Path.Combine(@"\\192.168.0.25\ftproot\mtime\upversion\" + projectModel.Name, DateTime.Now.ToString("yyyyMMdd")));
             }
 
-
             if (!string.IsNullOrEmpty(projectModel.LocalToolPackagePath))
             {
                 DirectoryHelper.CreateDateFolder(projectModel.LocalToolPackagePath);
-
                 string packagePath = projectModel.LocalToolPackagePath + DateTime.Now.ToString("yyyyMMdd");
 
-                string zipPath = string.Empty;
+                if (File.Exists(projectModel.LocalToolPath + "/Package.config"))
+                {
+                    Package(projectModel.LocalToolPath, packagePath);
+                }
+                else
+                {
+                    string zipPath = string.Empty;
 
-                zipPath = projectModel.LocalToolPath;
+                    zipPath = projectModel.LocalToolPath;
 
-                RAR(packagePath, projectModel.ToolPackageName + DateTime.Now.ToString("yyyyMMddHHmm") + ".rar", new DirectoryInfo(zipPath).FullName);
+                    RAR(packagePath, projectModel.ToolPackageName + DateTime.Now.ToString("yyyyMMddHHmm") + ".rar", new DirectoryInfo(zipPath).FullName);
+                }
 
                 DirectoryHelper.DirectoryCopy(packagePath, Path.Combine(@"\\192.168.0.25\ftproot\mtime\upversion\" + projectModel.Name, DateTime.Now.ToString("yyyyMMdd")));
             }
@@ -141,5 +153,97 @@ namespace MtimePackageTool
             }
             return flag;
         }
+
+        public static bool Package(string sourcePath, string destPath)
+        {
+            bool flag = false;
+            string packageexe = @"E:\CCNet\Codev3.0\Tools\AppPacker\bin\Release\AppPacker.exe";
+                        ProcessStartInfo startinfo;
+            Process process;
+             string cmd; 
+            try
+            {
+                cmd = string.Format("{0} {1}",sourcePath,destPath);
+                startinfo = new ProcessStartInfo();
+                startinfo.FileName = packageexe;
+                startinfo.Arguments = cmd;                          //设置命令参数
+                startinfo.WindowStyle = ProcessWindowStyle.Normal;  //隐藏 WinRAR 窗口
+                startinfo.RedirectStandardOutput = true;
+                startinfo.UseShellExecute = false;
+
+                // Do not create the black window.
+                startinfo.CreateNoWindow = true;
+
+                process = new Process();
+                process.StartInfo = startinfo;
+                process.Start();
+                // Get the output into a string
+                string result = process.StandardOutput.ReadToEnd();
+                //process.WaitForExit(); //无限期等待进程 winrar.exe 退出
+
+                // Display the command output.
+                Console.WriteLine(result);
+
+
+                if (process.HasExited)
+                {
+                    flag = true;
+                }
+                process.Close();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+            return flag;
+        }
+
+        public static bool SitePacker(string sourcePath, string destPath)
+        {
+            bool flag = false;
+            string packageexe = @"E:\CCNet\Codev3.0\Tools\SitePacker\SitePackerConsole\bin\Release\SitePacker.exe";
+                        ProcessStartInfo startinfo;
+            Process process;
+             string cmd; 
+            try
+            {
+                cmd = string.Format("-dir:{0} -output:{1}", sourcePath, destPath);
+                startinfo = new ProcessStartInfo();
+                startinfo.FileName = packageexe;
+                startinfo.Arguments = cmd;                          //设置命令参数
+                startinfo.WindowStyle = ProcessWindowStyle.Normal;  //隐藏 WinRAR 窗口
+                startinfo.RedirectStandardOutput = true;
+                startinfo.UseShellExecute = false;
+
+                // Do not create the black window.
+                startinfo.CreateNoWindow = true;
+
+                process = new Process();
+                process.StartInfo = startinfo;
+                process.Start();
+                // Get the output into a string
+                string result = process.StandardOutput.ReadToEnd();
+                //process.WaitForExit(); //无限期等待进程 winrar.exe 退出
+
+                // Display the command output.
+                Console.WriteLine(result);
+
+
+                if (process.HasExited)
+                {
+                    flag = true;
+                }
+                process.Close();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+            return flag;
+        }
+
+        
     }
 }

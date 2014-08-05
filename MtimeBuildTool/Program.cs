@@ -43,10 +43,16 @@ namespace MtimeBuildTool
             Log.WriteMessage(string.Format("项目数:{0}", ProjectMapHelper.ProjectDic.Count));
             Log.WriteMessage(string.Format("机器账号数:{0}", MachineAccountHelper.AccountDic.Count));
 
-            //string project = "MtimeSchedule";
+            //string project = "MtimeManage";
 
             //获取当前部署的项目
             ProjectModel projectModel;
+
+            //if (!ProjectMapHelper.ProjectDic.TryGetValue(project, out projectModel))
+            //{
+            //    Environment.Exit(1);
+            //    return;
+            //}
 
             if (!ProjectMapHelper.ProjectDic.TryGetValue(args[0], out projectModel))
             {
@@ -64,59 +70,63 @@ namespace MtimeBuildTool
 
             Log.WriteMessageByProject(projectModel, "Start!");
             Log.WriteMessageByProject(projectModel, "开始删除、压缩、拷贝");
-            //删除项目相关本地目录
+            
+            Log.WriteMessageByProject(projectModel, "站点部分开始！");
+
+            #region WebSite
             if (!string.IsNullOrEmpty(projectModel.SiteSourcePath))
             {
-                Log.WriteMessageByProject(projectModel, "站点部分开始！");
-
                 Log.WriteMessageByProject(projectModel, "删除目录开始！");
                 DirectoryHelper.DirectoryRemove(projectModel.LocalSitePath, false);
                 Log.WriteMessageByProject(projectModel, "删除目录完成！");
 
                 Log.WriteMessageByProject(projectModel, "拷贝目录开始！");
                 DirectoryHelper.DirectoryCopy(projectModel.SiteSourcePath, projectModel.LocalSitePath);
-                File.Copy(@"C:\MtimeConfig\SiteUrlsServer.config", projectModel.LocalSitePath + @"config\SiteUrlsServer.config", true);
                 Log.WriteMessageByProject(projectModel, "拷贝目录完成！");
-
-                if (includeRule)
-                {
-                    RuleAction(projectRule, "WebSite");
-                }
-
-                if (!string.IsNullOrEmpty(projectModel.StaticPath))
-                {
-                    Log.WriteMessageByProject(projectModel, "压缩目录开始！");
-                    try
-                    {
-                        string errorMessage = ClientCompress.Process(projectModel.LocalSitePath, true);
-                        //                    CompressWebSite(projectModel);
-                        FileInfo filemain = new FileInfo(projectModel.LocalSitePath + versionFileName);
-
-                        if (!Directory.Exists(vsersionFolderPath + projectModel.Name))
-                            Directory.CreateDirectory(vsersionFolderPath + projectModel.Name);
-                        filemain.CopyTo(vsersionFolderPath + projectModel.Name + @"\" + versionFileName, true);
-                    }
-                    catch (Exception e)
-                    {
-                        Log.WriteMessage(e.Message);
-                    }
-                    Log.WriteMessageByProject(projectModel, "压缩目录完成！");
-
-                    Log.WriteMessageByProject(projectModel, "拷贝版本号到远程目录开始！");
-                    CopyToStaticDirectory(projectModel);
-                    Log.WriteMessageByProject(projectModel, "拷贝版本号到远程目录完成！");
-                }
-
-                if (!string.IsNullOrEmpty(projectModel.RemoteSitePath))
-                {
-                    Log.WriteMessageByProject(projectModel, "拷贝站点到远程目录开始！");
-                    DirectoryHelper.DirectoryRemove(projectModel.RemoteSitePath, false);
-                    DirectoryHelper.DirectoryCopy(projectModel.LocalSitePath, projectModel.RemoteSitePath);
-                    Log.WriteMessageByProject(projectModel, "拷贝站点到远程目录完成！");
-                }
-
-                Log.WriteMessageByProject(projectModel, "站点部分完成！");
             }
+            if (Directory.Exists(projectModel.LocalSitePath + "config"))
+                File.Copy(@"C:\MtimeConfig\SiteUrlsServer.config", projectModel.LocalSitePath + @"config\SiteUrlsServer.config", true);
+
+            if (!string.IsNullOrEmpty(projectModel.StaticPath))
+            {
+                Log.WriteMessageByProject(projectModel, "压缩目录开始！");
+                try
+                {
+                    string errorMessage = ClientCompress.Process(projectModel.LocalSitePath, true);
+                    //                    CompressWebSite(projectModel);
+                    FileInfo filemain = new FileInfo(projectModel.LocalSitePath + versionFileName);
+
+                    if (!Directory.Exists(vsersionFolderPath + projectModel.Name))
+                        Directory.CreateDirectory(vsersionFolderPath + projectModel.Name);
+                    filemain.CopyTo(vsersionFolderPath + projectModel.Name + @"\" + versionFileName, true);
+                }
+                catch (Exception e)
+                {
+                    Log.WriteMessage(e.Message);
+                }
+                Log.WriteMessageByProject(projectModel, "压缩目录完成！");
+
+                Log.WriteMessageByProject(projectModel, "拷贝版本号到远程目录开始！");
+                CopyToStaticDirectory(projectModel);
+                Log.WriteMessageByProject(projectModel, "拷贝版本号到远程目录完成！");
+            }
+
+            if (includeRule)
+            {
+                RuleAction(projectRule, "WebSite");
+            }
+
+            if (!string.IsNullOrEmpty(projectModel.RemoteSitePath))
+            {
+                Log.WriteMessageByProject(projectModel, "拷贝站点到远程目录开始！");
+                DirectoryHelper.DirectoryRemove(projectModel.RemoteSitePath, false);
+                DirectoryHelper.DirectoryCopy(projectModel.LocalSitePath, projectModel.RemoteSitePath);
+                Log.WriteMessageByProject(projectModel, "拷贝站点到远程目录完成！");
+            }
+
+            Log.WriteMessageByProject(projectModel, "站点部分完成！");
+            #endregion
+
             if (!string.IsNullOrEmpty(projectModel.ServiceSourcePath))
             {
                 Log.WriteMessageByProject(projectModel, "服务部分开始！");
@@ -137,7 +147,7 @@ namespace MtimeBuildTool
                 }
 
                 DirectoryHelper.DirectoryCopy(projectModel.ServiceSourcePath, projectModel.LocalServicePath);
-                
+
                 File.Copy(@"C:\MtimeConfig\SiteUrlsServer.config", projectModel.LocalServicePath + @"config\SiteUrlsServer.config", true);
                 if (includeRule)
                 {
@@ -171,7 +181,8 @@ namespace MtimeBuildTool
                 Log.WriteMessageByProject(projectModel, "工具部分开始！");
                 DirectoryHelper.DirectoryRemove(projectModel.LocalToolPath);
                 DirectoryHelper.DirectoryCopy(projectModel.ToolSourcePath, projectModel.LocalToolPath);
-                File.Copy(@"C:\MtimeConfig\SiteUrlsServer.config", projectModel.LocalToolPath + @"config\SiteUrlsServer.config", true);
+                if (!projectModel.Name.ToLower().Contains("kiosk"))
+                    File.Copy(@"C:\MtimeConfig\SiteUrlsServer.config", projectModel.LocalToolPath + @"config\SiteUrlsServer.config", true);
                 if (includeRule)
                 {
                     RuleAction(projectRule, "Tool");
@@ -179,7 +190,8 @@ namespace MtimeBuildTool
                 ToolAction(projectModel, ActionType.Stop);
                 DirectoryHelper.DirectoryRemove(projectModel.RemoteToolPath);
                 DirectoryHelper.DirectoryCopy(projectModel.LocalToolPath, projectModel.RemoteToolPath);
-                ToolAction(projectModel, ActionType.Start);
+                if (projectModel.ForceStart)
+                    ToolAction(projectModel, ActionType.Start);
                 Log.WriteMessageByProject(projectModel, "工具部分完成！");
             }
 
@@ -195,6 +207,10 @@ namespace MtimeBuildTool
                     if (!string.IsNullOrEmpty(rule.Value) && rule.Value.StartsWith("$"))
                     {
                         rule.Value = VersionHelper.GetVersionVariable(rule.Value.Substring(1));
+                    }
+                    if (!string.IsNullOrEmpty(rule.Replace) && rule.Replace.StartsWith("$"))
+                    {
+                        rule.Replace = VersionHelper.GetVersionVariable(rule.Replace.Substring(1));
                     }
                     switch (rule.Type)
                     {

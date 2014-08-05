@@ -37,6 +37,14 @@ namespace MtimeBuildTool.Helper
 
                 if (node.Attributes["SitePackageName"] != null)
                     projectMapModel.SitePackageName = node.Attributes["SitePackageName"].Value;
+                if (node.Attributes["SitePacker"] != null)
+                {
+                    projectMapModel.SitePacker = bool.Parse(node.Attributes["SitePacker"].Value);
+                }
+                else
+                {
+                    projectMapModel.SitePacker = false;
+                }
                 
 
                 projectDic.Add(projectMapModel.Name, projectMapModel);
@@ -132,6 +140,14 @@ namespace MtimeBuildTool.Helper
                         newProjectMapModel.LocalToolPackagePath = node.Attributes["LocalToolPackagePath"].Value;
                     if (node.Attributes["ToolPackageName"] != null)
                         newProjectMapModel.ToolPackageName = node.Attributes["ToolPackageName"].Value;
+                    if (node.Attributes["ForceStart"] != null)
+                    {
+                        newProjectMapModel.ForceStart = bool.Parse(node.Attributes["ForceStart"].Value);
+                    }
+                    else
+                    {
+                        newProjectMapModel.ForceStart = true;
+                    }
 
                     projectDic.Add(newProjectMapModel.Name, newProjectMapModel);
                 }
@@ -156,6 +172,7 @@ namespace MtimeBuildTool.Helper
         public string SiteSourcePath { get; set; }
         public string RemoteSitePath { get; set; }
         public string SiteRemoteIp { get; set; }
+        public bool SitePacker { get; set; }
 
         public string LocalServicePath { get; set; }
         public string RemoteServicePath { get; set; }
@@ -171,6 +188,7 @@ namespace MtimeBuildTool.Helper
         public string ToolRemoteIp { get; set; }
         public string ProcessName { get; set; }
         public bool AutoStart { get; set; }
+        public bool ForceStart { get; set; }
 
         public string LocalSitePackagePath { get; set; }
         public string SitePackageName { get; set; }

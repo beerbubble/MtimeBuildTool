@@ -108,4 +108,220 @@
       <Item Type="CopyFile" sourceFileName="E:\CCNet\Codev3.0\MTimeSchedule.root\MTimeSchedule\MtimeScheduler\bin\Release\MtimeScheduler.exe.config" destFileName="E:\CCNet\Codev3.0\MTimeSchedule.root\MTimeSchedule\MTimeSchedule\bin\Release\MtimeScheduler.exe.config" />
     </Tool>
   </Rule>
+  <Rule Name="MtimeManage">
+    <WebSite>
+      <Item Type="EditConfig" dir="E:\Publish\WebSite\MtimeManage\" file="Web.config" xpath="/configuration/appSettings/add[@key=&quot;VersionFront&quot;]" attribute="value" value="$MtimeMovieCommunityRoot" />
+      <Item Type="EditConfig" dir="E:\Publish\WebSite\MtimeManage\" file="Web.config" xpath="/configuration/appSettings/add[@key=&quot;VersionChannel&quot;]" attribute="value" value="$MtimeChannel" />
+      <Item Type="EditConfig" dir="E:\Publish\WebSite\MtimeManage\" file="Web.config" xpath="/configuration/appSettings/add[@key=&quot;VersionLibrary&quot;]" attribute="value" value="$MtimeLibrary" />
+      <Item Type="EditConfig" dir="E:\Publish\WebSite\MtimeManage\" file="Web.config" xpath="/configuration/appSettings/add[@key=&quot;FfmpegPath&quot;]" attribute="value" value="D:\FileStore\Tool\FFmpeg\ffmpeg.exe" />
+    </WebSite>
+    <Service>
+    </Service>
+    <Tool>
+    </Tool>
+  </Rule>
+  <Rule Name="MtimeTheaterChannel">
+    <WebSite>
+    </WebSite>
+    <Service>
+    </Service>
+    <Tool>
+      <Item Type="EditConfig" dir="E:\Publish\Tool\Theater.GeneratorApp\" file="Theater.GeneratorApp.exe.config" xpath="/configuration/appSettings/add[@key=&quot;AutoListen&quot;]" attribute="value" value="true" />
+    </Tool>
+  </Rule>
+  <Rule Name="SearchServer">
+    <WebSite>
+      <Item Type="ReplaceContent" dir="E:\Publish\WebSite\SearchServer\" file="Web.config" find="Y:" replace="D:" />
+      <Item Type="EditConfig" dir="E:\Publish\WebSite\SearchServer\" file="Web.config" xpath="/configuration/search.index/add[@category=&quot;Movie&quot;]" attribute="path" value="D:\SearchIndex\index\movie" />
+    </WebSite>
+    <Service>
+    </Service>
+    <Tool>
+    </Tool>
+  </Rule>
+  <Rule Name="Showtime.SearchServer">
+    <WebSite>
+    </WebSite>
+    <Service>
+    </Service>
+    <Tool>
+    </Tool>
+  </Rule>
+  <Rule Name="Community.SearchServer">
+    <WebSite>
+      <Item Type="EditConfig" dir="E:\Publish\WebSite\Community.SearchServer\" file="Web.config" xpath="/configuration/appSettings/add[@key=&quot;Community_News_IndexPath&quot;]" attribute="value" value="D:\SearchIndex\CommunityIndex\News\" />
+    </WebSite>
+    <Service>
+    </Service>
+    <Tool>
+    </Tool>
+  </Rule>
+  <Rule Name="ShowtimeSearchServerService">
+    <WebSite>
+      <Item Type="EditConfig" dir="E:\Publish\Service\ShowtimeSearchServerService\" file="Mtime.Data.SocketService.exe.config" xpath="/configuration/appSettings/add[@key=&quot;HotPlayMovieSearch_IndexPath&quot;]" attribute="value" value="D:\SearchIndex\ShowtimeIndex\HotPlayMovie_Showtime\" />
+      <Item Type="EditConfig" dir="E:\Publish\Service\ShowtimeSearchServerService\" file="Mtime.Data.SocketService.exe.config" xpath="/configuration/appSettings/add[@key=&quot;Showtime_Cinema_IndexPath&quot;]" attribute="value" value="D:\SearchIndex\ShowtimeIndex\Showtime_Cinema\" />
+    </WebSite>
+    <Service>
+    </Service>
+    <Tool>
+    </Tool>
+  </Rule>
+  <Rule Name="SearchServerService">
+    <WebSite>
+      <Item Type="EditConfig" dir="E:\Publish\Service\SearchServerService\" file="Mtime.Data.SocketService.exe.config" xpath="/configuration/appSettings/add[@key=&quot;Community_User_IndexPath&quot;]" attribute="value" value="D:\SearchIndex\CommunityIndex\Community_User\" />
+      <Item Type="EditConfig" dir="E:\Publish\Service\SearchServerService\" file="Mtime.Data.SocketService.exe.config" xpath="/configuration/appSettings/add[@key=&quot;Community_Tweet_IndexPath&quot;]" attribute="value" value="D:\SearchIndex\CommunityIndex\Community_Tweet\" />
+      <Item Type="EditConfig" dir="E:\Publish\Service\SearchServerService\" file="Mtime.Data.SocketService.exe.config" xpath="/configuration/appSettings/add[@key=&quot;Community_Twitter_IndexPath&quot;]" attribute="value" value="D:\SearchIndex\CommunityIndex\Community_Twitter\" />
+    </WebSite>
+    <Service>
+    </Service>
+    <Tool>
+    </Tool>
+  </Rule>
+  <Rule Name="MtimeMessageService">
+    <WebSite>
+    </WebSite>
+    <Service>
+    </Service>
+    <Tool>
+      <Item Type="EditConfig" dir="E:\Publish\Tool\MtimeMessageService\Config\" file="StaticFile.config" xpath="/servers/server/paths/path" attribute="value" value="E:\StaticPage\topic\" />
+    </Tool>
+  </Rule>
+  <Rule Name="MtimeStaticize">
+    <WebSite>
+    </WebSite>
+    <Service>
+    </Service>
+    <Tool>
+      <Item Type="EditConfig" dir="E:\Publish\Tool\MtimeStaticize\Config\" file="StaticServer.config" xpath="/servers/server/paths/path" attribute="value" value="E:\StaticPage\topic\" />
+      <Item Type="EditConfig" dir="E:\Publish\Tool\MtimeStaticize\Config\" file="StaticServer.config" xpath="/servers/server[@name='Movie']/paths/path" attribute="value" value="\\192.168.50.31\website\Movie" />
+      <Item Type="EditConfig" dir="E:\Publish\Tool\MtimeStaticize\Config\" file="StaticServer.config" xpath="/servers/server[@name='Person']/paths/path" attribute="value" value="\\192.168.50.31\website\Person" />
+      <Item Type="EditConfig" dir="E:\Publish\Tool\MtimeStaticize\Config\" file="StaticServer.config" xpath="/servers/server[@name='Video']/paths/path" attribute="value" value="\\192.168.50.31\website\Video" />
+      <Item Type="EditConfig" dir="E:\Publish\Tool\MtimeStaticize\Config\" file="StaticServer.config" xpath="/servers/server[@name='News']/paths/path" attribute="value" value="\\192.168.50.31\website\News" />
+      <Item Type="EditConfig" dir="E:\Publish\Tool\MtimeStaticize\Config\" file="StaticServer.config" xpath="/servers/server[@name='Cinema']/paths/path" attribute="value" value="\\192.168.50.31\website\channel\Theater" />
+      <Item Type="EditConfig" dir="E:\Publish\Tool\MtimeStaticize\Config\" file="StaticServer.config" xpath="/servers/server[@name='Channel']/paths/path" attribute="value" value="\\192.168.50.31\website\NewChannel" />
+      <Item Type="EditConfig" dir="E:\Publish\Tool\MtimeStaticize\Config\" file="StaticServer.config" xpath="/servers/server[@name='Search']/paths/path" attribute="value" value="\\192.168.50.31\website\Search" />
+      <Item Type="EditConfig" dir="E:\Publish\Tool\MtimeStaticize\Config\" file="StaticServer.config" xpath="/servers/server[@name='Goods']/paths/path" attribute="value" value="\\192.168.50.31\website\Goods" />
+    </Tool>
+  </Rule>
+  <Rule Name="MtimeTrade">
+    <WebSite>
+      <!--<Item Type="ReplaceContent" dir="" file="Web.config" find="" replace="" />-->
+      <Item Type="EditConfig" dir="E:\Publish\WebSite\trade.test.com\" file="Web.config" xpath="/configuration/appSettings/add[@key=&quot;StaticResourceServersVersion&quot;]" attribute="value" value="$MtimeMovieCommunityRoot" />
+    </WebSite>
+    <Service></Service>
+    <Tool>
+    </Tool>
+  </Rule>
+  <Rule Name="MtimeItem">
+    <WebSite>
+      <!--<Item Type="ReplaceContent" dir="" file="Web.config" find="" replace="" />-->
+      <Item Type="EditConfig" dir="E:\Publish\WebSite\service.item.test.com\" file="Web.config" xpath="/configuration/appSettings/add[@key=&quot;StaticResourceServersVersion&quot;]" attribute="value" value="$MtimeMovieCommunityRoot" />
+    </WebSite>
+    <Service></Service>
+    <Tool>
+    </Tool>
+  </Rule>
+  <Rule Name="MtimeMCApp-Twitter">
+    <WebSite>
+      <!--<Item Type="ReplaceContent" dir="" file="Web.config" find="" replace="" />-->
+      <Item Type="EditConfig" dir="E:\Publish\WebSite\t.app.test.com\" file="Web.config" xpath="/configuration/appSettings/add[@key=&quot;StaticResourceServersVersion&quot;]" attribute="value" value="$MtimeMovieCommunityRoot" />
+    </WebSite>
+    <Service></Service>
+    <Tool>
+    </Tool>
+  </Rule>
+  <Rule Name="MtimeMCApp-Blog">
+    <WebSite>
+      <!--<Item Type="ReplaceContent" dir="" file="Web.config" find="" replace="" />-->
+      <Item Type="EditConfig" dir="E:\Publish\WebSite\blog.app.test.com\" file="Web.config" xpath="/configuration/appSettings/add[@key=&quot;StaticResourceServersVersion&quot;]" attribute="value" value="$MtimeMovieCommunityRoot" />
+    </WebSite>
+    <Service></Service>
+    <Tool>
+    </Tool>
+  </Rule>
+  <Rule Name="MtimeMCApp-Account">
+    <WebSite>
+      <!--<Item Type="ReplaceContent" dir="" file="Web.config" find="" replace="" />-->
+      <Item Type="EditConfig" dir="E:\Publish\WebSite\account.app.test.com\" file="Web.config" xpath="/configuration/appSettings/add[@key=&quot;StaticResourceServersVersion&quot;]" attribute="value" value="$MtimeMovieCommunityRoot" />
+    </WebSite>
+    <Service></Service>
+    <Tool>
+    </Tool>
+  </Rule>
+  <Rule Name="MtimeMCApp-Group">
+    <WebSite>
+      <!--<Item Type="ReplaceContent" dir="" file="Web.config" find="" replace="" />-->
+      <Item Type="EditConfig" dir="E:\Publish\WebSite\group.app.test.com\" file="Web.config" xpath="/configuration/appSettings/add[@key=&quot;StaticResourceServersVersion&quot;]" attribute="value" value="$MtimeMovieCommunityRoot" />
+    </WebSite>
+    <Service></Service>
+    <Tool>
+    </Tool>
+  </Rule>
+  <Rule Name="MtimeGroup">
+    <WebSite>
+      <!--<Item Type="ReplaceContent" dir="" file="Web.config" find="" replace="" />-->
+      <Item Type="EditConfig" dir="E:\Publish\WebSite\group.test.com\" file="Web.config" xpath="/configuration/appSettings/add[@key=&quot;StaticResourceServersVersion&quot;]" attribute="value" value="$MtimeMovieCommunityRoot" />
+    </WebSite>
+    <Service></Service>
+    <Tool>
+    </Tool>
+  </Rule>
+  <Rule Name="MtimeMCApp-Match">
+    <WebSite>
+      <!--<Item Type="ReplaceContent" dir="" file="Web.config" find="" replace="" />-->
+      <Item Type="EditConfig" dir="E:\Publish\WebSite\app\match\" file="Web.config" xpath="/configuration/appSettings/add[@key=&quot;StaticResourceServersVersion&quot;]" attribute="value" value="$MtimeMovieCommunityRoot" />
+    </WebSite>
+    <Service></Service>
+    <Tool>
+    </Tool>
+  </Rule>
+  <Rule Name="MtimeMCApp-Vote">
+    <WebSite>
+      <!--<Item Type="ReplaceContent" dir="" file="Web.config" find="" replace="" />-->
+      <Item Type="EditConfig" dir="E:\Publish\WebSite\app\vote\" file="Web.config" xpath="/configuration/appSettings/add[@key=&quot;StaticResourceServersVersion&quot;]" attribute="value" value="$MtimeMovieCommunityRoot" />
+    </WebSite>
+    <Service></Service>
+    <Tool>
+    </Tool>
+  </Rule>
+  <Rule Name="MtimeMCApp-Memory">
+    <WebSite>
+      <!--<Item Type="ReplaceContent" dir="" file="Web.config" find="" replace="" />-->
+      <Item Type="EditConfig" dir="E:\Publish\WebSite\app\memory\" file="Web.config" xpath="/configuration/appSettings/add[@key=&quot;StaticResourceServersVersion&quot;]" attribute="value" value="$MtimeMovieCommunityRoot" />
+    </WebSite>
+    <Service></Service>
+    <Tool>
+    </Tool>
+  </Rule>
+  <Rule Name="MtimeMCApp-Card">
+    <WebSite>
+      <!--<Item Type="ReplaceContent" dir="" file="Web.config" find="" replace="" />-->
+      <Item Type="EditConfig" dir="E:\Publish\WebSite\app\card\" file="Web.config" xpath="/configuration/appSettings/add[@key=&quot;StaticResourceServersVersion&quot;]" attribute="value" value="$MtimeMovieCommunityRoot" />
+    </WebSite>
+    <Service></Service>
+    <Tool>
+    </Tool>
+  </Rule>
+  <Rule Name="MtimeMCApp-Quiz">
+    <WebSite>
+      <!--<Item Type="ReplaceContent" dir="" file="Web.config" find="" replace="" />-->
+      <Item Type="EditConfig" dir="E:\Publish\WebSite\app\quiz\" file="Web.config" xpath="/configuration/appSettings/add[@key=&quot;StaticResourceServersVersion&quot;]" attribute="value" value="$MtimeMovieCommunityRoot" />
+    </WebSite>
+    <Service></Service>
+    <Tool>
+    </Tool>
+  </Rule>
+  <Rule Name="MtimeHtml5">
+    <WebSite>
+      <!--<Item Type="ReplaceContent" dir="" file="Web.config" find="" replace="" />-->
+      <Item Type="EditConfig" dir="E:\Publish\WebSite\m.mtime.cn\" file="Web.config" xpath="/configuration/appSettings/add[@key=&quot;StaticResourceServersVersion&quot;]" attribute="value" value="$MtimeMovieCommunityRoot" />
+      <Item Type="ReplaceContent" dir="E:\Publish\WebSite\m.mtime.cn\" file="head.inc" find="var version = &quot;&quot;;" replace="var version = &quot;head&quot;;" />
+      <Item Type="ReplaceContent" dir="E:\Publish\WebSite\m.mtime.cn\" file="head.inc" find="head" replace="$MtimeHtml5" />
+      <Item Type="ReplaceContent" dir="E:\Publish\WebSite\m.mtime.cn\" file="head.inc" find="http://m.mtime.cn" replace="http://192.168.50.22:8000/html5/" />
+      
+    </WebSite>
+    <Service></Service>
+    <Tool>
+    </Tool>
+  </Rule>
 </Rules>

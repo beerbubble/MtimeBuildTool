@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MtimeClientCompress", "Mtim
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MtimePackageTool", "MtimePackageTool\MtimePackageTool.csproj", "{3B5BD1D9-D85A-4279-8238-1E0484A48DC3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReplaceTool", "ReplaceTool\ReplaceTool.csproj", "{61C13419-6765-4C6E-AAE5-BF5D469EA7DB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,16 @@ Global
 		{3B5BD1D9-D85A-4279-8238-1E0484A48DC3}.Release|Mixed Platforms.Build.0 = Release|x86
 		{3B5BD1D9-D85A-4279-8238-1E0484A48DC3}.Release|x86.ActiveCfg = Release|x86
 		{3B5BD1D9-D85A-4279-8238-1E0484A48DC3}.Release|x86.Build.0 = Release|x86
+		{61C13419-6765-4C6E-AAE5-BF5D469EA7DB}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{61C13419-6765-4C6E-AAE5-BF5D469EA7DB}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{61C13419-6765-4C6E-AAE5-BF5D469EA7DB}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{61C13419-6765-4C6E-AAE5-BF5D469EA7DB}.Debug|x86.ActiveCfg = Debug|x86
+		{61C13419-6765-4C6E-AAE5-BF5D469EA7DB}.Debug|x86.Build.0 = Debug|x86
+		{61C13419-6765-4C6E-AAE5-BF5D469EA7DB}.Release|Any CPU.ActiveCfg = Release|x86
+		{61C13419-6765-4C6E-AAE5-BF5D469EA7DB}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{61C13419-6765-4C6E-AAE5-BF5D469EA7DB}.Release|Mixed Platforms.Build.0 = Release|x86
+		{61C13419-6765-4C6E-AAE5-BF5D469EA7DB}.Release|x86.ActiveCfg = Release|x86
+		{61C13419-6765-4C6E-AAE5-BF5D469EA7DB}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
