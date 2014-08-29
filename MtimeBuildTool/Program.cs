@@ -43,7 +43,7 @@ namespace MtimeBuildTool
             Log.WriteMessage(string.Format("项目数:{0}", ProjectMapHelper.ProjectDic.Count));
             Log.WriteMessage(string.Format("机器账号数:{0}", MachineAccountHelper.AccountDic.Count));
 
-            //string project = "MtimeManage";
+            //string project = "GoodsSearchServer";
 
             //获取当前部署的项目
             ProjectModel projectModel;

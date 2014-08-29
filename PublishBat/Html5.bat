@@ -1,0 +1,1 @@
+cd c:\Users\MTime\AppData\Roaming\npm & c: & grunt.cmd --config E:\Publish\WebSite\m.mtime.cn\grunt.js release

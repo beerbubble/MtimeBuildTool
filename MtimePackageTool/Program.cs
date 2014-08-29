@@ -38,7 +38,14 @@ namespace MtimePackageTool
 
                 if (projectModel.SitePacker)
                 {
-                    SitePacker(projectModel.LocalSitePath, packagePath);
+                    if (string.IsNullOrEmpty(projectModel.Setting))
+                    {
+                        SitePacker(projectModel.LocalSitePath, packagePath);
+                    }
+                    else
+                    {
+                        SitePacker(projectModel.LocalSitePath, packagePath, projectModel.Setting);
+                    }
                 }
                 else
                 {
@@ -158,12 +165,12 @@ namespace MtimePackageTool
         {
             bool flag = false;
             string packageexe = @"E:\CCNet\Codev3.0\Tools\AppPacker\bin\Release\AppPacker.exe";
-                        ProcessStartInfo startinfo;
+            ProcessStartInfo startinfo;
             Process process;
-             string cmd; 
+            string cmd;
             try
             {
-                cmd = string.Format("{0} {1}",sourcePath,destPath);
+                cmd = string.Format("{0} {1}", sourcePath, destPath);
                 startinfo = new ProcessStartInfo();
                 startinfo.FileName = packageexe;
                 startinfo.Arguments = cmd;                          //设置命令参数
@@ -201,14 +208,26 @@ namespace MtimePackageTool
 
         public static bool SitePacker(string sourcePath, string destPath)
         {
+            return SitePacker(sourcePath, destPath, string.Empty);
+        }
+
+        public static bool SitePacker(string sourcePath, string destPath, string setting)
+        {
             bool flag = false;
             string packageexe = @"E:\CCNet\Codev3.0\Tools\SitePacker\SitePackerConsole\bin\Release\SitePacker.exe";
-                        ProcessStartInfo startinfo;
+            ProcessStartInfo startinfo;
             Process process;
-             string cmd; 
+            string cmd;
             try
             {
-                cmd = string.Format("-dir:{0} -output:{1}", sourcePath, destPath);
+                if (string.IsNullOrEmpty(setting))
+                {
+                    cmd = string.Format("-dir:{0} -output:{1}", sourcePath, destPath);
+                }
+                else
+                {
+                    cmd = string.Format("-dir:{0} -output:{1} {2}", sourcePath, destPath, setting);
+                }
                 startinfo = new ProcessStartInfo();
                 startinfo.FileName = packageexe;
                 startinfo.Arguments = cmd;                          //设置命令参数
@@ -244,6 +263,6 @@ namespace MtimePackageTool
             return flag;
         }
 
-        
+
     }
 }

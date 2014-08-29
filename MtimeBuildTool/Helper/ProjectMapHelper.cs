@@ -45,6 +45,15 @@ namespace MtimeBuildTool.Helper
                 {
                     projectMapModel.SitePacker = false;
                 }
+
+                if (node.Attributes["Setting"] != null)
+                {
+                    projectMapModel.Setting = node.Attributes["Setting"].Value;
+                }
+                else
+                {
+                    projectMapModel.Setting = string.Empty;
+                }
                 
 
                 projectDic.Add(projectMapModel.Name, projectMapModel);
@@ -173,6 +182,7 @@ namespace MtimeBuildTool.Helper
         public string RemoteSitePath { get; set; }
         public string SiteRemoteIp { get; set; }
         public bool SitePacker { get; set; }
+        public string Setting { get; set; }
 
         public string LocalServicePath { get; set; }
         public string RemoteServicePath { get; set; }
