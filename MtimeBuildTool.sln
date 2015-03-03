@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MtimePackageTool", "MtimePa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReplaceTool", "ReplaceTool\ReplaceTool.csproj", "{61C13419-6765-4C6E-AAE5-BF5D469EA7DB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MtimePackageClean", "MtimePackageClean\MtimePackageClean.csproj", "{201B86B7-BC28-4ACD-9759-1AF4B418DFE7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +61,16 @@ Global
 		{61C13419-6765-4C6E-AAE5-BF5D469EA7DB}.Release|Mixed Platforms.Build.0 = Release|x86
 		{61C13419-6765-4C6E-AAE5-BF5D469EA7DB}.Release|x86.ActiveCfg = Release|x86
 		{61C13419-6765-4C6E-AAE5-BF5D469EA7DB}.Release|x86.Build.0 = Release|x86
+		{201B86B7-BC28-4ACD-9759-1AF4B418DFE7}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{201B86B7-BC28-4ACD-9759-1AF4B418DFE7}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{201B86B7-BC28-4ACD-9759-1AF4B418DFE7}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{201B86B7-BC28-4ACD-9759-1AF4B418DFE7}.Debug|x86.ActiveCfg = Debug|x86
+		{201B86B7-BC28-4ACD-9759-1AF4B418DFE7}.Debug|x86.Build.0 = Debug|x86
+		{201B86B7-BC28-4ACD-9759-1AF4B418DFE7}.Release|Any CPU.ActiveCfg = Release|x86
+		{201B86B7-BC28-4ACD-9759-1AF4B418DFE7}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{201B86B7-BC28-4ACD-9759-1AF4B418DFE7}.Release|Mixed Platforms.Build.0 = Release|x86
+		{201B86B7-BC28-4ACD-9759-1AF4B418DFE7}.Release|x86.ActiveCfg = Release|x86
+		{201B86B7-BC28-4ACD-9759-1AF4B418DFE7}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

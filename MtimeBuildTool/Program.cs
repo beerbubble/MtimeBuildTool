@@ -43,7 +43,7 @@ namespace MtimeBuildTool
             Log.WriteMessage(string.Format("项目数:{0}", ProjectMapHelper.ProjectDic.Count));
             Log.WriteMessage(string.Format("机器账号数:{0}", MachineAccountHelper.AccountDic.Count));
 
-            //string project = "GoodsSearchServer";
+            //string project = "ShowtimeSearchServerService";
 
             //获取当前部署的项目
             ProjectModel projectModel;
@@ -181,7 +181,7 @@ namespace MtimeBuildTool
                 Log.WriteMessageByProject(projectModel, "工具部分开始！");
                 DirectoryHelper.DirectoryRemove(projectModel.LocalToolPath);
                 DirectoryHelper.DirectoryCopy(projectModel.ToolSourcePath, projectModel.LocalToolPath);
-                if (!projectModel.Name.ToLower().Contains("kiosk"))
+                if (!projectModel.Name.ToLower().Contains("kiosk") && !projectModel.Name.ToLower().Contains("fake"))
                     File.Copy(@"C:\MtimeConfig\SiteUrlsServer.config", projectModel.LocalToolPath + @"config\SiteUrlsServer.config", true);
                 if (includeRule)
                 {

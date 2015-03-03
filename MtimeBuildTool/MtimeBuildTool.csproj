@@ -77,6 +77,7 @@
   <ItemGroup>
     <Content Include="C:\MtimeConfig\CompressConfig\Configs.xml">
       <Link>Resources\Configs.xml</Link>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="config\ProjectMap.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -88,6 +89,7 @@
     </Content>
     <Content Include="config\MachineAccount.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Resources\gzip.exe" />
     <Content Include="Resources\jpegtran.exe" />
@@ -105,7 +107,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy $(ProjectDir)\Resources\*.* $(TargetDir)
-copy C:\MtimeConfig\CompressConfig\*.* $(TargetDir)</PostBuildEvent>
+copy C:\MtimeConfig\CompressConfig\Configs.xml $(TargetDir)</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

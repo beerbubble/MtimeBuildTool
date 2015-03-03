@@ -113,6 +113,7 @@
       <Item Type="EditConfig" dir="E:\Publish\WebSite\MtimeManage\" file="Web.config" xpath="/configuration/appSettings/add[@key=&quot;VersionFront&quot;]" attribute="value" value="$MtimeMovieCommunityRoot" />
       <Item Type="EditConfig" dir="E:\Publish\WebSite\MtimeManage\" file="Web.config" xpath="/configuration/appSettings/add[@key=&quot;VersionChannel&quot;]" attribute="value" value="$MtimeChannel" />
       <Item Type="EditConfig" dir="E:\Publish\WebSite\MtimeManage\" file="Web.config" xpath="/configuration/appSettings/add[@key=&quot;VersionLibrary&quot;]" attribute="value" value="$MtimeLibrary" />
+      <Item Type="EditConfig" dir="E:\Publish\WebSite\MtimeManage\" file="Web.config" xpath="/configuration/appSettings/add[@key=&quot;VersionItem&quot;]" attribute="value" value="$MtimeItem" />
       <Item Type="EditConfig" dir="E:\Publish\WebSite\MtimeManage\" file="Web.config" xpath="/configuration/appSettings/add[@key=&quot;FfmpegPath&quot;]" attribute="value" value="D:\FileStore\Tool\FFmpeg\ffmpeg.exe" />
     </WebSite>
     <Service>
@@ -158,21 +159,21 @@
   </Rule>
   <Rule Name="ShowtimeSearchServerService">
     <WebSite>
-      <Item Type="EditConfig" dir="E:\Publish\Service\ShowtimeSearchServerService\" file="Mtime.Data.SocketService.exe.config" xpath="/configuration/appSettings/add[@key=&quot;HotPlayMovieSearch_IndexPath&quot;]" attribute="value" value="D:\SearchIndex\ShowtimeIndex\HotPlayMovie_Showtime\" />
-      <Item Type="EditConfig" dir="E:\Publish\Service\ShowtimeSearchServerService\" file="Mtime.Data.SocketService.exe.config" xpath="/configuration/appSettings/add[@key=&quot;Showtime_Cinema_IndexPath&quot;]" attribute="value" value="D:\SearchIndex\ShowtimeIndex\Showtime_Cinema\" />
     </WebSite>
     <Service>
+      <Item Type="EditConfig" dir="E:\Publish\Service\ShowtimeSearchServerService\" file="Mtime.Data.SocketService.exe.config" xpath="/configuration/appSettings/add[@key=&quot;HotPlayMovieSearch_IndexPath&quot;]" attribute="value" value="D:\SearchIndex\ShowtimeIndex\HotPlayMovie_Showtime\" />
+      <Item Type="EditConfig" dir="E:\Publish\Service\ShowtimeSearchServerService\" file="Mtime.Data.SocketService.exe.config" xpath="/configuration/appSettings/add[@key=&quot;Showtime_Cinema_IndexPath&quot;]" attribute="value" value="D:\SearchIndex\ShowtimeIndex\Showtime_Cinema\" />
     </Service>
     <Tool>
     </Tool>
   </Rule>
   <Rule Name="SearchServerService">
     <WebSite>
+    </WebSite>
+    <Service>
       <Item Type="EditConfig" dir="E:\Publish\Service\SearchServerService\" file="Mtime.Data.SocketService.exe.config" xpath="/configuration/appSettings/add[@key=&quot;Community_User_IndexPath&quot;]" attribute="value" value="D:\SearchIndex\CommunityIndex\Community_User\" />
       <Item Type="EditConfig" dir="E:\Publish\Service\SearchServerService\" file="Mtime.Data.SocketService.exe.config" xpath="/configuration/appSettings/add[@key=&quot;Community_Tweet_IndexPath&quot;]" attribute="value" value="D:\SearchIndex\CommunityIndex\Community_Tweet\" />
       <Item Type="EditConfig" dir="E:\Publish\Service\SearchServerService\" file="Mtime.Data.SocketService.exe.config" xpath="/configuration/appSettings/add[@key=&quot;Community_Twitter_IndexPath&quot;]" attribute="value" value="D:\SearchIndex\CommunityIndex\Community_Twitter\" />
-    </WebSite>
-    <Service>
     </Service>
     <Tool>
     </Tool>
@@ -201,6 +202,9 @@
       <Item Type="EditConfig" dir="E:\Publish\Tool\MtimeStaticize\Config\" file="StaticServer.config" xpath="/servers/server[@name='Channel']/paths/path" attribute="value" value="\\192.168.50.31\website\NewChannel" />
       <Item Type="EditConfig" dir="E:\Publish\Tool\MtimeStaticize\Config\" file="StaticServer.config" xpath="/servers/server[@name='Search']/paths/path" attribute="value" value="\\192.168.50.31\website\Search" />
       <Item Type="EditConfig" dir="E:\Publish\Tool\MtimeStaticize\Config\" file="StaticServer.config" xpath="/servers/server[@name='Goods']/paths/path" attribute="value" value="\\192.168.50.31\website\Goods" />
+      <Item Type="EditConfig" dir="E:\Publish\Tool\MtimeStaticize\Config\" file="StaticServer.config" xpath="/servers/server[@name='Mall']/paths/path" attribute="value" value="\\192.168.50.31\website\Mall" />
+      <Item Type="EditConfig" dir="E:\Publish\Tool\MtimeStaticize\Config\" file="StaticServer.config" xpath="/servers/server[@name='List']/paths/path" attribute="value" value="\\192.168.50.31\website\List" />
+      <Item Type="EditConfig" dir="E:\Publish\Tool\MtimeStaticize\Config\" file="StaticServer.config" xpath="/servers/server[@name='Vip']/paths/path" attribute="value" value="\\192.168.50.31\website\Vip" />
     </Tool>
   </Rule>
   <Rule Name="MtimeTrade">
@@ -318,7 +322,16 @@
       <Item Type="ReplaceContent" dir="E:\Publish\WebSite\m.mtime.cn\" file="head.inc" find="var version = &quot;&quot;;" replace="var version = &quot;head&quot;;" />
       <Item Type="ReplaceContent" dir="E:\Publish\WebSite\m.mtime.cn\" file="head.inc" find="head" replace="$MtimeHtml5" />
       <Item Type="ReplaceContent" dir="E:\Publish\WebSite\m.mtime.cn\" file="head.inc" find="http://m.mtime.cn" replace="http://192.168.50.22:8000/html5/" />
-      
+
+    </WebSite>
+    <Service></Service>
+    <Tool>
+    </Tool>
+  </Rule>
+  <Rule Name="MtimeCommunityPassport">
+    <WebSite>
+      <!--<Item Type="ReplaceContent" dir="" file="Web.config" find="" replace="" />-->
+      <Item Type="EditConfig" dir="E:\Publish\WebSite\passport.mtime.com\" file="Web.config" xpath="/configuration/appSettings/add[@key=&quot;StaticResourceServersVersion&quot;]" attribute="value" value="$MtimeMovieCommunityRoot" />
     </WebSite>
     <Service></Service>
     <Tool>
