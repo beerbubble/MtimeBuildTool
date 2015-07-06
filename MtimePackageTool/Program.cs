@@ -76,6 +76,8 @@ namespace MtimePackageTool
                 //}
 
                 DirectoryHelper.DirectoryCopy(packagePath, Path.Combine(@"\\192.168.0.25\ftproot\mtime\upversion\" + projectModel.Name, DateTime.Now.ToString("yyyyMMdd")));
+                //DirectoryHelper.DirectoryCopy(packagePath, Path.Combine(@"\\192.168.50.22\e$\Publish\" + projectModel.Name, DateTime.Now.ToString("yyyyMMdd")));
+                
             }
 
             if (!string.IsNullOrEmpty(projectModel.LocalServicePackagePath))
@@ -91,6 +93,7 @@ namespace MtimePackageTool
                 RAR(packagePath, projectModel.ServicePackageName + DateTime.Now.ToString("yyyyMMddHHmm") + ".rar", new DirectoryInfo(zipPath).FullName);
 
                 DirectoryHelper.DirectoryCopy(packagePath, Path.Combine(@"\\192.168.0.25\ftproot\mtime\upversion\" + projectModel.Name, DateTime.Now.ToString("yyyyMMdd")));
+                //DirectoryHelper.DirectoryCopy(packagePath, Path.Combine(@"\\192.168.50.22\e$\Publish\" + projectModel.Name, DateTime.Now.ToString("yyyyMMdd")));
             }
 
             if (!string.IsNullOrEmpty(projectModel.LocalToolPackagePath))
@@ -112,6 +115,7 @@ namespace MtimePackageTool
                 }
 
                 DirectoryHelper.DirectoryCopy(packagePath, Path.Combine(@"\\192.168.0.25\ftproot\mtime\upversion\" + projectModel.Name, DateTime.Now.ToString("yyyyMMdd")));
+                //DirectoryHelper.DirectoryCopy(packagePath, Path.Combine(@"\\192.168.50.22\e$\Publish\" + projectModel.Name, DateTime.Now.ToString("yyyyMMdd")));
             }
         }
 

@@ -322,7 +322,7 @@
       <Item Type="ReplaceContent" dir="E:\Publish\WebSite\m.mtime.cn\" file="head.inc" find="var version = &quot;&quot;;" replace="var version = &quot;head&quot;;" />
       <Item Type="ReplaceContent" dir="E:\Publish\WebSite\m.mtime.cn\" file="head.inc" find="head" replace="$MtimeHtml5" />
       <Item Type="ReplaceContent" dir="E:\Publish\WebSite\m.mtime.cn\" file="head.inc" find="http://m.mtime.cn" replace="http://192.168.50.22:8000/html5/" />
-
+      <Item Type="ReplaceContent" dir="E:\Publish\WebSite\m.mtime.cn\" file="head.inc" find="//window.nginxProxyMode" replace="window.nginxProxyMode" />
     </WebSite>
     <Service></Service>
     <Tool>
@@ -332,6 +332,16 @@
     <WebSite>
       <!--<Item Type="ReplaceContent" dir="" file="Web.config" find="" replace="" />-->
       <Item Type="EditConfig" dir="E:\Publish\WebSite\passport.mtime.com\" file="Web.config" xpath="/configuration/appSettings/add[@key=&quot;StaticResourceServersVersion&quot;]" attribute="value" value="$MtimeMovieCommunityRoot" />
+    </WebSite>
+    <Service></Service>
+    <Tool>
+    </Tool>
+  </Rule>
+  <Rule Name="MtimeO2OManage">
+    <WebSite>
+      <!--<Item Type="ReplaceContent" dir="" file="Web.config" find="" replace="" />-->
+      <Item Type="EditConfig" dir="E:\Publish\WebSite\MtimeO2OManage\Config\" file="Site.Config" xpath="/x:configuration/x:settings/x:add[@key=&quot;ResourcesSite&quot;]" attribute="value" value="http://192.168.50.22:8097/Resource/{0}.html" />
+      <Item Type="EditConfig" dir="E:\Publish\WebSite\MtimeO2OManage\Config\" file="Site.Config" xpath="/x:configuration/x:settings/x:add[@key=&quot;ResourcesUrl&quot;]" attribute="value" value="http://192.168.50.22:8097/Resource/" />
     </WebSite>
     <Service></Service>
     <Tool>

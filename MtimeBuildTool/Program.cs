@@ -43,7 +43,9 @@ namespace MtimeBuildTool
             Log.WriteMessage(string.Format("项目数:{0}", ProjectMapHelper.ProjectDic.Count));
             Log.WriteMessage(string.Format("机器账号数:{0}", MachineAccountHelper.AccountDic.Count));
 
-            //string project = "ShowtimeSearchServerService";
+            CmdExecute cmdExecute = new CmdExecute();
+
+            //string project = "MtimeDataService";
 
             //获取当前部署的项目
             ProjectModel projectModel;
@@ -86,6 +88,125 @@ namespace MtimeBuildTool
             }
             if (Directory.Exists(projectModel.LocalSitePath + "config"))
                 File.Copy(@"C:\MtimeConfig\SiteUrlsServer.config", projectModel.LocalSitePath + @"config\SiteUrlsServer.config", true);
+
+            //临时的数据库修改替换
+            ReplaceContent(projectModel.LocalSitePath + "Web.config", @"192.168.1.29\\MTIMESQLSERVER", "192.168.50.104");
+            ReplaceContent(projectModel.LocalSitePath + "Web.config", @"192.168.1.29", "192.168.50.104");
+            ReplaceContent(projectModel.LocalSitePath + "Web.config", @"mtimecache1213", "mtimeuser0301");
+            ReplaceContent(projectModel.LocalSitePath + "Web.config", @"mtimecache", "mtimeuser");
+         
+            //if (File.Exists(projectModel.LocalSitePath + "Web.config"))
+            //{
+            //    Encoding encoding = new UTF8Encoding(false);
+
+            //    string sbSource = string.Empty;
+            //    string sbOutput = string.Empty;
+
+
+            //    string filePath = projectModel.LocalSitePath + "web.config";
+            //    //设置文件属性
+            //    File.SetAttributes(filePath, FileAttributes.Archive);
+
+            //    Console.WriteLine("修改:" + File.GetAttributes(filePath).ToString());
+
+            //    try
+            //    {
+            //        sbSource = File.ReadAllText(filePath, encoding);
+
+            //    }
+            //    catch (Exception)
+            //    {
+            //        Console.WriteLine("读文件异常");
+            //    }
+
+            //    //Dictionary<string, string> replaceDic = new Dictionary<string, string>();
+
+
+            //    string replaceTarget = @"192.168.1.29\\MTIMESQLSERVER";
+
+            //    string replaceValue = "192.168.50.104";
+
+            //    if (Regex.IsMatch(sbSource, replaceTarget, RegexOptions.IgnoreCase))
+            //    {
+            //        sbSource = Regex.Replace(sbSource, replaceTarget, replaceValue);
+            //    }
+
+
+            //    try
+            //    {
+            //        File.WriteAllText(filePath, sbSource, encoding);
+
+            //    }
+            //    catch (Exception e)
+            //    {
+            //        Console.WriteLine(e.Message);
+
+            //    }
+
+            //}
+
+            ReplaceContent(projectModel.LocalSitePath + "config\\Database.config", @"192.168.1.29\\MTIMESQLSERVER", "192.168.50.104");
+            ReplaceContent(projectModel.LocalSitePath + "config\\Database.config", @"192.168.1.29", "192.168.50.104");
+            ReplaceContent(projectModel.LocalSitePath + "config\\Database.config", @"mtimecache1213", "mtimeuser0301");
+            ReplaceContent(projectModel.LocalSitePath + "config\\Database.config", @"mtimecache", "mtimeuser");
+
+            
+            var gitBranchName = cmdExecute.ExecuteCommand("git branch", projectModel.SiteSourcePath);
+            var gitBranchHash = cmdExecute.ExecuteCommand("git rev-parse HEAD", projectModel.SiteSourcePath);
+            File.WriteAllText(projectModel.LocalSitePath + "GitBranchName.txt", gitBranchName);
+            File.WriteAllText(projectModel.LocalSitePath + "GitBranchHash.txt", gitBranchHash);
+
+            //if (File.Exists(projectModel.LocalSitePath + "config\\Database.config"))
+            //{
+            //    Encoding encoding = new UTF8Encoding(false);
+
+            //    string sbSource = string.Empty;
+            //    string sbOutput = string.Empty;
+
+
+            //    string filePath = projectModel.LocalSitePath + "config\\Database.config";
+            //    //设置文件属性
+            //    File.SetAttributes(filePath, FileAttributes.Archive);
+
+            //    Console.WriteLine("修改:" + File.GetAttributes(filePath).ToString());
+
+            //    try
+            //    {
+            //        sbSource = File.ReadAllText(filePath, encoding);
+
+            //    }
+            //    catch (Exception)
+            //    {
+            //        Console.WriteLine("读文件异常");
+            //    }
+
+            //    //Dictionary<string, string> replaceDic = new Dictionary<string, string>();
+
+
+            //    string replaceTarget = @"192.168.1.29\\MTIMESQLSERVER";
+
+            //    string replaceValue = "192.168.50.104";
+
+            //    if (Regex.IsMatch(sbSource, replaceTarget, RegexOptions.IgnoreCase))
+            //    {
+            //        sbSource = Regex.Replace(sbSource, replaceTarget, replaceValue);
+            //    }
+
+
+            //    try
+            //    {
+            //        File.WriteAllText(filePath, sbSource, encoding);
+
+            //    }
+            //    catch (Exception e)
+            //    {
+            //        Console.WriteLine(e.Message);
+
+            //    }
+
+            //}
+           
+                
 
             if (!string.IsNullOrEmpty(projectModel.StaticPath))
             {
@@ -149,6 +270,79 @@ namespace MtimeBuildTool
                 DirectoryHelper.DirectoryCopy(projectModel.ServiceSourcePath, projectModel.LocalServicePath);
 
                 File.Copy(@"C:\MtimeConfig\SiteUrlsServer.config", projectModel.LocalServicePath + @"config\SiteUrlsServer.config", true);
+
+                //临时添加服务版本号
+                try
+                {
+                    string errorMessage = ClientCompress.Process(projectModel.LocalServicePath, false);
+                }
+                catch (Exception e)
+                {
+                    Log.WriteMessage(e.Message);
+                }
+
+                //临时的数据库修改替换
+
+                ReplaceContent(projectModel.LocalServicePath + "Mtime.Data.SocketService.exe.config", @"192.168.1.29\\MTIMESQLSERVER", "192.168.50.104");
+                ReplaceContent(projectModel.LocalServicePath + "Mtime.Data.SocketService.exe.config", @"192.168.1.29", "192.168.50.104");
+                ReplaceContent(projectModel.LocalServicePath + "Mtime.Data.SocketService.exe.config", @"mtimecache1213", "mtimeuser0301");
+                ReplaceContent(projectModel.LocalServicePath + "Mtime.Data.SocketService.exe.config", @"mtimecache", "mtimeuser");
+
+                var gitBranchNameService = cmdExecute.ExecuteCommand("git branch", projectModel.ServiceSourcePath);
+                var gitBranchHashService = cmdExecute.ExecuteCommand("git rev-parse HEAD", projectModel.ServiceSourcePath);
+                File.WriteAllText(projectModel.LocalServicePath + "GitBranchName.txt", gitBranchNameService);
+                File.WriteAllText(projectModel.LocalServicePath + "GitBranchHash.txt", gitBranchHashService);
+
+                //if (File.Exists(projectModel.LocalServicePath + "Mtime.Data.SocketService.exe.config"))
+                //{
+                //    Encoding encoding = new UTF8Encoding(false);
+
+                //    string sbSource = string.Empty;
+                //    string sbOutput = string.Empty;
+
+
+                //    string filePath = projectModel.LocalServicePath + "Mtime.Data.SocketService.exe.config";
+                //    //设置文件属性
+                //    File.SetAttributes(filePath, FileAttributes.Archive);
+
+                //    Console.WriteLine("修改:" + File.GetAttributes(filePath).ToString());
+
+                //    try
+                //    {
+                //        sbSource = File.ReadAllText(filePath, encoding);
+
+                //    }
+                //    catch (Exception)
+                //    {
+                //        Console.WriteLine("读文件异常");
+                //    }
+
+                //    //Dictionary<string, string> replaceDic = new Dictionary<string, string>();
+
+
+                //    string replaceTarget = @"192.168.1.29\\MTIMESQLSERVER";
+
+                //    string replaceValue = "192.168.50.104";
+
+                //    if (Regex.IsMatch(sbSource, replaceTarget, RegexOptions.IgnoreCase))
+                //    {
+                //        sbSource = Regex.Replace(sbSource, replaceTarget, replaceValue);
+                //    }
+
+
+                //    try
+                //    {
+                //        File.WriteAllText(filePath, sbSource, encoding);
+
+                //    }
+                //    catch (Exception e)
+                //    {
+                //        Console.WriteLine(e.Message);
+
+                //    }
+
+                //}
+                
                 if (includeRule)
                 {
                     RuleAction(projectRule, "Service");
@@ -183,6 +377,29 @@ namespace MtimeBuildTool
                 DirectoryHelper.DirectoryCopy(projectModel.ToolSourcePath, projectModel.LocalToolPath);
                 if (!projectModel.Name.ToLower().Contains("kiosk") && !projectModel.Name.ToLower().Contains("fake"))
                     File.Copy(@"C:\MtimeConfig\SiteUrlsServer.config", projectModel.LocalToolPath + @"config\SiteUrlsServer.config", true);
+
+                foreach (string f in Directory.GetFiles(projectModel.LocalToolPath, "*.exe.config"))
+                {
+                    Log.WriteMessageByProject(projectModel, f);
+                    Log.WriteMessageByProject(projectModel, "替换开始");
+                    ReplaceContent(f, @"192.168.1.29\\MTIMESQLSERVER", "192.168.50.104");
+                    ReplaceContent(f, @"192.168.1.29", "192.168.50.104");
+                    ReplaceContent(f, @"mtimecache1213", "mtimeuser0301");
+                    ReplaceContent(f, @"mtimecache", "mtimeuser");
+                    Log.WriteMessageByProject(projectModel, "替换结束");
+                }
+
+                //临时的数据库修改替换
+                ReplaceContent(projectModel.LocalToolPath + "config\\Database.config", @"192.168.1.29\\MTIMESQLSERVER", "192.168.50.104");
+                ReplaceContent(projectModel.LocalToolPath + "config\\Database.config", @"192.168.1.29", "192.168.50.104");
+                ReplaceContent(projectModel.LocalToolPath + "config\\Database.config", @"mtimecache1213", "mtimeuser0301");
+                ReplaceContent(projectModel.LocalToolPath + "config\\Database.config", @"mtimecache", "mtimeuser");
+
+                var gitBranchNameTool = cmdExecute.ExecuteCommand("git branch", projectModel.ToolSourcePath);
+                var gitBranchHashTool = cmdExecute.ExecuteCommand("git rev-parse HEAD", projectModel.ToolSourcePath);
+                File.WriteAllText(projectModel.LocalToolPath + "GitBranchName.txt", gitBranchNameTool);
+                File.WriteAllText(projectModel.LocalToolPath + "GitBranchHash.txt", gitBranchHashTool);
+
                 if (includeRule)
                 {
                     RuleAction(projectRule, "Tool");
@@ -335,6 +552,60 @@ namespace MtimeBuildTool
                 string subVersion = System.IO.File.ReadAllText(projectModel.LocalSitePath + versionFileName);
                 DirectoryHelper.DirectoryCopy(projectModel.LocalSitePath + subVersion + @"\local", projectModel.StaticPath);
                 DirectoryHelper.DirectoryRemove(projectModel.LocalSitePath + subVersion + @"\local", true);
+            }
+        }
+
+
+        private static void ReplaceContent(string filePath, string replaceTarget, string replaceValue)
+        {
+            if (File.Exists(filePath))
+            {
+                Encoding encoding = new UTF8Encoding(false);
+
+                string sbSource = string.Empty;
+                string sbOutput = string.Empty;
+
+
+                //string filePath = projectModel.LocalSitePath + "web.config";
+                //设置文件属性
+                File.SetAttributes(filePath, FileAttributes.Archive);
+
+                Console.WriteLine("修改:" + File.GetAttributes(filePath).ToString());
+
+                try
+                {
+                    sbSource = File.ReadAllText(filePath, encoding);
+
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("读文件异常");
+                }
+
+                //Dictionary<string, string> replaceDic = new Dictionary<string, string>();
+
+
+                //string replaceTarget = @"192.168.1.29\\MTIMESQLSERVER";
+
+                //string replaceValue = "192.168.50.104";
+
+                if (Regex.IsMatch(sbSource, replaceTarget, RegexOptions.IgnoreCase))
+                {
+                    sbSource = Regex.Replace(sbSource, replaceTarget, replaceValue);
+                }
+
+
+                try
+                {
+                    File.WriteAllText(filePath, sbSource, encoding);
+
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+
+                }
+
             }
         }
     }
