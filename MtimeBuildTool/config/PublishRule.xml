@@ -205,6 +205,13 @@
       <Item Type="EditConfig" dir="E:\Publish\Tool\MtimeStaticize\Config\" file="StaticServer.config" xpath="/servers/server[@name='Mall']/paths/path" attribute="value" value="\\192.168.50.31\website\Mall" />
       <Item Type="EditConfig" dir="E:\Publish\Tool\MtimeStaticize\Config\" file="StaticServer.config" xpath="/servers/server[@name='List']/paths/path" attribute="value" value="\\192.168.50.31\website\List" />
       <Item Type="EditConfig" dir="E:\Publish\Tool\MtimeStaticize\Config\" file="StaticServer.config" xpath="/servers/server[@name='Vip']/paths/path" attribute="value" value="\\192.168.50.31\website\Vip" />
+      <Item Type="EditConfig" dir="E:\Publish\Tool\MtimeStaticize\Config\" file="StaticServer.config" xpath="/servers/server[@name='EnSite']/paths/path" attribute="value" value="\\192.168.50.31\website\EnSite" />
+      <Item Type="EditConfig" dir="E:\Publish\Tool\MtimeStaticize\Config\" file="StaticServer.config" xpath="/servers/server[@name='B2BIndex']/paths/path" attribute="value" value="\\192.168.50.31\website\B2BIndex" />
+      <Item Type="EditConfig" dir="E:\Publish\Tool\MtimeStaticize\Config\" file="StaticServer.config" xpath="/servers/server[@name='B2BMobileIndex']/paths/path" attribute="value" value="\\192.168.50.31\website\B2BMobile" />
+      <Item Type="EditConfig" dir="E:\Publish\Tool\MtimeStaticize\Config\" file="StaticServer.config" xpath="/servers/server[@name='FeatureItem']/paths/path" attribute="value" value="C:\Inetpub\wwwroot\Feature.test.com\item\" />
+      <Item Type="EditConfig" dir="E:\Publish\Tool\MtimeStaticize\Config\" file="StaticServer.config" xpath="/servers/server[@name='FeatureItemH5']/paths/path" attribute="value" value="C:\Inetpub\wwwroot\Feature.test.com\mobile\item\" />
+      <Item Type="EditConfig" dir="E:\Publish\Tool\MtimeStaticize\Config\" file="StaticServer.config" xpath="/servers/server[@name='FeatureCinema']/paths/path" attribute="value" value="C:\Inetpub\wwwroot\Feature.test.com\ticket\" />
+      <Item Type="EditConfig" dir="E:\Publish\Tool\MtimeStaticize\Config\" file="StaticServer.config" xpath="/servers/server[@name='FeatureCinemaH5']/paths/path" attribute="value" value="C:\Inetpub\wwwroot\Feature.test.com\mobile\ticket\" />
     </Tool>
   </Rule>
   <Rule Name="MtimeTrade">

@@ -56,7 +56,10 @@ namespace MtimeBuildTool
             //    return;
             //}
 
-            if (!ProjectMapHelper.ProjectDic.TryGetValue(args[0], out projectModel))
+            //string key = "MtimeLibrary";
+            string key = args[0];
+
+            if (!ProjectMapHelper.ProjectDic.TryGetValue(key, out projectModel))
             {
                 Environment.Exit(1);
                 return;
@@ -349,6 +352,16 @@ namespace MtimeBuildTool
                 }
                 ServiceAction(projectModel, ActionType.Stop);
 
+                //2016.04.25 添加老消息服务
+                if (projectModel.Name == "MtimeMsgService")
+                {
+                    DirectoryHelper.CopyFiles(@"E:\CCNet\Codev3.0\MTimeSchedule.root\MTimeSchedule\MtimeMsgService\Mtime.MsgProcessService\bin\Release\", @"E:\Publish\Service\MtimeMsgService\");
+                    DirectoryHelper.CopyFiles(@"E:\CCNet\Codev3.0\MtimeMovieCommunity.root\StaticFileGenerator\TemplateGenerator\GeneratorConfig\bin\Release\", @"E:\Publish\Service\MtimeMsgService\");
+                    DirectoryHelper.CopyFiles(@"E:\CCNet\Codev3.0\MtimeMovieCommunity.root\StaticFileGenerator\TemplateGenerator\GeneratorConfig\bin\Release\config\", @"E:\Publish\Service\MtimeMsgService\config\");
+                    //DirectoryHelper.CopyFiles(@"D:\CCNet\Codev3.0\MTimeSchedule.root\MTimeSchedule\MtimeMsgService\Mtime.MsgProcessService\bin\Release\\", @"E:\Publish\Service\MtimeMsgService\");
+
+                }
+
                 bool toDeleteRemote = true;
                 while (toDeleteRemote)
                 {
@@ -375,7 +388,7 @@ namespace MtimeBuildTool
                 Log.WriteMessageByProject(projectModel, "工具部分开始！");
                 DirectoryHelper.DirectoryRemove(projectModel.LocalToolPath);
                 DirectoryHelper.DirectoryCopy(projectModel.ToolSourcePath, projectModel.LocalToolPath);
-                if (!projectModel.Name.ToLower().Contains("kiosk") && !projectModel.Name.ToLower().Contains("fake"))
+                if (!projectModel.Name.ToLower().Contains("kiosk") && !projectModel.Name.ToLower().Contains("fake") && !projectModel.Name.ToLower().Contains("mtimeretailclientloader"))
                     File.Copy(@"C:\MtimeConfig\SiteUrlsServer.config", projectModel.LocalToolPath + @"config\SiteUrlsServer.config", true);
 
                 foreach (string f in Directory.GetFiles(projectModel.LocalToolPath, "*.exe.config"))

@@ -15,6 +15,14 @@ namespace MtimeBuildTool.Helper
 {
     public class DirectoryHelper
     {
+        public static void CopyFiles(string sourceDir, string targetDir)
+        {
+            Directory.CreateDirectory(targetDir);
+
+            foreach (var file in Directory.GetFiles(sourceDir))
+                File.Copy(file, Path.Combine(targetDir, Path.GetFileName(file)), true);
+        }
+
         //private static void DirectoryRemove(string path)
         //{
 

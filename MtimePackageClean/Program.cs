@@ -8,6 +8,8 @@ namespace MtimePackageClean
 {
     class Program
     {
+        const int backupCount = 5;
+
         static void Main(string[] args)
         {
             CleanPackageDir(@"E:\Package\Tool\");
@@ -27,13 +29,13 @@ namespace MtimePackageClean
             {
                 Console.WriteLine("Tool SubDir:" + subDir.Name + " Count " + subDir.GetDirectories().Count());
 
-                if (subDir.GetDirectories().Count() <= 10) continue;
+                if (subDir.GetDirectories().Count() <= backupCount) continue;
 
                 Console.WriteLine(subDir.Name + " Begin");
 
                 List<DirectoryInfo> dateDirs = subDir.GetDirectories().OrderByDescending(dateDir => dateDir.Name).ToList();
 
-                for (int i = 10; i < dateDirs.Count; i++)
+                for (int i = backupCount; i < dateDirs.Count; i++)
                 {
                     Console.WriteLine(dateDirs[i].Name);
 

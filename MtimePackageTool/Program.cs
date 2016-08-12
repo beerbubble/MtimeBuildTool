@@ -7,6 +7,7 @@ using MtimeBuildTool.Helper;
 using System.IO;
 using MtimeBuildTool.Utility;
 using System.Diagnostics;
+using System.Net;
 
 namespace MtimePackageTool
 {
@@ -17,12 +18,14 @@ namespace MtimePackageTool
             //string project = "MtimeMovieCommunityRoot";
             //const string rarPath = @"C:\Progra~1\WinRAR\Rar.exe";
 
-            //string project = "MtimeChannel";
+            string project = args[0];
+            //string project = "MtimeLibraryNoCache";
 
             //获取当前部署的项目
             ProjectModel projectModel;
 
-            if (!ProjectMapHelper.ProjectDic.TryGetValue(args[0], out projectModel))
+            //if (!ProjectMapHelper.ProjectDic.TryGetValue(args[0], out projectModel))
+            if (!ProjectMapHelper.ProjectDic.TryGetValue(project, out projectModel))
             {
                 Environment.Exit(1);
                 return;
@@ -35,6 +38,8 @@ namespace MtimePackageTool
                 string packagePath = projectModel.LocalSitePackagePath + DateTime.Now.ToString("yyyyMMdd");
 
                 string zipPath = string.Empty;
+
+                string packagefile = projectModel.SitePackageName + DateTime.Now.ToString("yyyyMMddHHmm") + ".rar";
 
                 if (projectModel.SitePacker)
                 {
@@ -55,10 +60,21 @@ namespace MtimePackageTool
                         zipPath = Path.Combine(projectModel.LocalSitePath, VersionHelper.GetVersionVariable(projectModel.Name));
                         RAR(packagePath, VersionHelper.GetVersionVariable(projectModel.Name) + ".rar", new DirectoryInfo(zipPath).FullName);
                     }
+                    else if (projectModel.Name == "js.front_web")
+                    {
+                        zipPath = projectModel.LocalSitePath;
+                        using (ZipFile zip = new ZipFile())
+                        {
+                            zip.AddDirectory(zipPath);
+
+                            zip.Save(Path.Combine(packagePath, projectModel.SitePackageName + DateTime.Now.ToString("yyyyMMddHHmm") + ".zip"));
+                        }
+                    }
                     else
                     {
                         zipPath = projectModel.LocalSitePath;
-                        RAR(packagePath, projectModel.SitePackageName + DateTime.Now.ToString("yyyyMMddHHmm") + ".rar", new DirectoryInfo(zipPath).FullName);
+                        //RAR(packagePath, projectModel.SitePackageName + DateTime.Now.ToString("yyyyMMddHHmm") + ".rar", new DirectoryInfo(zipPath).FullName);
+                        RAR(packagePath, packagefile, new DirectoryInfo(zipPath).FullName);
                     }
                 }
 
@@ -77,7 +93,55 @@ namespace MtimePackageTool
 
                 DirectoryHelper.DirectoryCopy(packagePath, Path.Combine(@"\\192.168.0.25\ftproot\mtime\upversion\" + projectModel.Name, DateTime.Now.ToString("yyyyMMdd")));
                 //DirectoryHelper.DirectoryCopy(packagePath, Path.Combine(@"\\192.168.50.22\e$\Publish\" + projectModel.Name, DateTime.Now.ToString("yyyyMMdd")));
-                
+
+
+                FtpCreateFolder("10.10.20.15/codestore/upversion/" + project + @"/" + DateTime.Now.ToString("yyyyMMdd"), "codeuser", "codeuser");
+
+                string[] fileEntries = Directory.GetFiles(packagePath);
+                foreach (string filePath in fileEntries)
+                {
+                    Console.WriteLine(filePath);
+
+                    string fileName = Path.GetFileName(filePath);
+
+                    using (System.Net.WebClient client = new System.Net.WebClient())
+                    {
+                        client.Credentials = new System.Net.NetworkCredential("codeuser", "codeuser");
+                        try
+                        {
+                            client.UploadFile("ftp://10.10.20.15/codestore/upversion/" + project + @"/" + DateTime.Now.ToString("yyyyMMdd") + @"/" + fileName, "STOR", filePath);
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
+                    }
+
+                    //// Get the object used to communicate with the server.
+                    //FtpWebRequest request = (FtpWebRequest)WebRequest.Create("ftp://10.10.20.15/codestore/upversion/" + project + @"/" + DateTime.Now.ToString("yyyyMMdd") + @"/" + fileName);
+                    //request.Method = WebRequestMethods.Ftp.UploadFile;
+
+                    //// This example assumes the FTP site uses anonymous logon.
+                    //request.Credentials = new NetworkCredential("codeuser", "codeuser");
+
+                    //// Copy the contents of the file to the request stream.
+                    ////StreamReader sourceStream = new StreamReader(packagePath + @"\" + packagefile);
+                    //StreamReader sourceStream = new StreamReader(filePath);
+                    //byte[] fileContents = Encoding.UTF8.GetBytes(sourceStream.ReadToEnd());
+                    //sourceStream.Close();
+                    //request.ContentLength = fileContents.Length;
+
+                    //Stream requestStream = request.GetRequestStream();
+                    //requestStream.Write(fileContents, 0, fileContents.Length);
+                    //requestStream.Close();
+
+                    //FtpWebResponse response = (FtpWebResponse)request.GetResponse();
+
+                    //Console.WriteLine("Upload File Complete, status {0}", response.StatusDescription);
+
+                    //response.Close();
+                }
+
             }
 
             if (!string.IsNullOrEmpty(projectModel.LocalServicePackagePath))
@@ -90,16 +154,61 @@ namespace MtimePackageTool
 
                 zipPath = projectModel.LocalServicePath;
 
-                RAR(packagePath, projectModel.ServicePackageName + DateTime.Now.ToString("yyyyMMddHHmm") + ".rar", new DirectoryInfo(zipPath).FullName);
+                string packagefile = projectModel.ServicePackageName + DateTime.Now.ToString("yyyyMMddHHmm") + ".rar";
+
+                //RAR(packagePath, projectModel.ServicePackageName + DateTime.Now.ToString("yyyyMMddHHmm") + ".rar", new DirectoryInfo(zipPath).FullName);
+                RAR(packagePath, packagefile, new DirectoryInfo(zipPath).FullName);
 
                 DirectoryHelper.DirectoryCopy(packagePath, Path.Combine(@"\\192.168.0.25\ftproot\mtime\upversion\" + projectModel.Name, DateTime.Now.ToString("yyyyMMdd")));
                 //DirectoryHelper.DirectoryCopy(packagePath, Path.Combine(@"\\192.168.50.22\e$\Publish\" + projectModel.Name, DateTime.Now.ToString("yyyyMMdd")));
+
+                FtpCreateFolder("10.10.20.15/codestore/upversion/" + project + @"/" + DateTime.Now.ToString("yyyyMMdd"), "codeuser", "codeuser");
+
+                string[] fileEntries = Directory.GetFiles(packagePath);
+                foreach (string filePath in fileEntries)
+                {
+                    Console.WriteLine(filePath);
+
+                    string fileName = Path.GetFileName(filePath);
+
+                    using (System.Net.WebClient client = new System.Net.WebClient())
+                    {
+                        client.Credentials = new System.Net.NetworkCredential("codeuser", "codeuser");
+                        client.UploadFile("ftp://10.10.20.15/codestore/upversion/" + project + @"/" + DateTime.Now.ToString("yyyyMMdd") + @"/" + fileName, "STOR", filePath);
+                    }
+
+                    //// Get the object used to communicate with the server.
+                    //FtpWebRequest request = (FtpWebRequest)WebRequest.Create("ftp://10.10.20.15/codestore/upversion/" + project + @"/" + DateTime.Now.ToString("yyyyMMdd") + @"/" + fileName);
+                    //request.Method = WebRequestMethods.Ftp.UploadFile;
+
+                    //// This example assumes the FTP site uses anonymous logon.
+                    //request.Credentials = new NetworkCredential("codeuser", "codeuser");
+
+                    //// Copy the contents of the file to the request stream.
+                    ////StreamReader sourceStream = new StreamReader(packagePath + @"\" + packagefile);
+                    //StreamReader sourceStream = new StreamReader(filePath);
+                    //byte[] fileContents = Encoding.UTF8.GetBytes(sourceStream.ReadToEnd());
+                    //sourceStream.Close();
+                    //request.ContentLength = fileContents.Length;
+
+                    //Stream requestStream = request.GetRequestStream();
+                    //requestStream.Write(fileContents, 0, fileContents.Length);
+                    //requestStream.Close();
+
+                    //FtpWebResponse response = (FtpWebResponse)request.GetResponse();
+
+                    //Console.WriteLine("Upload File Complete, status {0}", response.StatusDescription);
+
+                    //response.Close();
+                }
             }
 
             if (!string.IsNullOrEmpty(projectModel.LocalToolPackagePath))
             {
                 DirectoryHelper.CreateDateFolder(projectModel.LocalToolPackagePath);
                 string packagePath = projectModel.LocalToolPackagePath + DateTime.Now.ToString("yyyyMMdd");
+
+                string packagefile = projectModel.ToolPackageName + DateTime.Now.ToString("yyyyMMddHHmm") + ".rar";
 
                 if (File.Exists(projectModel.LocalToolPath + "/Package.config"))
                 {
@@ -111,12 +220,80 @@ namespace MtimePackageTool
 
                     zipPath = projectModel.LocalToolPath;
 
-                    RAR(packagePath, projectModel.ToolPackageName + DateTime.Now.ToString("yyyyMMddHHmm") + ".rar", new DirectoryInfo(zipPath).FullName);
+                    //RAR(packagePath, projectModel.ToolPackageName + DateTime.Now.ToString("yyyyMMddHHmm") + ".rar", new DirectoryInfo(zipPath).FullName);
+
+                    RAR(packagePath, packagefile, new DirectoryInfo(zipPath).FullName);
                 }
 
                 DirectoryHelper.DirectoryCopy(packagePath, Path.Combine(@"\\192.168.0.25\ftproot\mtime\upversion\" + projectModel.Name, DateTime.Now.ToString("yyyyMMdd")));
                 //DirectoryHelper.DirectoryCopy(packagePath, Path.Combine(@"\\192.168.50.22\e$\Publish\" + projectModel.Name, DateTime.Now.ToString("yyyyMMdd")));
+
+                FtpCreateFolder("10.10.20.15/codestore/upversion/" + project + @"/" + DateTime.Now.ToString("yyyyMMdd"), "codeuser", "codeuser");
+
+                string[] fileEntries = Directory.GetFiles(packagePath);
+                foreach (string filePath in fileEntries)
+                {
+                    Console.WriteLine(filePath);
+
+                    string fileName = Path.GetFileName(filePath);
+
+                    using (System.Net.WebClient client = new System.Net.WebClient())
+                    {
+                        client.Credentials = new System.Net.NetworkCredential("codeuser", "codeuser");
+                        client.UploadFile("ftp://10.10.20.15/codestore/upversion/" + project + @"/" + DateTime.Now.ToString("yyyyMMdd") + @"/" + fileName, "STOR", filePath);
+                    }
+
+                    //// Get the object used to communicate with the server.
+                    //FtpWebRequest request = (FtpWebRequest)WebRequest.Create("ftp://10.10.20.15/codestore/upversion/" + project + @"/" + DateTime.Now.ToString("yyyyMMdd") + @"/" + fileName);
+                    //request.Method = WebRequestMethods.Ftp.UploadFile;
+
+                    //// This example assumes the FTP site uses anonymous logon.
+                    //request.Credentials = new NetworkCredential("codeuser", "codeuser");
+
+                    //// Copy the contents of the file to the request stream.
+                    ////StreamReader sourceStream = new StreamReader(packagePath + @"\" + packagefile);
+                    //StreamReader sourceStream = new StreamReader(filePath);
+                    //byte[] fileContents = Encoding.UTF8.GetBytes(sourceStream.ReadToEnd());
+                    //sourceStream.Close();
+                    //request.ContentLength = fileContents.Length;
+
+                    //Stream requestStream = request.GetRequestStream();
+                    //requestStream.Write(fileContents, 0, fileContents.Length);
+                    //requestStream.Close();
+
+                    //FtpWebResponse response = (FtpWebResponse)request.GetResponse();
+
+                    //Console.WriteLine("Upload File Complete, status {0}", response.StatusDescription);
+
+                    //response.Close();
+                }
             }
+        }
+
+        private static void FtpCreateFolder(string ftpAddress, string ftpUName, string ftpPWord)
+        {
+            try
+            {
+                WebRequest ftpRequest = WebRequest.Create("ftp://" + ftpAddress);
+                ftpRequest.Method = WebRequestMethods.Ftp.MakeDirectory;
+                ftpRequest.Credentials = new NetworkCredential(ftpUName, ftpPWord);
+
+                FtpWebResponse response = (FtpWebResponse)ftpRequest.GetResponse();
+                response.Close();
+            }
+            catch (WebException ex)
+            {
+                FtpWebResponse response = (FtpWebResponse)ex.Response;
+                if (response.StatusCode == FtpStatusCode.ActionNotTakenFileUnavailable)
+                {
+                    response.Close();
+                }
+                else
+                {
+                    response.Close();
+                }
+            }
+           
         }
 
         public static bool RAR(string rarPath, string rarName, string workingDirectory)
