@@ -328,7 +328,7 @@
       <Item Type="EditConfig" dir="E:\Publish\WebSite\m.mtime.cn\" file="Web.config" xpath="/configuration/appSettings/add[@key=&quot;StaticResourceServersVersion&quot;]" attribute="value" value="$MtimeMovieCommunityRoot" />
       <Item Type="ReplaceContent" dir="E:\Publish\WebSite\m.mtime.cn\" file="head.inc" find="var version = &quot;&quot;;" replace="var version = &quot;head&quot;;" />
       <Item Type="ReplaceContent" dir="E:\Publish\WebSite\m.mtime.cn\" file="head.inc" find="head" replace="$MtimeHtml5" />
-      <Item Type="ReplaceContent" dir="E:\Publish\WebSite\m.mtime.cn\" file="head.inc" find="http://m.mtime.cn" replace="http://192.168.50.22:8000/html5/" />
+      <Item Type="ReplaceContent" dir="E:\Publish\WebSite\m.mtime.cn\" file="head.inc" find="//m.mtime.cn" replace="//static-test.mtime.cn/html5/" />
       <Item Type="ReplaceContent" dir="E:\Publish\WebSite\m.mtime.cn\" file="head.inc" find="//window.nginxProxyMode" replace="window.nginxProxyMode" />
     </WebSite>
     <Service></Service>

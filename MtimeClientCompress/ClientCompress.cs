@@ -15,6 +15,10 @@ namespace MtimeClientCompress.Components
 
         private static string Server_StaticResourceServer =
             System.Configuration.ConfigurationManager.AppSettings["Server_StaticResourceServer"];
+
+        private static string Server_Https_StaticResourceServer =
+           System.Configuration.ConfigurationManager.AppSettings["Server_Https_StaticResourceServer"];
+
         static bool IsGrayImage = SafeConvert.ToBoolean(
                     System.Configuration.ConfigurationManager.AppSettings["IsGrayImage"]);
 
@@ -22,7 +26,12 @@ namespace MtimeClientCompress.Components
         {
             return Process(folderPath, true);
         }
+
         public static string Process(string folderPath, bool createVerFolder)
+        { 
+            return Process(folderPath,createVerFolder,string.Empty);
+        }
+        public static string Process(string folderPath, bool createVerFolder,string projectName)
         {
             //2014.04.15 修改根目录文件拷贝异常bug
             folderPath = folderPath.TrimEnd('\\');
@@ -41,7 +50,14 @@ namespace MtimeClientCompress.Components
                     {
                         string subStaticResourceServerName = node.Attributes["value"].Value;
                         Local_StaticResourceServer += subStaticResourceServerName + "/";
-                        Server_StaticResourceServer += subStaticResourceServerName + "/";
+                        if (projectName == "MtimeHtml5")
+                        {
+                            Server_StaticResourceServer = Server_Https_StaticResourceServer + subStaticResourceServerName + "/";
+                        }
+                        else
+                        {
+                            Server_StaticResourceServer += subStaticResourceServerName + "/";
+                        }
                     }
                 }
             }

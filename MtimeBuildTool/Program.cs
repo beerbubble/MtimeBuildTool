@@ -208,16 +208,40 @@ namespace MtimeBuildTool
             //    }
 
             //}
-           
-                
+
+            if (projectModel.Name == "MtimeMovieCommunityRootPackage")
+            {
+                Log.WriteMessageByProject(projectModel, "压缩目录开始！");
+                try
+                {
+                    string errorMessage = ClientCompress.Process(projectModel.LocalSitePath, true);
+                    FileInfo filemain = new FileInfo(projectModel.LocalSitePath + versionFileName);
+
+                    if (!Directory.Exists(vsersionFolderPath + projectModel.Name))
+                        Directory.CreateDirectory(vsersionFolderPath + projectModel.Name);
+                    filemain.CopyTo(vsersionFolderPath + projectModel.Name + @"\" + versionFileName, true);
+                }
+                catch (Exception e)
+                {
+                    Log.WriteMessage(e.Message);
+                }
+                Log.WriteMessageByProject(projectModel, "压缩目录完成！");
+            }
 
             if (!string.IsNullOrEmpty(projectModel.StaticPath))
             {
                 Log.WriteMessageByProject(projectModel, "压缩目录开始！");
                 try
                 {
-                    string errorMessage = ClientCompress.Process(projectModel.LocalSitePath, true);
-                    //                    CompressWebSite(projectModel);
+                    if (projectModel.Name == "MtimeHtml5")
+                    {
+                        string errorMessage = ClientCompress.Process(projectModel.LocalSitePath, true, projectModel.Name);
+                    }
+                    else
+                    {
+                        string errorMessage = ClientCompress.Process(projectModel.LocalSitePath, true);
+                        //                    CompressWebSite(projectModel);
+                    }
                     FileInfo filemain = new FileInfo(projectModel.LocalSitePath + versionFileName);
 
                     if (!Directory.Exists(vsersionFolderPath + projectModel.Name))

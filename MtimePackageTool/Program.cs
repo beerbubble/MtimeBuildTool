@@ -19,7 +19,7 @@ namespace MtimePackageTool
             //const string rarPath = @"C:\Progra~1\WinRAR\Rar.exe";
 
             string project = args[0];
-            //string project = "MtimeLibraryNoCache";
+            //string project = "MtimeDataService2";
 
             //获取当前部署的项目
             ProjectModel projectModel;
@@ -30,6 +30,8 @@ namespace MtimePackageTool
                 Environment.Exit(1);
                 return;
             }
+
+            Log.WriteMessageByProject(projectModel, project);
 
             if (!string.IsNullOrEmpty(projectModel.LocalSitePackagePath))
             {
@@ -55,7 +57,7 @@ namespace MtimePackageTool
                 else
                 {
 
-                    if (projectModel.Name == "MtimeMovieCommunityRoot")
+                    if (projectModel.Name == "MtimeMovieCommunityRoot" || projectModel.Name == "MtimeMovieCommunityRootPackage")
                     {
                         zipPath = Path.Combine(projectModel.LocalSitePath, VersionHelper.GetVersionVariable(projectModel.Name));
                         RAR(packagePath, VersionHelper.GetVersionVariable(projectModel.Name) + ".rar", new DirectoryInfo(zipPath).FullName);
@@ -91,7 +93,7 @@ namespace MtimePackageTool
 
                 //}
 
-                DirectoryHelper.DirectoryCopy(packagePath, Path.Combine(@"\\192.168.0.25\ftproot\mtime\upversion\" + projectModel.Name, DateTime.Now.ToString("yyyyMMdd")));
+                //DirectoryHelper.DirectoryCopy(packagePath, Path.Combine(@"\\192.168.0.25\ftproot\mtime\upversion\" + projectModel.Name, DateTime.Now.ToString("yyyyMMdd")));
                 //DirectoryHelper.DirectoryCopy(packagePath, Path.Combine(@"\\192.168.50.22\e$\Publish\" + projectModel.Name, DateTime.Now.ToString("yyyyMMdd")));
 
 
@@ -114,6 +116,7 @@ namespace MtimePackageTool
                         catch (Exception e)
                         {
                             Console.WriteLine(e.Message);
+                            Log.WriteMessage(e.Message);
                         }
                     }
 
@@ -159,7 +162,7 @@ namespace MtimePackageTool
                 //RAR(packagePath, projectModel.ServicePackageName + DateTime.Now.ToString("yyyyMMddHHmm") + ".rar", new DirectoryInfo(zipPath).FullName);
                 RAR(packagePath, packagefile, new DirectoryInfo(zipPath).FullName);
 
-                DirectoryHelper.DirectoryCopy(packagePath, Path.Combine(@"\\192.168.0.25\ftproot\mtime\upversion\" + projectModel.Name, DateTime.Now.ToString("yyyyMMdd")));
+                //DirectoryHelper.DirectoryCopy(packagePath, Path.Combine(@"\\192.168.0.25\ftproot\mtime\upversion\" + projectModel.Name, DateTime.Now.ToString("yyyyMMdd")));
                 //DirectoryHelper.DirectoryCopy(packagePath, Path.Combine(@"\\192.168.50.22\e$\Publish\" + projectModel.Name, DateTime.Now.ToString("yyyyMMdd")));
 
                 FtpCreateFolder("10.10.20.15/codestore/upversion/" + project + @"/" + DateTime.Now.ToString("yyyyMMdd"), "codeuser", "codeuser");
@@ -225,7 +228,7 @@ namespace MtimePackageTool
                     RAR(packagePath, packagefile, new DirectoryInfo(zipPath).FullName);
                 }
 
-                DirectoryHelper.DirectoryCopy(packagePath, Path.Combine(@"\\192.168.0.25\ftproot\mtime\upversion\" + projectModel.Name, DateTime.Now.ToString("yyyyMMdd")));
+                //DirectoryHelper.DirectoryCopy(packagePath, Path.Combine(@"\\192.168.0.25\ftproot\mtime\upversion\" + projectModel.Name, DateTime.Now.ToString("yyyyMMdd")));
                 //DirectoryHelper.DirectoryCopy(packagePath, Path.Combine(@"\\192.168.50.22\e$\Publish\" + projectModel.Name, DateTime.Now.ToString("yyyyMMdd")));
 
                 FtpCreateFolder("10.10.20.15/codestore/upversion/" + project + @"/" + DateTime.Now.ToString("yyyyMMdd"), "codeuser", "codeuser");
